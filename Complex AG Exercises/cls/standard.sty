@@ -1,0 +1,97 @@
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{graphicx, tikz-cd}
+\usepackage{todonotes}
+\usepackage{url}
+\usepackage{enumerate}
+\usepackage[colorlinks=true, linkcolor = blue, urlcolor = blue, citecolor = OliveGreen]{hyperref}
+\usepackage{cite}
+
+\usetikzlibrary{arrows,decorations.pathmorphing,backgrounds,positioning,fit,petri,calc,shapes.misc,decorations.markings}
+\tikzset{degil/.style={
+                decoration={markings,
+                mark= at position 0.5 with {
+                \node[transform shape] (tempnode) {$\backslash$};
+                %\draw[thick] (tempnode.north east) -- (tempnode.south west);
+                }
+                },
+                postaction={decorate}
+}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+%\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{xca}[theorem]{Exercise}
+%\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\numberwithin{equation}{section}
+
+
+\newcommand{\catname}[1]{\normalfont\textbf{#1}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\fr}{\mathfrak}
+\newcommand{\p}{\partial}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\dVol}{dVol}
+\DeclareMathOperator{\Alb}{Alb}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\Fl}{Fl}
+\DeclareMathOperator{\PP}{\mathbb{P}}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Coker}{Coker}
+\DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\sHom}{\mathscr{H}\!om}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\irr}{irr}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\gr}{gr}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\td}{td}
+\DeclareMathOperator{\ch}{ch}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Specm}{Specm}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\mult}{mult}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\kod}{kod}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\Kod}{Kod}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+
+
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\PGL}{PGL}
+

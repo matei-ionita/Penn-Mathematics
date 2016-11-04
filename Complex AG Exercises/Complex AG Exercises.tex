@@ -1,0 +1,2582 @@
+\documentclass{article}
+\usepackage{./cls/standard}
+
+\begin{document}
+\title{Complex Algebraic Geometry Exercises}
+\author{Matei Ionita}
+
+\maketitle
+
+The following are solutions to selected exercises in \cite{Huy}, \cite{Mir} and \cite{Voi1}. These exercises are
+intended as practice for a Complex Algebraic Geometry course taught at the University of Pennsylvania
+by Ron Donagi.
+
+\section{Miranda}
+\subsection*{Problem II.4.G in \cite{Mir}}
+\textit{Let} $f(z) = z^3/(1-z^2)$ \textit{considered as a meromorphic function on the Riemann sphere}
+$\C_{\infty}$. \textit{Find all points} $p$ \textit{such that} $\ord_p(f) \neq 0$. \textit{Consider the
+associated map} $F: \C_{\infty} \to \C_{\infty}$. \textit{Show that} $F$ \textit{has degree 3 as a
+holomorphic map, and find all of its ramification and branch points. Verify Hurwitz's formula for this map.}
+\begin{proof}
+At $z=0$ the expression we are given for $f(z)$ already makes evident that its Laurent expansion has
+$a_3$ as the lowest nonzero coefficient, hence $\ord_0(f) = 3$. Shifting to coordinates $w = z \pm 1$, we
+find that the Laurent expansion around $z = \pm 1$ has $a_{-1}$ as the lowest nonzero coefficient,
+hence $\ord_{\pm 1}(f) = -1$. Performing a similar shift $w = z - a$ for $a \neq 0, \pm 1$ shows that
+$\ord_{a}(f) = 0$. The only thing left to check is $\ord_{\infty}(f)$, for which we use the coordinate
+$w = z^{-1}$. Then:
+\[	f(w) = \frac{1}{w^3(1-w^{-2})} = \frac{1}{w(1-w^2)}	\]
+Hence $f$ has a pole of order one at $w=0$, which means that $\ord_{\infty}(f) = -1$.
+
+Using Lemma 4.7, we can relate the multiplicity of $F$ at various points to the orders of $f$ computed
+above. In particular, $\mult_0(F) = 3$, and $\mult_{\pm 1}(F) = \mult_{\infty} = 1$. For other
+$p \in \PP^1$, we could apply part (c) of Lemma 4.7, but that leads to cumbersome computations. We use
+instead Lemma 4.4. On $\PP^1 - \{\infty\}$, $z$ is a coordinate function, and:
+\[	F'(z) = \frac{z^2(3-z^2)}{(1-z^2)^2}.	\]
+We see again that $\mult_0(F) = 1+2 = 3$, but we also find that $\mult_{\pm\sqrt{3}}(F) = 1+1=2$,
+which is not obvious from the expression of $F(z)$. Hence the ramification points are:
+\begin{itemize}
+\item $z=0$, with multiplicity 3;
+\item $z= \pm \sqrt{3}$, with multiplicity 2.
+\end{itemize}
+The branch points are:
+\begin{itemize}
+\item 0, with 1 preimage;
+\item $\pm 3\sqrt{3}/2$, each with 2 preimages.
+\end{itemize}
+To obtain the degree of $F$ we look at $F^{-1}(0) = \{0\}$; using Proposition 4.8 we obtain 
+$\deg (F) = 1\cdot 3 = 3$. With this data, the Hurewitz formula gives:
+\[	-2 = -2 \cdot 3 + [2+1+1],	\]
+so everything is consistent.
+\end{proof}
+
+
+\subsection*{Problem II.4.I in \cite{Mir}}
+\textit{Let} $F:X\to Y$ \text{be a nonconstant holomorphic map between compact Riemann surfaces.}
+\begin{enumerate}
+\item \textit{Show that if} $Y \cong \PP^1$, \textit{and} $F$ \textit{has degree at least two, then}
+$F$ \textit{must be ramified.}
+\item \textit{Show that if} $X$ \textit{and} $Y$ \textit{both have genus one, then} $F$ \textit{is
+unramified.}
+\item \textit{Show that} $g(Y)\leq g(X)$.
+\item \textit{Show that if} $g(Y) = g(X) \geq 2$, \textit{then} $F$ \textit{is an isomorphism.}
+\end{enumerate}
+\begin{proof}
+Recall the Hurwitz formula for a holomorphic map between Riemann surfaces:
+\[	2g(X) - 2 = \deg(F)\big(2g(Y) - 2\big) + \sum_{p\in X} [\mult_p(F) - 1].	\]
+\begin{enumerate}
+\item The Hurwitz formula when $g(Y) = 0$ gives:
+\begin{align*}
+\sum_{p\in X} [\mult_p(F) - 1] &= 2g(X) - 2 + 2\deg(F) \geq 2 + 2g(X) > 0.
+\end{align*}
+\item When $g(X) = g(Y) = 1$, the Hurwitz formula reduces to $\sum_{p\in X} [\mult_p(F) - 1] = 0$.
+Since each term is nonnegative, $\mult_p(F) = 1$ for every $p$.
+\item Rewrite the Hurwitz formula as:
+\[	2\big(g(X) - g(Y)\big) = \big(\deg(F) - 1\big)(2g(Y) - 2) + \sum_{p\in X} [\mult_p(F) - 1].	\]
+If $g(Y) = 0$, then $g(Y) \leq g(X)$ is automatic. So assume that $g(Y) \neq 0$. Then the RHS is
+$\geq 0$, from which it follows again that $g(Y) \leq g(X)$.
+\item For $g(X) = g(X) \geq 2$, the formula reduces to:
+\[	(2g(X) - 2)\big(1-\deg(F)\big) = \sum_{p\in X} [\mult_p(F) - 1].	\]
+The RHS is $\geq 0$ and $2g(X) - 2 > 0$, hence $\deg(F) \leq 1$. The only possibility is $\deg(F) = 1$,
+hence $F$ is an isomorphism.
+\end{enumerate}
+\end{proof}
+
+\subsection*{Problem II.4.J in \cite{Mir}}
+\textit{Let} $X$ \textit{be the projective plane curve of degree} $d$ \textit{defined by the homogenous
+polynomial} $F(x,y,z) = x^d + y^d + z^d$. \textit{This curve is called the Fermat curve of degree}
+$d$. \textit{Let} $\pi:X \to \PP^1$ \textit{be given by} $\pi[x:y:z] = [x:y]$.
+\begin{enumerate}
+\item \textit{Check that the Fermat curve is smooth.}
+\item \textit{Show that} $\pi$ \textit{is a well-defined holomorphic map of degree} $d$.
+\item \textit{Find all ramification and branch points of} $\pi$.
+\item \textit{Use the Hurwitz formula to compute the genus of the Fermat curve. You should get:}
+\[	g(X) = \frac{(d-1)(d-2)}{2}.	\]
+\end{enumerate}
+\begin{proof}
+\begin{enumerate}
+\item The derivative of $F$ is:
+\[	DF = \left[ \begin{array} {ccc} dx^{d-1} & dy^{d-1} & dz^{d-1} \end{array} \right].	\]
+Hence $X$ is singular only if $[x:y:z] = [0:0:0] \not \in \PP^2$.
+\item To see that $\pi$ is well-defined, note that $[x:y] = [0:0]$ together with $F(x,y,z) = 0$
+implies that $[x:y:z] = [0:0:0] \not \in \PP^2$. Hence $\pi$ always maps to $\PP^1$; it is also
+clear that $\pi$ is independent of the representative chosen for $[x:y:z]$.
+
+To see that $\pi$ is holomorphic, we look at its coordinate representation in the standard charts
+for $\PP^2$ and $\PP^1$. Consider the chart $(U_0,\phi_0)$ on $\PP^2$ given by $U_0 = \{[x:y:z] \in X 
+| x\neq 0\}$ and:
+\begin{align*}
+\phi_0 : U_0 &\to \C^2 \\
+[x:y:z] &\mapsto (w_1, w_2) := \left(\frac{y}{x}, \frac{z}{x}\right).
+\end{align*}
+Moreover, consider the chart $(V_0, \psi_0)$ on $\PP^1$ given by $V_0 = \{[x:y] \in \PP^1 | x \neq 0\}$
+and:
+\begin{align*}
+\psi_0 : V_0 &\to \C \\
+[x:y] &\mapsto w := \frac{y}{x}.
+\end{align*}
+Then $\pi(U_0) \subset V_0$ and $\psi_0 \circ \pi \circ \phi_0^{-1}(w_1, w_2) = w_1$, which is holomorphic.
+One can check in a similar fashion that the other coordinate representations of $\pi$ are holomorphic as
+well.
+
+We compute the degree of $\pi$ by looking at the preimage of $p = [1:0] \in \PP^1$. $\pi^{-1}(p) =
+\{ [1:0:\xi_i] \}$, where $\{\xi_i\}_{i=1}^d$ are the $d^{\text{th}}$ roots of -1. $\pi$ is unramified
+at $[1:0:\xi_i]$, using Lemma 4.6 and the fact that:
+\[	\p_{w_2}(F\circ \phi_0^{-1}) = \p_{w_2}(1 + w_1^d + w_2^d) = dw_2^{d-1}	\]
+does not vanish at $[1:0:\xi_i]$. Hence $\deg F = \sum_{q \in \pi^{-1}(p)} 1 = d$.
+\item We claim that there are no ramified points outside $U_0 = \{[x:y:z] \in X | x\neq 0\}$. Indeed,
+all $p \in X - U_0$ map to $[0:1] \in \PP^1$, the preimages of which are $[0:1:\xi_i]$. In particular,
+$[0:1]$ has $d$ preimages, so it is not a branched point.
+
+We can then work in $U_0$ and use the coordinate representation $F\circ \phi_0^{-1}(w_1,w_2) = 
+1+ w_1^d + w_2^d$ of $F$. Since $\psi_0 \circ \pi \circ \phi_0^{-1}(w_1, w_2) = w_1$, Lemma 4.6 implies
+that the ramification points of $\pi$ are the solutions to $\p_{w_2} (F\circ \phi_0^{-1}) = 0$ in $X$.
+These are $[1:\xi_i:0]$; there are $d$ of them and each has multiplicity $d$. The corresponding
+branch points are $[1:\xi_i]$.
+\item Using the above information in the Hurwitz formula results in:
+\[	2g-2 = -2d + d(d-1).	\]
+Hence $g = \frac{1}{2}(d-1)(d-2)$.
+\end{enumerate}
+\end{proof}
+
+
+\subsection*{Problem IV.1.A in \cite{Mir}}
+\textit{Let} $X$ \textit{be the Riemann sphere, with local coordinate} $z$ \textit{in one chart
+and} $w=1/z$ \textit{in the other. Let} $\omega$ \textit{be a meromorphic 1-form on} $X$. \textit{Show
+that if} $\omega = f(z) dz$ \textit{in the coordinate} $z$, \textit{then} $f$ \textit{must be a rational
+function of} $z$. \textit{Show further that there are no nonzero holomorphic 1-forms on} $X$. \textit{What
+are the zeros and poles, and the respective orders, of the 1-forms} $dz$ \textit{and} $dz/z$?
+\begin{proof}
+In the coordinate chart around $z=\infty$, $\omega$ is given by $-f(w^{-1})w^{-2} dw$. (We know that
+$\omega$ transforms this way on the overlap of the two charts; the uniqueness of analytic continuation
+then guarantees that the extension to $z = \infty$ is unique.) Since $\omega$
+is meromorphic, its component functions in each chart must be meromorphic. Hence $f(z), f(w^{-1})$ are
+both meromorphic on $\C$, which means that they are the coordinate representations of a meromorphic
+function on $X$. Using Theorem 2.1 in Chapter II, $f(z)$ is a rational function.
+
+If $\omega$ is holomorphic, then particular $f$ is holomorphic on each chart, so it defines a holomorphic
+function on $X$. Since $X$ is compact, $f$ is constant. However, this is incompatible with the transformation
+law $f(z) \mapsto -w^{-2}f(w^{-1})$ that $F$ satisfies. We conclude that $X$ admits no holomorphic 1-forms.
+
+$\omega_1 = dz$ is given by the expression $-w^{-2} dw$ on the chart around $z=\infty$. Hence $\omega_1$
+has no zeros on $X$, and a pole of order 2 at $z=\infty$. $\omega_2 = z^{-1}dz$ is given by the expression
+$-w^{-1}dw$ on the chart around $z=\infty$. Hence $\omega_2$ has no zeros on $X$, and poles of order 1
+at $z = 0$ and $z=\infty$.
+\end{proof}
+
+\subsection*{Problem IV.1.C in \cite{Mir}}
+\textit{Let} $X$ \textit{be a smooth affine plane curve defined by} $f(u,v) = 0$. \textit{Show that}
+$du$ \textit{and} $dv$ \textit{define holomorphic 1-forms on} $X$, \textit{as do} $p(u,v) du$ \textit{and}
+$p(u,v)dv$ \textit{for any polynomial} $p(u,v)$. \textit{Show that if} $r(u,v)$ \textit{is any rational
+function, then} $r(u,v) du$ \textit{and} $r(u,v)dv$ \textit{are meromorphic 1-forms on} $X$. \textit{Show 
+that} $(\p f/\p u) du= - (\p f/\p v) dv$ \textit{as holomorphic 1-forms on} $X$.
+\begin{proof}
+
+\end{proof}
+
+
+
+
+\section{Huybrechts, Chapter 1}
+
+\subsection*{Exercise 1.1.1 in \cite{Huy}}
+\textit{Show that every holomorphic map}
+\[	f : \C \to \HH : = \{z | \Imag (z) > 0	\}	\]
+\textit{is constant.}
+\begin{proof}
+Using the Riemann mapping theorem, there exists a biholomorphism $\phi :\HH \to \D$. Then
+$\phi \circ f : \C \to \D$ is holomorphic, or in other words $\phi \circ f$ is entire and bounded.
+It follows from the Liouville theorem that $\phi \circ f$ is constant. Hence $f = \phi^{-1} \circ
+(\phi \circ f)$ is also constant.
+\end{proof}
+
+\subsection*{Exercise 2.1.2 in \cite{Huy}}
+\textit{Show that} $\C^n$ \textit{does not have any compact submanifolds of positive dimension. (This
+is in contrast to the real situation, where any real manifold, compact or not, can be realized as
+a submanifold of some} $\R^n$\textit{.)}
+\begin{proof}
+Let $X$ be any compact complex submanifold of $\C^n$, and let $\iota:X \to \C^n$ be the inclusion.
+Let $f:\C^n \to \C$ be any holomorphic function. Then $f \circ \iota \in \Gamma(X,\mathcal{O}_X)$. Since
+$X$ is compact, $\Gamma(X,\mathcal{O}_X) \cong \C^k$, where $k$ is the number of connected components of
+$X$. Hence $f\circ \iota$ is locally constant. If $\dim X >0$, it follows that $f$ is constant on a sequence
+of distinct points which converge in $\C^n$. Using the uniqueness of analytic continuation, $f$ is constant on $\C^n$.
+This is a contradiction, since $\C^n$ admits nonconstant holomorphic functions. Then it must be the case that
+$\dim X = 0$.
+\end{proof}
+
+
+\subsection*{Exercise 2.1.3 in \cite{Huy}}
+\textit{Determine the algebraic dimension of the following manifolds:} $\PP^1, \PP^n, \C/(\Z + i\Z)$.
+\textit{For the latter, you might need to recall some basic facts on the Weierstrass} $\wp$
+\textit{function. How big is the function field of} $\C$?
+\begin{proof}
+We use the standard open covering for $\PP^n$, i.e. $U_i = \{(z_0:\dots:z_n)|z_i\neq 0\} \subset \PP^n$,
+with coordinate charts:
+\begin{align*}
+\phi_i : U_i &\to \C^n, \\
+(z_0:\dots:z_n) &\mapsto \left(\frac{z_0}{z_i}, \dots, \frac{z_{i-1}}{z_i}, \frac{z_{i+1}}{z_i}, \dots,
+\frac{z_n}{z_i} \right).
+\end{align*}
+We treat the case of $\PP^1$ separately, in order to develop an intuition for working with meromorphic
+functions on $\PP^n$. Define the function:
+\begin{align*}
+f : \PP^1 &\to \C \\
+(z_0:z_1) &\mapsto \frac{z_1}{z_0}.
+\end{align*}
+$f$ has coordinate representations $(f \circ \phi^{-1}_0)(w) = w$ and $(f\circ \phi^{-1}_1)(w) = \frac{1}{w}$.
+It's easy to see that $f$ is holomorphic on $U_0$ and has a pole of order 1 at $(0:1)$, hence $f$ is meromorphic
+on $\PP^1$. Moreover, rational functions of $f$ have coordinate representations which are rational functions
+of $w$, so they are also meromorphic. We have proved that $\C(f) \subset K(\PP^1)$, which implies that 
+$\trdeg_{\C} K(\PP^1) \geq 1$. Using Siegel's theorem and the fact that $\dim \PP^1 = 1$, we obtain the equality
+$\trdeg_{\C} K(\PP^1) = 1$.
+
+Moving on to $\PP^n$ for $n>1$, define the functions:
+\begin{align*}
+f_i : \PP^n &\to \C \\
+(z_0:\dots:z_n) &\mapsto \frac{z_i}{z_0},
+\end{align*}
+for $1\leq i \leq n$. The coordinate representation of $f_i$ on the chart $(U_j, \phi_j)$ is:
+\[	f_i\circ \phi_j^{-1}(w_0, \dots, \hat w_j, \dots w_n) =
+\left\{ \begin{array} {c}
+w_i \text{ for } j=0 \\
+w_0^{-1}w_i \text{ for } j\neq 0
+\end{array}\right.	\]
+It follows that $f_i$, as well as rational functions in $\{f_i\}$, are meromorphic on $\PP^n$.
+Moreover, $\{f_i\}$ are algebraically independent because their coordinate representations are.
+Hence $\C(f_1, \dots, f_n) \subset K(\PP^n)$, and $\trdeg_{\C} K(\PP^n) \geq n$. Using Siegel's
+theorem again, we obtain equality: $\trdeg_{\C} K(\PP^n) = n$.
+
+For the case of $\C/(\Z + i\Z)$, we recall some results from the theory of doubly
+periodic functions. Let $\Lambda = \Z + i\Z$ and $\Lambda^{\times} = \Lambda - \{0\}$. A meromorphic
+function on $\C/(\Z + i\Z)$ is the same as a meromorphic function on $\C$ which is doubly periodic
+with period $\Lambda$. The latter are generated as a field over $\C$ by the Weierstrass $\wp$-function:
+\[ \wp(z) = \frac{1}{z^2} + \sum_{w\in \Lambda^*} \left[\frac{1}{(z+w)^2} - \frac{1}{w^2} \right] \]
+and its derivative $\wp'$. Moreover, the two generators satisfy the equation:
+\[	(\wp'(z))^2 = 4 (\wp(z))^3 - g_2 \wp(z) - g_3	,\]
+where $g_2, g_3 \in \C$. Hence $K(\C/\Lambda)$ is the field of fractions of
+\[	R/\fr{p}= \C[\wp, \wp']/(\wp'^2 - 4\wp^3 + g_2\wp + g_3).	\]
+In particular, $\trdeg_{\C} K(\C/\Lambda) = 1$, since $\fr p$ is prime and $R/\fr{p}$ has Krull dimension 1.
+
+Since $\C$ is not compact, Siegel's theorem does not impose any bound on $\trdeg_{\C} K(\C)$. And indeed,
+the transcendence degree is infinite, which can be seen by considering the subfield of $K(\C)$ generated
+by the holomorphic functions $\{\exp(t_i z)\}$, for $\{t_i\}_{i=1}^{\infty}$ complex. An algebraic relation
+between $\{\exp(t_i z)\}$ over $\C$ gives an algebraic relation for $\{t_i\}_{i=1}^{\infty}$ over $\Q$. There
+are $t_i$ for which the latter does not exist, because $\trdeg_{\Q} \C$ is infinite.
+\end{proof}
+
+
+\section{Huybrechts, Chapter 2}
+
+\subsection*{Exercise 2.1.4 in \cite{Huy}}
+\emph{Show that any holomorphic map from $\PP^1$ into a complex torus is constant. What about maps from
+$\PP^n$ into a complex torus?}
+\begin{proof}
+Let $f$ be a holomorphic map $\PP^n \to \C^n / \Lambda$, where $\Lambda$ is a lattice of rank $2n$ in $\C^n$.
+$\PP^n$ is the base of a fibration $S^1 \hookrightarrow S^{2n+1} \twoheadrightarrow \PP^n$. Using the associated
+long exact sequence of homotopy groups, we see that $\pi_1(\PP^n) = 0$ for every $n$. Then $f$ has a lift
+$\tilde f : \PP^n \to \C^n$ to the universal covering $\C^n$ of the torus $\C^n / \Lambda$. A priori $\tilde f$
+is continuous, but not necessarily holomorphic.
+
+For any $x \in \PP^n$, let $p = f(x)$ and $q = \tilde f(x)$. Then $\pi(q) = p$, where $\pi : \C^n \to \C^n /\Lambda$
+is the holomorphic quotient map. $p$ has a neighborhood $U$ such that $\pi^{-1}(U)$ consists of disconnected
+opens isomorphic to $U$; a choice of a connected component of $\pi^{-1}(U)$ gives a holomorphic chart $\phi$ around
+$p$. Moreover, the coordinate representation of the quotient map is just a translation by an element $\omega
+\in \Lambda$:
+\[	\phi \circ \pi(q) = q + \omega. \]
+Choose a holomorphic chart $(\psi, V)$ around $x\in \PP^n$ such that $f(V) \subset U$. The coordinate representation
+of $\tilde f$ is $\tilde f \circ \psi^{-1}$, and we claim that this is a holomorphic map. Indeed:
+\begin{align*}
+\tilde f \circ \psi^{-1} (z) &= (\phi \circ \pi)^{-1} \circ (\phi \circ \pi) \circ (\tilde f \circ \psi^{-1}) (z) \\
+&= \phi \circ (\pi \circ \tilde f) \circ \psi^{-1} (z) - \omega \\
+&= \phi \circ f \circ \psi^{-1} (z) - \omega,
+\end{align*}
+which is holomorphic, since $\phi \circ f \circ \psi^{-1}$ is the coordinate representation of the holomorphic
+map $f$. We conclude that $\tilde f$ is holomorphic.
+
+But $\PP^n$ is compact, so $\tilde f$ must be constant. Hence $f = \pi \circ \tilde f$ is also constant.
+\end{proof}
+
+
+\subsection*{Exercise 2.1.5 in \cite{Huy}}
+\emph{Consider the Hopf curve $X = \C^{\times} / \Z$, where $k \in \Z$ acts by $z \mapsto \lambda^k z$, for
+$\lambda \in (0,1)$. Show that $X$ is isomorphic to an elliptic curve $\C/\Gamma$ and determine $\Gamma$
+explicitly.}
+\begin{proof}
+Regard $\C^{\times}$ as $\C / \Z$, as per the following short exact sequence:
+\[
+\begin{tikzcd}
+0\arrow{r} & \Z\arrow{r}{2\pi i \cdot} & \C \arrow{r}{\exp} & \C^{\times} \arrow{r} & 1.
+\end{tikzcd}
+\]
+Consider the lattice $\Gamma = \{ m \cdot 2\pi i + k \cdot \log \lambda^{-1} \}$. Then $\exp(z + \Gamma) =
+\{ e^z e^{- k \log \lambda} \} = \{ \lambda^{-k} w \}$, where we have defined $w = \exp z$. Thus, translations
+by $\Gamma$ in $\C$ correspond, under $\exp$, to the action of $\Z$ on $\C^{\times}$. We conclude that
+$X \cong \C/\Gamma$.
+\end{proof}
+
+
+\subsection*{Exercise 2.1.7 in \cite{Huy}}
+\emph{Show that any Hopf surface contains elliptic curves.}
+\begin{proof}
+Hopf manifolds are defined as $X_n = \C^n - \{0\} / \Z$, where $k \in \Z$ acts by $(z_1, \dots, z_n) \mapsto
+(\lambda^k z_1, \dots, \lambda^k z_n)$, with $0<|\lambda|<1$.
+
+Start with a Hopf surface $X_2 = \C^2 - \{0\} / \Z$. Define:
+\[	Y = \{(0, z_2) | z_2 \neq 0\} \subset \C^2 - \{0\}.	\]
+Then $Y \cong \C - \{0\}$ and $Y$ is invariant under the action of $\Z$. Hence $Y/\Z$ is a subvariety of
+$X_2$, and $Y / \Z \cong X_1$. From Exercise 2.1.5 in \cite{Huy}, whose proof is included below for reference,
+we know that $X_1$ is an elliptic curve. Hence $Y/\Z$ is an elliptic curve contained in $X_2$.
+
+We can attempt to count all elliptic curves contained in $X_2$. Notice that we can define:
+\[	Y_{(a:b)} = \{(z_1, z_2) | (z_1:z_2) \in \PP^1 \text{ and } az_1 + bz_2 = 0 \text{ for some } (a:b) \in \PP^1\}
+\subset \C^2 - \{0\}.	\]
+$Y_{(a:b)}$ is again invariant under the action of $\Z$, and $Y_{(a:b)} \cong \C-\{0\}$. Thus we obtain an elliptic curve
+$Y_{(a:b)}$ contained in $X_2$ for every $(a:b) \in \PP^1$.
+
+We claim that these are actually all the irreducible algebraic curves that $X_2$ contains. Indeed, 
+a subset $Y$ of $\C^2 - \{0\}$
+defined by the vanishing of a polynomial $f(z_1, z_2)$ is invariant under the action of $\Z$ iff $f$ is
+homogenous. Any homogenous polynomial in 2 variables factors into a product of linear factors, so:
+\[	Y = V(f) = V\left(\prod_{i=1}^d (a_i z_1 + b_i z_2) \right)	= \bigcup_{i=1}^d Y_{(a_i:b_i)}. \]
+Hence $Y$ is the union of $d$ of the elliptic curves defined in the previous paragraph.
+
+In higher dimensions, we also obtain elliptic curves contained in $X_n$, defined by the vanishing of $n-1$
+coordinates. (Or, more generally, the vanishing of a linear prime ideal of height $n-1$.)
+\end{proof}
+
+
+
+\subsection*{Exercise 2.1.8 in \cite{Huy}}
+\emph{Describe the quotient of the torus $\C/\Z + \tau \Z$ by the involution $z \mapsto -z$ locally and
+globally. Using the Weierstrass function $\wp$ again, one can show that the quotient is isomorphic to $\PP^1$.
+What happens in higher dimensions?}
+\begin{proof}
+Let $\sigma$ denote the involution $z\mapsto -z$. Working in the fundamental cell of the flat torus, the
+action of $\sigma$ has four fixed points given by $0, \frac{1}{2}, \frac{\tau}{2}, \frac{1+\tau}{2}$. In
+a small neighborhood $U$ of any of these points $p$, $\sigma$ performs a rotation by $\pi$ centered at $p$. 
+Therefore the quotient has one point for each pair of points in $U$ which are diametrally opposed with respect
+to $p$. Away from the fixed points, each point has a neighborhood that is isomorphic and disjoint to its
+image under $\sigma$.
+
+We claim that $X = (\C / \Z + \tau \Z) / \langle \sigma \rangle$ is isomorphic to $\PP^1$. To see this, consider
+the meromorphic function $\wp$ on $\C / \Z + \tau \Z$, which also gives a holomorphic map $\C / \Z + \tau \Z 
+\to \PP^1$:
+\[	\wp(z) = \frac{1}{z^2} + \sum_{\omega \in \Lambda^{\times}} \left[ \frac{1}{(z - \omega)^2} 
+- \frac{1}{\omega^2}\right].	\]
+We defined $\wp$ on $\C$, but it is doubly periodic, so it descends to a meromorphic map on the torus.
+Moreover, $\wp$ is invariant under $\sigma$, so it descends to a holomorphic map $\bar \wp: X \to \PP^1$. $\bar \wp$ is 
+not constant, so it is an open map. Since $X$ is compact, $\bar \wp(X)$ is a compact subset of the Hausdorff space
+$\PP^1$, hence closed. Then $\bar \wp(X)$ is clopen in $\PP^1$, which shows that $\bar \wp$ is surjective. It
+remains to show that $\bar \wp$ is injective, since a bijective holomorphic map must be an isomorphism. But injectivity
+simply follows from the fact that $\wp :\C / \Z + \tau \Z \to \PP^1$ is a map of degree 2.
+\end{proof}
+
+
+\subsection*{Exercise 2.1.13 in \cite{Huy}}
+\emph{Let $G = \langle \rho \rangle$, where $\rho$ is a primitive fifth root of unity. Let $\tilde G$ be the following
+subgroup of $G^5$:}
+\[	\tilde G = \left\{ (\xi_0, \dots, \xi_4) | \xi_i \in G, \prod_{i=0}^4 \xi_i = 1 \right\}.	\]
+\emph{We let $\tilde G$ act on $\PP^4$ by $(z_0:\dots:z_4) \mapsto (\xi_0 z_0 : \dots : \xi_4 z_4)$. Describe the
+subgroup $H$ that acts trivially. Show that the hypersurface}
+\[	X = V \left( \sum_{i=0}^4 z_i^5 - 5t \prod_{i=0}^4 z_i \right) \subset \PP^4,	\]
+\emph{with $t \in \C$, is invariant under $\tilde G$. Study the action of $\tilde G / H$ on $X$, in particular the
+points with non-trivial stabilizer.}
+\begin{proof}
+To find the subgroup $H$ that acts trivially, consider first the case $\xi_0 \neq \xi_1$. Then, in general,
+$(\xi_0 z_0 : \xi_1 z_1 : \dots) \neq (z_0 : z_1 : \dots)$. The same holds if
+$\xi_i \neq \xi_j$ for other $i,j$. So $H = \{(\xi, \dots, \xi) | \xi \in G\}$. Note that $|G| = 5^5$, $\tilde G$
+is a subgroup of index 5, so $|\tilde G| = 5^4$, and finally $H$ is a subgroup of order 5, so $|\tilde G /H| = 5^3$.
+
+$X$ is invariant under $\tilde G$ because:
+\begin{align*}
+\sum_{i=0}^4 (\xi_i z_i)^5 - 5t \prod_{i=0}^4 (\xi_i z_i) &= \sum_{i=0}^4 \xi_i^5 z_i^5 - 5t \prod_{i=0}^4 \xi_i 
+\prod_{i=0}^4 z_i \\
+&= \sum_{i=0}^4 z_i^5 - 5t \prod_{i=0}^4  z_i.
+\end{align*}
+Let $x = (z_0:\dots:z_4) \in X$. We analyze 4 cases:
+\begin{enumerate}
+\item If none of the $z_i$ is zero, then $x$ is not fixed by any nontrivial element of $\tilde G/H$. 
+We have $(\tilde G/H)_x = 1$ and $|\tilde G / H \cdot x| = 5^3$.
+\item If one of the $z_i$ is zero, say $z_0 = 0$, then $(0:z_1:\dots:z_4) = (0:\xi_1z_1:\dots:\xi_4z_4)$
+iff $\xi_1 = \dots = \xi_4$. Then the constraint $\prod_{i=0}^4 \xi_i = 1$ forces $\xi_0 = \xi_1$, so that
+$(\xi_0, \dots, \xi_4) \in H$. Therefore $(\tilde G/H)_x = 1$ and $|\tilde G / H \cdot x| = 5^3$.
+\item If two of the $z_i$ are zero, say $z_0 = z_1 = 0$, then $(0:0:z_2:z_3:z_4) = (0:0:\xi_2z_2:\xi_3z_3:\xi_4z_4)$
+iff $\xi_2 = \xi_3 = \xi_4$. We can choose a representative for $(\xi_0, \dots, \xi_4)$ in $\tilde G/H$ such that
+$\xi_2 = \xi_3 = \xi_4 = 1$. The remaining constraint is $\xi_0 \xi_1 = 1$. Therefore $(\tilde G/H)_x = \langle
+\rho, \rho^{-1}, 1,1,1\rangle$, so $(\tilde G/H)_x = 5$ and $|\tilde G / H \cdot x| = 5^2$.
+\item If three of the $z_i$ are zero, say $z_0 = z_1 = z_2 = 0$, then $x$ is stabilized iff $\xi_3 = \xi_4$. We
+can choose a representative for $(\xi_0, \dots, \xi_4)$ in $\tilde G/H$ such that
+$ \xi_3 = \xi_4 = 1$. The remaining constraint is $\xi_0 \xi_1 \xi_2 = 1$. Therefore $(\tilde G/H)_x = \langle
+\rho, \rho', \rho^{-1}\rho'^{-1},1,1\rangle$, so $(\tilde G/H)_x = 5^2$ and $|\tilde G / H \cdot x| = 5$.
+\end{enumerate}
+This list is exhaustive. If four of the $z_i$ were zero, then the equation $\sum_{i=0}^4 z_i^5 - 
+5t \prod_{i=0}^4 z_i = 0$ would force the fifth to be zero, so $x \not \in \PP^4$. We can conclude that the action
+of $\tilde G / H$ partitions $X$ in three:
+\begin{itemize}
+\item an open subset where the action is free;
+\item a codimension 2 subset (finite union of curves), given by the vanishing of 2 coordinates, where the stabilizer has order 5;
+\item a codimension 3 subset (discrete), given by the vanishing of 3 coordinates, where the stabilizer
+has order 25. In fact, for each pair of coordinates $z_i, z_j$ which can be nonzero, we obtain 5 points in this
+subset, given by $z_j = \zeta z_i$, where $\zeta$ is a fifth root of $-1$. Since there are 10 ways to choose
+$i,j$, we obtain $50$ points in this subset.
+\end{itemize}
+\end{proof}
+
+
+
+
+\subsection*{Exercise 2.2.2 in \cite{Huy}}
+\emph{Show that any short exact sequence of holomorphic vector bundles $0 \to L \to E \to F \to 0$ where
+$L$ is a line bundle, induces short exact sequences of the form:}
+\[
+\begin{tikzcd}
+0\arrow{r} & L\otimes \bigwedge^{k-1} F \arrow{r} & \bigwedge^{k} E\arrow{r} & \bigwedge^{k} F\arrow{r} & 0.
+\end{tikzcd}
+\]
+\begin{proof}
+Let $A : L \to E$ and $B:E \to F$ be the maps in the given short exact sequnce.
+According to Example 2.2.4 ix) in \cite{Huy}, there exist trivializations of $L, E, F$ with transition maps
+given by:
+\[	
+L \leftrightarrow \{\phi_{ij}\} \hspace{15mm} 
+E\leftrightarrow 
+\left\{\chi_{ij} =\left(\begin{array}{cc} \phi_{ij} & * \\ 0 & \psi_{ij} \end{array} \right) \right\} \hspace{15mm}
+F \leftrightarrow \{\psi_{ij}\}. 	\]
+Working over a patch $U_i$ in such a trivialization, define the following maps fiberwise, and omit the points
+on the base in order to keep the notation as clean as possible.
+\begin{align*}
+\alpha: L \otimes \bigwedge^{k-1} F & \to \bigwedge^{k} E \\
+(l\otimes f_1 \wedge \dots \wedge f_{k-1}) &\mapsto \big(A(l) \wedge \tilde f_1 \wedge \dots \wedge \tilde f_{k-1} \big) \\
+\beta: \bigwedge^{k} E &\to \bigwedge^{k} F \\
+(e_1 \wedge \dots e_k) &\mapsto \big(B(e_1) \wedge \dots \wedge B(e_k) \big).
+\end{align*}
+The maps extend uniquely by linearity to sums of simple tensors.
+Here $\tilde f$ is any element of $B^{-1}(f)$. To see that $\alpha$ is well-defined, note that any other choice
+of a preimage for $f$ differs by an element of $L$; $\tilde f' - \tilde f = A(l')$. The difference $A(l')$ gets
+annihilated by the wedge product with $A(l)$, using the fact that the fiber of $L$ is one-dimensional.
+
+Having defined $\alpha$ and $\beta$ fiberwise, we must check that that they commute with transition maps. Throughout
+we use the fact that $A$ and $B$ do.
+\begin{align*}
+\phi_{ij} l \otimes \psi_{ij} f_1 \wedge \dots \wedge \psi_{ij} f_{k-1} &\mapsto A(\phi_{ij} l) \wedge
+\widetilde{\psi_{ij} f_1} \wedge \dots \wedge \widetilde{\psi_{ij} f_{k-1}} \\
+&= \phi_{ij} A(l) \wedge \psi_{ij}^{\wedge k-1}(\tilde f_1 \wedge \dots \wedge \tilde f_{k-1}) \\
+&= \chi_{ij}^{\wedge k} A(l) \wedge \tilde f_1 \wedge \dots \wedge \tilde f_{k-1}.
+\end{align*}
+The argument for $\beta$ is analogous. Thus $\alpha$ and $\beta$ are morphisms of holomorphic vector bundles.
+From the fiberwise construction it is immediate that $\alpha$ is injective and $\beta$ is surjective, using the
+fact that $A$ and $B$ are. It remains to show that the sequence:
+\[
+\begin{tikzcd}
+0\arrow{r} & L\otimes \bigwedge^{k-1} F \arrow{r}{\alpha} & \bigwedge^{k} E\arrow{r}{\beta} & \bigwedge^{k} 
+F\arrow{r} & 0
+\end{tikzcd}
+\]
+is exact in the middle. First, $\beta \circ \alpha = 0$ since $B(A(l)) = 0$ for all $l$. Consider now
+$\beta(e_1 \wedge \dots \wedge e_k) = 0$. Since the fiber over $L$ is one-dimensional, and splitting 
+$e_1 \wedge \dots \wedge e_k$ into a sum of terms if necessary, we can assume that all but one
+of the $e_i$ lie in the orthogonal complement of $A(L)$. Say $e_1 = A(l) + e_1'$, where $e_1'$ and $e_2,
+\dots, e_{k}$ are in the orthogonal complement of $A(L)$. Then:
+\begin{align*}
+0 = \beta(e_1 \wedge \dots \wedge e_k) &= \beta(A(l) \wedge \dots \wedge e_k) + \beta(e_1' \wedge \dots \wedge e_k) \\
+&= \beta(e_1' \wedge \dots \wedge e_k) \\
+&= e_1' \wedge \dots \wedge e_k.
+\end{align*}
+Hence we must have $e_1' \wedge \dots \wedge e_k = 0$. Therefore $e_1 \wedge \dots \wedge e_k = A(l) \wedge \dots 
+\wedge e_k \in \im(\alpha)$.
+\end{proof}
+
+
+\subsection*{Exercise 2.2.5 in \cite{Huy}}
+\emph{Let $L$ be a holomorphic line bundle on a compact complex manifold $X$. Show that $L$ is trivial if and
+only if $L$ and its dual $L^*$ admit non-trivial global sections. (Hint: Use the non-trivial sections to construct
+a non-trivial section of $\mathcal{O} \cong L \otimes L^*$.)}
+
+\begin{proof}
+If $L \cong X \times \C$ is trivial, then $s : X \to L$ given by $s(x) = (x,1)$ is a nontrivial global section
+of $L$. $L^*$ is also trivial, since its transition maps are $\id ^{-1} = \id$. Hence we can take $s^* : X \to L^*$
+given by $s^*(x) = (x,1)$.
+
+Conversely, assume that $L$ and $L^*$ have nontrivial global sections $s$ and $s^*$. Define $f \in \mathcal{O}_X(X)$
+as follows. Choose an open cover $\{U_i\}$ of $X$ which trivializes $L$ and $L^*$, and let $p_i, p_i^*$ denote
+projections to the fiber direction. Then let $f_i(x) = \big(p_i^* \circ s^*(x)\big) \big(p_i \circ s(x)\big)$.
+The $f_i$ so defined on $U_i$ glue to a holomorphic function on $X$, since the transition maps of $L$ and $L^*$
+cancel out to give $f_i = f_j$ on $U_{ij}$. Hence $f \in \mathcal{O}_X(X)$, so $f$ is constant, using the compactness
+of $X$. The value of
+the constant cannot be zero, since that would mean that either $s$ or $s^*$ is a trivial section. Hence
+$f(x) \neq 0$ for all $x$, which, together with the fact that $p_i^* \circ s^*(x)$ is a linear functional on
+the fiber $L_x$, shows that $p_i \circ s(x) \neq 0$ for all $x$. This allows us to construct an isomorphism 
+$L \cong X \times \C$, by mapping $s(x)$ to $(x,1)$.
+\end{proof}
+
+
+\subsection*{Exercise 2.2.8 in \cite{Huy}}
+\emph{Show that any non-trivial homogenous polynomial $0\neq s \in \C[z_0, \dots, z_n]_k$ of degree $k$ can be
+considered as a non-trivial section of $\mathcal{O}(k)$ on $\PP^n$. (In fact, all sections are of this form, cf.
+Proposition 2.4.1.)}
+
+\begin{proof}
+By definition, a section of $\mathcal{O}(1)$ gives a linear functional on each fiber of $\mathcal{O}(-1)
+= \{(\ell, z) \in \PP^n \times \C^{n+1} | z \in \ell \}$. Let $p_i : \C^{n+1} \to \C$ denote the projection
+onto the $i^{\text{th}}$ factor. Then $z_i \in \C[z_0, \dots, z_n]_1$ is a linear functional on each fiber,
+by regarding it as $(\ell, z) \mapsto p_i(z)$. Hence $z_i$ is a section of $\mathcal{O}(1)$. Moreover, $z_i$
+is a holomorphic section, a property which can be checked locally by evaluating $z_i$ on a holomorphic local 
+section of $\mathcal{O}(-1)$. We obtain $z_i \in H^0\big(X, \mathcal{O}(1)\big)$ for all $i$. Then
+$\C[z_0, \dots, z_n]_1 \subset H^0\big(X, \mathcal{O}(1)\big)$, because the latter is a vector space over $\C$.
+
+Given $s_1, \dots, s_k \in H^0\big(X, \mathcal{O}(1)\big)$, we obtain a section $s_1 \otimes \ldots \otimes s_k
+\in H^0\big(X, \mathcal{O}(k)\big)$, defined fiberwise by:
+\begin{equation}
+\label{eq:sectiontautology}
+	s_1 \otimes \ldots \otimes s_k (z_1, \dots, z_k) = s_1(z_1) \cdot \ldots \cdot s_k(z_k).
+\end{equation}
+Taking $s_1, \dots, s_k \in \C[z_0, \dots, z_n]_1$, we have $s_1 \otimes \ldots \otimes s_k \in \C[z_0, \dots,
+z_n]_k$, and the construction in \ref{eq:sectiontautology} gives $s_1 \otimes \ldots \otimes s_k \in 
+H^0\big(X, \mathcal{O}(k)\big)$. Since every element of $\C[z_0, \dots,
+z_n]_k$ is a sum of elements of the form $s_1 \otimes \ldots \otimes s_k$, and $H^0\big(X, \mathcal{O}(k)\big)$
+is a vector space, we have proved that $\C[z_0, \dots,z_n]_k \subset H^0\big(X, \mathcal{O}(k)\big)$.
+\end{proof}
+
+
+\subsection*{Exercise 2.2.10 in \cite{Huy}}
+\emph{Let $\{(U_i, \phi_i)\}$ be an atlas of the complex manifold $X$. Use the cocycle description of the
+holomorphic tangent bundle $\mathcal{T}_X$ to show that for $x\in U_i \subset X$ the fibre $\mathcal{T}_X(x)$
+can be identified with $T_{\phi_i(x)}\phi_i(U_i) \cong T^{1,0}_{\phi_i(x)}\phi_i(U_i)$. In particular, the
+vectors $\p/\p z_i$ can be viewed as a basis of $\mathcal{T}_X(x)$.}
+
+\begin{proof}
+We use the fact that the tangent bundle of $\phi_i(U_i) \subset \C^n$ is trivial. Specifically, $\{\p_{z_i}\}$
+give a global frame for the tangent bundle of $\phi_i(U_i)$, which we can use to give an explicit local
+trivialization of $\mathcal{T}_X$:
+\begin{align}
+\label{eq:tangenttautology}
+\begin{split}
+U_i \times \C^n &\to \mathcal{T}_X|_{U_i}  \\
+\big(x, (a_1, \dots, a_n)\big) &\mapsto \big(\phi_i^{-1}(x), d{\phi_i^{-1}}_x (a_1 \p_{z_1} + \dots + a_n 
+\p_{z_n})\big).
+\end{split}
+\end{align}
+$d{\phi_i^{-1}}_x$ is an isomorphism because $\phi_i$ is a coordinate chart for $X$. Note that the transition
+maps associated to this local trivialization are indeed $d{\phi_j}_{\phi_i^{-1}(x)} \circ d{\phi_i^{-1}}_x 
+= d{\phi_{ij}}_x$, so \ref{eq:tangenttautology} gives the correct cocycle description of $\mathcal{T}_X$.
+Moreover, \ref{eq:tangenttautology} describes each fiber of $\mathcal{T}_X$ as the image of $T_{\phi_i(x)}
+\phi_i(U_i)$ under the isomorphism $d{\phi_i^{-1}}_x$.
+\end{proof}
+
+\subsection*{Exercise 2.2.12 in \cite{Huy}}
+\emph{Let $Y \subset X$ be a submanifold locally in $U \subset X$ defined by holomorphic functions
+$f_1, \dots, f_{n-k}$ (i.e. 0 is a regular value of $(f_1, \dots, f_{n-k}) : U \to \C^{n-k}$ and $Y$ is the
+preimage of it). Show that $f_1, \dots, f_{n-k}$ naturally induce a basis of $\mathcal{N}^*_{Y|X}(x)$ for
+any $x \in Y \cap U$. (Use the map $\p_{z_i} \to \p_{z_i} f_j$ for $i = k+1, \dots, n$.)}
+
+\emph{Go on and prove the existence of a natural isomorphism $\mathcal{N}^*_{Y|X} \cong 
+\mathcal{I}_Y/\mathcal{I}_Y^2$.}
+
+\begin{proof}
+Let $f$ be the local map with components $f_1, \dots, f_{n-k}$. Consider $df_x : \mathcal{T}_X|_Y(x)
+\to \C^{n-k}$. Its kernel is $\mathcal{T}_Y(x)$, because $Y$ is locally a level set of $f$. Thus
+$df_x$ descends to an isomorphism:
+\begin{align*}
+\mathcal{T}_X|_Y(x) / \mathcal{T}_Y(x) \cong \mathcal{N}_{Y|X}(x) &\to \C^{n-k} \\
+\p_{z_i} &\mapsto \frac{\p f_j}{\p z_i}, \;\; i= k+1, \dots, n.
+\end{align*}
+In this way the components of $df_x$ give a basis of $\mathcal{N}^*_{Y|X}(x)$. Note also that this identification
+is coordinate independent.
+
+We obtain a map $d_x : \mathcal{I}_{Y,x} \to \mathcal{N}^*_{Y|X, x}(U)$, which sends $f$ to the differential
+$df_x$ given by $df_x(\p_{z_i}) = \p_{z_i}f(x)$. The kernel is $\{f \in \mathcal{I}_{Y,x}| \p_{z_i}f (x)= 0 
+\text{ for } 
+i = k+1, \dots, n\}$. Using the Taylor expansion of $f$, this is equivalent to $f \in \mathcal{I}_{Y,x}^2$.
+Therefore $d_x$ descends to an isomorphism $\bar d_x : (\mathcal{I}_Y/\mathcal{I}^2_Y)_x \overset{\sim}{\to}
+{N}^*_{Y|X,x}$. We now have a continuous isomorphism of the stalks of $\mathcal{I}_Y/\mathcal{I}^2_Y$ and 
+${N}^*_{Y|X}$. This gives an isomorphism of sheaves. \todo{read more about this and give a reference}
+\end{proof}
+
+
+\subsection*{Exercise 2.2.13 in \cite{Huy}}
+\emph{Show that the holomorphic tangent bundle of a complex torus $X= \C^n/\Gamma$ is trivial, i.e. isomorphic
+to the trivial vector bundle $\mathcal{O}^{\oplus n}$. Compute $\kod(X)$.}
+
+\begin{proof}
+Consider the vector fields $\{\p/\p z_i\}$ on $\C^n$. They are translation invariant, so they descend to
+vector fields $\{V_i\}$ on $X$. Moreover, $\{\p/\p z_i\}$ form a basis for $T_z\C^n$ at every $z$, so their
+images $\{V_i\}$ under the quotient map (a local isomorphism) also do. Therefore the $\{V_i\}$ provide
+a global frame for $\mathcal{T}_X$, which must be trivial.
+
+An analogous argument shows that the cotangent bundle $\mathcal{T}^*_X$ is trivial, with a global frame
+given by the images $\{\omega_i\}$ of $\{dz_i\}$. Hence the following is an isomorphism of $\mathcal{O}_X$-modules:
+\begin{align*}
+\mathcal{O}_X^{\oplus n}(U) &\to \mathcal{T}^*_X(U) \\
+(f_1, \dots, f_n) &\mapsto \sum_{i=1}^n f_i \omega_i|_U.
+\end{align*}
+$K_X = \det \mathcal{T}^*_X$ is also trivial, because its transition functions are the determinant of the
+identity map. Thus $K_X \cong \mathcal{O}_X$, and in particular $H^0(X, K_X) \cong \C$. Denote by $\omega$ a
+choice of generator of $H^0(X, K_X)$ over $\C$. We have $K_X^{\otimes j} \cong \mathcal{O}_X^{\otimes j} \cong
+\mathcal{O}_X$, and $H^0(X, K_X^{\otimes n}) \cong \C$, generated over $\C$ by $\omega^{\otimes n}$. This means
+that $R(X) = \C[\omega]$, and $Q(X) = \C(\omega)$. In particular, $\kod(X) = 1 - 1 = 0$.
+\end{proof}
+
+
+\subsection*{Problem 2.3.2 in \cite{Huy}}
+For want of a better idea, we follow the argument given in Proposition 2.4.7 in \cite{Huy}, which uses the cocycle
+description of both line bundles.
+
+To describe the cocycle of $\mathcal{N}_{Y|X}$, we choose local coordinates $\phi_i$ around all $p \in Y$ such that
+$Y = Z(\phi^n_i)$ locally, where $\phi^n_i$ is the last component. Then the transition functions satisfy
+$\phi_{ij}^n(z_1, \dots, z_{n-1}, 0) = 0$, so $\phi^n_{ij}(z) = z_n \cdot h(z_1, \dots, z_n)$, for some holomorphic
+$h$. Therefore all partial derivatives of $\phi^n_{ij}$ except for the $n^{\text{th}}$ one evaluate to zero
+on $Y$, where we have $z_n = 0$. The Jacobian matrix takes the form:
+\[
+J(\phi_{ij})|_Y = \left( \begin{array} {c|c}
+J(\phi_{ij}|Y) & * \\ \hline
+0 & \p_{z_n} \phi^n_{ij}
+\end{array} \right) .
+\]
+Since the top left block is the cocycle of $\mathcal{T}_Y$, the bottom right block is the cocycle of $\mathcal{N}
+_{Y|X}$.
+
+Since $Y$ is defined by the vanishing of a some $s \in \Gamma\big(\mathcal{O}(Y)\big)$, the cocycle of the latter
+is given by $s_i/s_j$, where the $s_i$ are local coordinate descriptions of the section $s$. In particular,
+$s_i = \phi_i^n$. Hence for $z \in Y$ we have:
+\begin{align*}
+\frac{s_i}{s_j}(z) &= \frac{(\phi_{ij} \circ \phi_j)^n}{\phi_j^n}(x) = \frac{\phi_{ij}^n}{z_n} \phi_j(x) \\
+&= h(z_1, \dots, z_{n-1}, 0) = \p_{z_n} \phi_{ij}^n(z_1, \dots, z_{n-1}, 0).
+\end{align*}
+$\mathcal{O}(Y)|_Y$ and $\mathcal{N}_{Y|X}$ are given by the same cocycle, so they are isomorphic.
+
+
+
+\subsection*{Problem 2.3.3 in \cite{Huy}}
+Let $X_i = V(f_i)$, for $1\leq i \leq k$, and let $X_{i_1 \dots i_l} = X_{i_1} \cap \dots \cap X_{i_l}$. We
+claim that $\mathcal{N}_{X_{1\dots k}|\PP^N} \cong \bigoplus_{i=1}^k \mathcal{N}_{X_i|\PP^N}|_{X_{1\dots k}}$.
+Indeed, since $X_{1\dots k}$ is a complete intersection, the derivatives of $f_1, \dots, f_k$ are linearly
+independent at each point. On some open set $U$ around each $p \in X_1 \cup \dots \cup X_k$, we can find functions 
+$g_{k+1}, \dots, g_N$ such that the derivatives of all $N$ functions are linearly independent in $U$.
+\footnote{$f_1, \dots, f_k$ are not strictly speaking functions on $\PP^N$, but on $\C^{N+1} - \{0\}$. However,
+we may regard them locally as functions on $\PP^N$ by choosing appropriate affine coordinates. The derivatives
+remain linearly independent in these coordinates.} Using the inverse function theorem, the map $\phi : U \to \C^N$
+which has components $(f_1, \dots, f_k, g_{k+1}, \dots, g_N)$ is a local diffeomorphism, and we adopt it as a
+coordinate chart around $p$. Then $X_i = V(\phi_i)$ locally.
+
+Generalizing the argument made in Problem 2.3.2, the $i^{\text{th}}$ component of the transition functions $\phi_{lm}$
+satisfies $\phi_{lm}^i(z_1, \dots, z_{i-1}, z_i = 0, z_{i+1}, \dots, z_{N}) = 0$ for $1\leq i \leq k$, which gives
+$\phi_{lm}^i(z_1, \dots, z_{N}) = z_i \cdot h^i_{lm}(z_1, \dots, z_{N})$. Hence all partial derivatives
+of $\phi_{lm}^i$ except for the $i^{\text{th}}$ one are zero when restricted to $X_{1\dots k}$. Therefore:
+\[	
+J(\phi_{lm})|_{X_{1\dots k}} = \left( \begin{array} {cccc|c} 
+\p_{z_1}\phi_{lm}^1 & 0 & \dots & 0 & 0 \\
+0 & \p_{z_2}\phi_{lm}^2 & \dots & 0 & 0 \\
+\vdots & \vdots & \ddots & 0 & 0 \\
+0 & 0 & \dots & \p_{z_k}\phi_{lm}^k & 0 \\ \hline
+* & * & * & * & J(\phi_{lm}|_{X_{1\dots k}})
+\end{array} \right)	.
+\]
+The lower right block is the cocycle of $\mathcal{T}_{X_{1\dots k}}$ so, by definition, the upper left block 
+is the cocycle of $\mathcal{N}_{X_{1\dots k}|\PP^N}$. We can read off the decomposition
+as $\oplus_{i=1}^k \mathcal{N}_{X_{i}|\PP^N}|_{X_{1\dots k}}$. Using the result of Exercise 2.3.2 in \cite{Huy}
+, each direct
+summand is isomorphic to $\mathcal{O}_{\PP^N}(d_i)|_{X_{1\dots k}}$.
+
+
+
+
+\subsection*{Problem 2.3.8 in \cite{Huy}}
+Let $s_1 \in \Gamma\big(\mathcal{O}_{\PP^2}(1)\big)$ and $s_d \in \Gamma\big(\mathcal{O}_{\PP^2}(d)\big)$; moreover,
+let $H = V(s_1)$, $C = V(s_d)$ and $B = H \cap C = V(s_1, s_d)$. We need to show that $\mathcal{O}_{\PP^2}(1)|_C$
+has degree $d$, which is to say that any divisor of $C$ associated to a nonzero section of $\mathcal{O}_{\PP^2}(1)|_C$ 
+has degree $d$. Clearly $B$ is such a divisor, so we are interested in $\deg B$. However, $B$ is also a 
+divisor on $H$, and
+$\deg B$ is the same on both $C$ and $H$, because $B$ is a formal sum of points. Then it suffices to consider
+$B$ as a divisor of $H$.
+
+Using the fact that automorphisms of $\PP^2$ are transitive on hyperplanes\footnote{$\Aut(\PP^n) = \PGL(n+1)$ 
+is transitive
+on collections of $n$ points, and $n$ points determine a hyperplane in $\PP^n$.}, we can take $s_1 = z_2$, and $H$
+is the copy of $\PP^1$ inside $\PP^2$ given by $z_2 = 0$. Then $\mathcal{O}_{\PP^2}(d)|_H \cong \mathcal{O}_{\PP^1}
+(d)$, as can be seen by inspecting global sections: those that contain $z_2$ restrict to $0$, and the ones left are
+$\langle z_0^d, z_0^{d-1}z_1, \dots, z_0 z_1^{d-1}, z_1^d \rangle_{\C}$. $B \in \Div(H)$ is given by the vanishing
+of one of these sections, hence $\deg B = d$. For example, $V(z_0^d) = d [0:1]$, and $V(z_0^{d-1}z_1) = (d-1)[0:1]
++ [1:0]$. We conclude that $\mathcal{O}_{\PP^2}(1)|_C$ has degree $d$.
+
+Now let $D = V(s_e)$ where $s_e \in \Gamma\big(\mathcal{O}_{\PP^2}(e)\big)$. Since $\mathcal{O}(B + B') =
+\mathcal{O}(B) \otimes \mathcal{O}(B')$, the result of the previous paragraph implies that $\mathcal{O}_{\PP^2}(e)
+|_C$ has degree $de$. The intersection divisor defined below is associated to $\mathcal{O}_{\PP^2}(e)|_C$, so it has
+degree $de$:
+\begin{equation}
+\label{eq:bezadhoc}
+	de = \deg \sum_{p \in C \cap D} \ord_{s_e} (p \in C)\cdot	p.
+\end{equation}
+By $\ord_{s_e} (p \in C)$ we mean the order of vanishing of $s_e$ at $p$, where $s_e$ is is seen as a section
+of $\mathcal{O}_{\PP^2}(e)|_C$. Since $p$ is an intersection point, this order is $\geq 1$. We want to give a
+more invariant interpretation of $\ord_{s_e} (p \in C)$, and for this we use stalks. The stalk at $p$ is a local
+concept, so it suffices to analyze the stalk $\mathcal{O}_{\C^2, p}$ of the sheaf of holomorphic functions on an
+affine neighborhood of $p$. Using the Weierstrass division theorem (1.1.17 in \cite{Huy}), we can write any
+$f \in \mathcal{O}_{\C^2, p}$ as $f = s_d g + r$, where the vanishing order of $r$ along $V(s_d)$ is lower than
+that of $g$. Moreover, in the quotient $\mathcal{O}_{\C^2, p}/(s_d)$, we apply the same theorem to obtain
+$r = s_e h + r'$, where $\ord_{r'} (p \in C) < \ord_{s_e} (p \in C)$. Therefore the succesive quotient is:
+\[	\mathcal{O}_{\C^2, p}/(s_d,s_e) \cong \{[r'] | \ord_{r'} (p \in C) < \ord_{s_e} (p \in C).	\]
+The equivalence classes are parametrized by the order of vanishing at $p$ along $C$, so they form an
+$\ord_{s_e} (p \in C)$ vector space over $\C$. With this we can rewrite \ref{eq:bezadhoc} as:
+\[	de = \deg \sum_{p \in C \cap D} \dim_{\C} \mathcal{O}_{\C^2, p}/(s_d,s_e) \cdot	p.	\]
+Throughout we have been implicitly using the fact that $C$ and $D$ are distinct smooth curves, so $s_d$ and $s_e$
+are distinct irreducible homogenous polynomials. This ensures that the Krull dimension of $\mathcal{O}_{\C^2, p}$
+drops by 1 with each quotient, so $\mathcal{O}_{\C^2, p}/(s_d,s_e)$ is indeed a finite dimensional vector space
+over $\C$.
+
+
+
+
+\subsection*{Problem 2.3.10 in \cite{Huy}}
+\emph{Let $C = \phi_{\mathcal{O}(2)}(\PP^1) \subset \PP^2$ and consider the restriction of the linear system in
+Exercise 2.3.7 to $C$. Study the induced map $C - \{x\} \to \PP^1$. (There are two cases to be considered: $x \in C$
+and $x \not \in C$.)}
+\begin{proof}
+To avoid confusion, we denote by $z_i$ the homogenous coordinates on $\PP^1$ and by $x_i$ the homogenous coordinates
+on $\PP^2$.
+
+Recall that $H^0(\PP^1, \mathcal{O}(2)) \cong \C[z_0, z_1]_2 = \langle z_0^2, z_0z_1, z_1^2 \rangle_{\C}$. There
+is no $(z_0:z_1) \in \PP^1$ such that all 3 basis elements vanish at the same time, so the base locus is empty.
+Therefore $\phi_{\mathcal{O}(2)} : \PP^1 \to C$ is an isomorphism, which we recognize as the Veronese embedding
+of $\PP^1$ in $\PP^2$:
+\begin{align*}
+\phi_{\mathcal{O}(2)} : \PP^1 &\to \PP^2 \\
+(z_0:z_1) &\mapsto (z_0^2:z_0z_1:z_1^2).
+\end{align*}
+The map $\phi$ of Exercise 2.3.7 restricts differently to $C$ based on whether $x \in C$ or not. We claim that
+it suffices to analyze one representative for each of the two cases. When $x \in C$, let $(z_0:z_1) \in \PP^1$ be
+the unique point such that $\phi_{\mathcal{O}(2)}(z_0:z_1) = x$. Then there exists an automorphism of $\PP^1$ that
+takes $(z_0:z_1) \mapsto (0:1)$, so precomposing with this automorphism gives $x = \phi_{\mathcal{O}(2)}(0:1) =
+(0:0:1)$. When $x \not \in C$, I don't see a way of using automorphisms of $\PP^2$ to bring $x$ to a predetermined
+point, say $(0:1:0)$, while at the same time preserving $C$. However, I'm confident that there exists some
+argument by symmetry that justifies only analyzing $(0:1:0)$. (See last paragraph for an attempt.)
+
+For $x = (0:0:1)$, the linear system is:
+\[	L = \langle x_0, x_1 \rangle_{\C}.	\]
+The corresponding map $\phi : \PP^2 - \{(0:0:1)\} : \PP^1$ takes $(x_0 : x_1 : x_2) \mapsto (x_0:x_1)$. In particular,
+the restriction to $C - \{(0:0:1)\}$ is $(z_0^2 : z_0z_1 : z_1^2) \mapsto (z_0^2:z_0z_1) = (z_0:z_1)$. We were able
+to divide by $z_0$ because $z_0 \neq 0$ on $C - \{(0:0:1)\}$. Hence the composition $\phi|_{C - \{(0:0:1)\}} \circ
+\phi_{\mathcal{O}(2)}$ restricts to the identity map on the affine open $\PP^1 - \{(0:1)\}$.
+
+For $x = (0:1:0)$ the linear system is:
+\[	L = \langle x_0, x_2 \rangle_{\C}.	\]
+The corresponding map $\phi : \PP^2 - \{(0:1:0)\} : \PP^1$ takes $(x_0 : x_1 : x_2) \mapsto (x_0:x_2)$. In particular,
+the restriction to $C$ is $(z_0^2 : z_0z_1 : z_1^2) \mapsto (z_0^2:z_1^2)$. Hence the composition
+$\phi|_{C} \circ \phi_{\mathcal{O}(2)}$ is the following endomorphism of $\PP^1$:
+\[	(z_0:z_1) \mapsto (z_0^2 : z_1^2).	\]
+The map is surjective, but is not injective. In fact, it is a double cover of $\PP^1$ by itself, ramified at
+$(0:1)$ and $(1:0)$.
+
+We claim that the topological properties of $\phi|_{C} \circ \phi_{\mathcal{O}(2)}$ remain the same if we consider
+projection from some other $x \not \in C$ instead. For example, take an automorphism of $\PP^2$ that brings
+$x$ to $(0:1:0)$, and sends $C$ to some other quadratic curve $Q \subset \PP^2$, not passing through $(0:1:0)$. 
+For fixed $a,b$, let $L$ be the line $(a:x_1:b)$; projection from $(0:1:0)$ sends all $p \in Q \cap L$ to
+$(a:b)$. The number of intersections $p$, counting with multiplicity, is 2, using B\'ezout's theorem. This
+confirms that we obtain a double cover of $\PP^1$ by itself, but it's harder to see how many ramification points
+there are.
+\end{proof}
+
+
+\subsection*{Exercise 2.4.1 in \cite{Huy}}
+\emph{Show that the canonical bundle $K_X$ of a complete intersection $X = Z(f_1) \cap \dots \cap Z(f_k)
+\subset \PP^N$ is isomorphic to $\mathcal{O}(\sum \deg(f_i) - n - 1)|_X$. What can you deduce from this
+about the Kodaira dimension of $X$?}
+
+\emph{Extra question added by Ron Donagi: classify Calabi-Yau complete intersections in $\PP^N$, up to 
+discrete invariants.}
+
+\begin{proof}
+We saw in Exercise 2.3.3 in \cite{Huy} that a complete intersection in $\PP^N$ satisfies:
+$\mathcal{N}_{X_{1\dots k}|\PP^N} \cong \bigoplus_{i=1}^k \mathcal{O}_{\PP^N}(d_i)|_{X_{1\dots k}}$,
+so we have:
+\begin{align*}
+\det \mathcal{N}_{X_{1\dots k}|\PP^N} &\cong \left[ \bigoplus_{j_1 + \dots + j_k = k}
+ \mathcal{O}_{\PP^N}(d_1)^{\wedge j_1} \otimes \dots
+\otimes \mathcal{O}_{\PP^n}(d_k)^{\wedge j_k} \right]_{X_{1\dots k}} \\
+&= \left[ \bigotimes_{i=1}^k \mathcal{O}_{\PP^N}(d_i) \right]_{X_{1\dots k}} 
+= \left[ \mathcal{O}_{\PP^N}\left(\sum_{i=1}^k d_i\right) \right]_{X_{1\dots k}}.
+\end{align*}
+The direct summands with $j_i > 1$ have vanished because the fibers of a line bundle are one dimensional, so cannot
+sustain any higher wedge powers. Using the adjunction formula and the fact that $K_{\PP^N} \cong \mathcal{O}(-N-1)$,
+we obtain that:
+\[	K_{X_{1\dots k}} \cong \mathcal{O}_{\PP^N}(\sum_{i=1}^k d_i - N - 1) |_{X_{1\dots k}}.	\]
+
+For the Kodaira dimension of $K_{X_{1\dots k}}$ we distinguish 3 cases.
+\begin{itemize}
+\item If $D := \sum_{i=1}^k d_i - N - 1 >0$, $K_{X_{1\dots k}}$ is the restriction to $X_{1\dots k}$ of
+a bundle with nontrivial global sections; the pullback of at least one of these sections is nontrivial.
+(See next paragraph for an argument.) Hence $\Kod(X_{1\dots k}) > 0$.
+\item If $D := \sum_{i=1}^k d_i - N - 1 =0$, then $K_{X_{1\dots k}}$ is trivial, so $R(X_{1\dots k}) \cong
+\C[x]$ and $\Kod(X_{1\dots k}) = 0$. (This agrees with the vague correspondence between Kodaira dimension
+and constant curvature metrics. $\Kod(X) = 0$ loosely corresponds to manifolds which admit flat metrics,
+and the Calabi conjecture gives the existence of a Ricci flat metric on $X$ when $K_X$ is trivial.)
+\item If $D  < 0$, then $K_{X_{1\dots k}}$ is the dual of a nontrivial bundle which admits global sections.
+Therefore $K_{X_{1\dots k}}$ itself does not admit global sections. We have
+$R(X_{1\dots k})\cong \C$, so $\Kod(X_{1\dots k}) = - \infty$.
+\end{itemize}
+
+In order for $X_{1\dots k}$ to be a Calabi-Yau, we impose the condition $K_{X_{1\dots k}} \cong \mathcal{O}
+_{X_{1\dots k}}$. This is fullfiled if $\sum_{i=1}^k d_i = N+1$, and we claim that the converse is also true, i.e.
+that a nontrivial line bundle $\mathcal{O}_{\PP^N}(m)$ on $\PP^N$ restricts to a nontrivial line bundle on the 
+complete intersection. It suffices to check for $m>0$, since $m<0$ corresponds to the dual bundle. We have
+$\dim \Gamma\big(\mathcal{O}_{\PP^N}(m)\big) = \binom{N+m}{m} \geq N+1$. We choose $N+1$ linearly independent
+global sections, which restrict to global sections on $X_{1\dots k}$. Some of these may become constant upon restriction,
+but at least one does not: otherwise, $N+1$ linearly independent conditions give $X = \emptyset$.
+
+We conclude that being a Calabi-Yau complete intersection is equivalent to 
+\begin{equation}
+\label{eq:CY}
+\sum_{i=1}^k d_i = N+1.
+\end{equation}
+ This lets us
+classify Calabi-Yau complete intersections in $\PP^N$ of any given dimension, as exemplified below.
+\begin{enumerate}
+\item Curves, i.e. $k = N-1$. The possibilities are:
+\begin{itemize}
+\item $d_1 = 3$, $d_2 = \dots = d_{N-1} = 1$. Taking intersections with hyperplanes is equivalent to having an
+embedding in a lower dimensional projective space, so this gives a cubic (elliptic) curve in $\PP^3$.
+\item $d_1 = d_2 = 2$, $d_3 = \dots = d_{N-1} = 1$. This is the intersection of two quadrics in $\PP^4$.
+\end{itemize}
+\item Surfaces, i.e. $k = N-2$. The possibilities are:
+\begin{itemize}
+\item $d_1 = 4$, $d_2 = \dots = d_{N-2} = 1$. This is a quartic in $\PP^4$.
+\item $d_1 = 3$, $d_2 = 2$, $d_3 = \dots = d_{N-2} = 1$. This is the intersection of a cubic and a quadric
+in $\PP^5$.
+\item $d_1 = d_2 = d_3 = 2$, $d_4 = \dots = d_{N-2} = 1$. This is the intersection of three quadrics in
+in $\PP^6$.
+\end{itemize}
+\item Threefolds, i.e. $k = N-3$. The possibilities are:
+\begin{itemize}
+\item $d_1 = 5$, $d_2 = \dots = d_{N-3} = 1$. This is a quintic in $\PP^5$.
+\item $d_1 = 4$, $d_2 = 2$, $d_3 = \dots = d_{N-3} = 1$. This is the intersection of a quartic and a quadric in
+$\PP^6$.
+\item $d_1 =d_2 = 3$, $d_3 = \dots = d_{N-3} = 1$. This is the intersection of two cubics in $\PP^6$.
+\item $d_1 =3$, $d_2 = d_3 = 2$, $d_4 = \dots = d_{N-3} = 1$. This is the intersection of a cubic and two quadrics
+in $\PP^7$.
+\end{itemize}
+\item CY hypersurfaces in $\PP^N$ must have degree $N+1$.
+\end{enumerate}
+This is only a classification up to discrete invariants; each class given above actually corresponds to a moduli
+space of Calabi-Yaus.
+\end{proof}
+
+
+\section{Huybrechts, Chapter 3}
+\subsection*{Exercise 3.1.5 in \cite{Huy}}
+\emph{Let $\C^n \to \C^{n+1}$ be the standard inclusion $(z_0,\dots, z_{n-1}) \mapsto (z_0,\dots,z_{n-1}, 0)$
+and consider the induced inclusion $\PP^{n-1} \subset \PP^n$. Show that restricting the Fubini-
+Study K\"{a}hler form $\omega_{FS}(\PP^n)$ yields the Fubini-Study K\"{a}hler form on $\PP^{n - 1}$.}
+\vspace{3mm}
+
+Let $j: \PP^{n-1} \to \PP^n$ be the inclusion, so that $\PP^{n-1}$ is the hyperplane $z_n = 0$. We look at $j^*\omega_{FS,i}
+(\PP^n)$
+on all affine charts $U_i$. Note that $U_n \cap j(\PP^{n-1}) = \emptyset$, so we only need to check 
+on $U_0, \dots, U_{n-1}$. In these cases we have:
+\[	j^* \omega_{FS,i}(\PP^n) = \frac{i}{2\pi}	j^* \p \bar \p \log \left( \sum_{k=0}^n \left| \frac{z_k}{z_i} \right| \right)
+= \p \bar \p \log \left( \sum_{k=0}^{n-1} \left| \frac{z_k}{z_i} \right| \right) = \omega_{FS,i}(\PP^{n-1}). \]
+These glue to give $\omega_{FS}(\PP^{n-1})$.
+
+
+\subsection*{Exercise 3.1.7 in \cite{Huy}}
+\emph{Show that $L$, $d$, and $d^*$ acting on $\mathcal{A}^*(X)$ of a K\"{a}hler manifold $X$ determine
+the complex structure of $X$.}
+\vspace{3mm}
+
+This and some of the following problems are easy and short once you figure out which K\"{a}hler relations to use.
+In this case we have:
+\[	d^* = -* (\p + \bar \p) * = \p^* + \bar \p^*.	\]
+Therefore:
+\[	[d^*, L] = [\p^* + \bar \p^*, L] = i\p - i \bar \p.	\]
+Then we can recover:
+\[	\p = \frac{id + [d^*,L]}{2i} \hspace{1cm} \bar \p = \frac{id - [d^*,L]}{2i} .	\]
+Knowledge of $\p$ and $\bar \p$ implies ability to tell which elements of $\mathcal{A}^*(X)$ are holomorphic, and this
+determines the complex structure of $X$.
+
+
+
+\subsection*{Exercise 3.1.8 in \cite{Huy}}
+\emph{Show that on a compact K\"{a}hler manifold $X$ of dimension $n$ the integral
+$\int_X \omega^n$ is $n! \text{vol}(X)$ (cf. Exercise 1.2.9). Conclude from this that there exists an
+injective ring homomorphism $k[x]/x^{n+1} \to H^*(X,\R)$. In particular, $b_2(X) \geq 1$.
+Deduce from this that $S^2$ is the only sphere that admits a K\"{a}hler structure.}
+\vspace{3mm}
+
+Following the approach of \cite{Voi1} in Lemma 3.8, we show that $\omega^n = n! \dVol$ locally. Given that $X$
+is orientable, $\dVol$ for $X$ is then obtained from glueing the local forms, so it is also equal to $\omega^n$.
+
+So let $e_1, \dots, e_n$ be a basis over $\C$ for the tangent space $T_{\C,0}$ such that $h(e_i, e_j) = \delta_{ij}$,
+where $h$ is the hermitian form of the K\"{a}hler structure. Then $e_1, Ie_1, \dots, e_n, Ie_n$ is an oriented
+basis over $\R$ for $T_{\C,0}$, which is orthonormal for $h$. Take $dx_1, dy_1, \dots, dx_n, dy_n$ to be the dual basis,
+and let $dz_j = dx_j + idy_j$. Then we have:
+\begin{align*}
+\omega &= \frac{i}{2} \sum_{j=1}^n dz_j \wedge d\bar z_j = \sum_{j=1}^n dx_j \wedge dy_j. \\
+\omega^n &= n! \prod_{j=1}^n dx_j \wedge dy_j = n! \dVol.
+\end{align*}
+
+
+It follows from this that $\omega$ is not exact: indeed, if $\omega = d\eta$, then $d(\omega^n) = d(\eta
+\wedge d\eta \wedge \dots \wedge d\eta)$, so Stokes theorem would give $\int_X \omega^n = 0$. The injective
+morphism can be given as:
+\begin{align*}
+k[x]/x^{n+1} &\to H^*(X,\R) ,\\
+x &\mapsto [\omega].
+\end{align*}
+In particular, $b_2(X) \geq 1$, $[\omega]$ being a nontrivial element. All spheres except $S^2$ have $H^2(S^i, \R) = 0$,
+so they cannot admit K\"{a}hler structures.
+
+
+\subsection*{Exercise 3.1.12 in \cite{Huy}}
+\emph{Let $X$ be a complex manifold endowed with a K\"{a}hler form and let $\alpha$ be
+a closed (1,1)-form which is primitive (at every point in the sense of Section 1.2).
+Show that $\alpha$ is harmonic, i.e. $\Delta(\alpha) = 0$.}
+\vspace{3mm}
+
+If $\alpha \in \mathcal{A}^{1,1}$, then $\p \alpha \in \mathcal{A}^{2,1}$ and $\bar \p \alpha \in \mathcal{A}^{1,2}$.
+Since $\p \alpha + \bar \p \alpha = d\alpha = 0$, and $\p \alpha, \bar \p \alpha$ are in different orthogonal components
+of the decomposition $\mathcal{A}^3 = \bigoplus_{p+q = 3} \mathcal{A}^{p,q}(X)$, it must be the case that
+$\p \alpha = \bar \p \alpha = 0$.
+
+Then applying K\"{a}hler identities we have:
+\[  \p^*\alpha = i[\Lambda,\bar \p] \alpha = i\Lambda \bar \p \alpha - i\bar \p \Lambda \alpha = 0.	\]
+Since $\p \alpha = \p^*\alpha = 0$, it follows that $\Delta_{\p} \alpha = 0$, so $\Delta \alpha = 0$.
+
+
+\subsection*{Exercise 3.2.1 in \cite{Huy}}
+\emph{Let $(X, g)$ be a Kahler manifold. Show that the Kahler form $\omega$ is harmonic.}
+\vspace{3mm}
+
+We use the K\"{a}hler identity $[L,\Delta] = 0$, which gives:
+\[	\Delta(\omega) = \Delta L(1) = L \Delta (1) = 0.	\]
+
+
+\subsection*{Exercise 3.2.4 in \cite{Huy}}
+\emph{Recall Exercise 2.6.11 and show that on a compact K\"{a}hler manifold ``the
+limit $\lim_{t\to 0}$ commutes with hypercohomology'', i.e.}
+\[	\lim_{t\to 0} \HH^k\big(X, (\Omega_X^{\bullet}, td)\big) = \HH^k\big(X, \lim_{t\to 0}(\Omega_X^{\bullet}, td)\big).	\]
+\vspace{3mm}
+
+According to Exercise 2.6.11, we have:\todo{do 2.6.11}
+\begin{align*}
+&\HH^k\big(X, (\Omega_X^{\bullet}, td)\big) = H^k(X,\C) \\
+&\HH^k\big(X, \lim_{t\to 0}(\Omega_X^{\bullet}, td)\big) = \bigoplus_{p+q = k} H^{p,q}(X).
+\end{align*}
+The Hodge decomposition implies that the RHS are equal, so the quantities on the left must also be equal.
+
+
+\subsection*{Exercise 3.2.5 in \cite{Huy}}
+\emph{Show that for a complex torus of dimension one the decomposition in
+Corollary 3.2.12 does depend on the complex structure. It suffices to consider $H^1$.}
+\vspace{3mm}
+
+Using Dolbeault cohomology, we obtain natural isomorphisms $H^{p,q}(X) \cong H^q(X,\Omega_X^q)$. 
+In particular, for $X$ a 1-dimensional torus, the Hodge decomposition is:
+\[	H^1(X,\C) \cong H^0(X,\Omega_X) \oplus H^1(X,\mathcal{O}_X).	\]
+The global holomorphic forms depend on the complex structure of $X$, since they're spanned over $\C$ by the form
+$dz$ mod $\Lambda$, where $\Lambda$ is the lattice giving the complex structure. (Similarly, the sheaf of holomorphic
+functions $\mathcal{O}_X$ clearly depends on the complex structure. It may be less clear that its first cohomology
+also does.)
+
+The moral of the story is: as one varies the complex structure on $X$ while preserving the topology, $H^k(X,\C)$ remains
+unchanged, but the factors in the Hodge decomposition change. This leads to the study of variational Hodge structures.
+
+
+\subsection*{Exercise 3.2.6 in \cite{Huy}}
+\emph{Show that the odd Betti numbers $b_{2i+1}$ of a compact K\"{a}hler manifold are
+even.}
+\vspace{3mm}
+
+We use the Hodge decomposition:
+\[	H^{2i+1}(X,\C) = \bigoplus_{p+q=2i+1} H^{p,q}(X).	\]
+Since $\overline{H^{p,q}(X)} = H^{q,p}(X)$, which follows from the analogous statement for harmonic forms,
+$\dim_{\C} H^{p,q}(X) = \dim_{\C} H^{q,p}(X)$. Therefore:
+\[	b_{2i+1}(X) = \sum_{p=0}^i 2 \dim_{\C} H^{p,2i+1-p}.	\]
+
+
+\subsection*{Exercise 3.2.7 in \cite{Huy}}
+\emph{Are Hopf surfaces (cf. Section 2.1) K\"{a}hler manifolds?}
+\vspace{3mm}
+
+Hopf surfaces $X$ are diffeomorphic to $S^1 \times S^3$, so in particular $H^1(X,\C) \cong \C$. Using the result of
+Exercise 3.2.6, Hopf surfaces don't admit K\"{a}hler structures.
+
+
+\subsection*{Exercise 3.2.8 in \cite{Huy}}
+\emph{Show that holomorphic forms, i.e. elements of $H^0(X, \Omega^p)$, on a compact
+K\"{a}hler manifold $X$ are harmonic with respect to any K\"{a}hler metric.}
+\vspace{3mm}
+
+From Dolbeault cohomology we have a canonical isomorphism $H^0(X,\Omega^p) \cong H^{p,0}(X)$, i.e. all global
+sections $\omega_p$ of $\Omega^p$ are representatives for $H^{p,0}(X)$. In particular, they are $\bar \p$-closed.
+Using the Hodge decomposition for $\bar \p$, a $\bar \p$-closed form is an element of $\bar \p \mathcal{A}^{p,q-1} 
++ \mathcal{H}^{p,q}$. Forms in the image of $\bar \p$ are never holomorphic, so we must have $\omega_p
+\in \mathcal{H}^{p,q}$.
+
+
+
+
+\subsection*{Exercise 3.2.10 in \cite{Huy}}
+\emph{Let $(X, g)$ be a compact hermitian manifold. Show that any $d$-harmonic
+(p,q)-form is also $\bar \p$-harmonic.}
+\vspace{3mm}
+
+As in the proof of Lemma 3.2.5, we write:
+\[	(\Delta(\alpha), \alpha) = ||d\alpha||^2 + ||d^*\alpha||^2.	\]
+This shows that $\Delta(\alpha) = 0$ iff $d\alpha = 0$ and $d^*\alpha = 0$. Now for a pure (p,q) form, this is
+in turn equivalent to $\p \alpha = \bar \p \alpha = \p^* \alpha = \bar \p^* \alpha = 0$. Applying Lemma 3.2.5,
+this is equivalent to $\Delta_{\p}(\alpha) = \Delta_{\bar \p}(\alpha) = 0$. We have proved that $\alpha$ is $d$-harmonic
+iff it is both $\p$-harmonic and $\bar \p$-harmonic.
+
+
+
+\subsection*{Exercise 3.2.11 in \cite{Huy}}
+\emph{Show that $H^{pq}(\PP^n) = 0$ except for $p = q < n$. In the latter case, the space
+is one-dimensional. Use this and the exponential sequence to show that $\Pic(\PP^n) = \Z$.}
+\vspace{3mm}
+ 
+From singular homology we know that:
+\[	H^k(\PP^n,\C) = \left\{ \begin{array}{l} \C, k \text{ even}, \\ 0, k \text{ odd}. \end{array}\right. 	\]
+Then for each fixed $p+q=2k$, only one $H^{p,q}(X)$ is nonzero, and that one is 1-dimensional. It suffices to 
+show that $H^{k,k}(X)$ is nonzero by exhibiting a nonzero element in it. The K\"{a}hler form $\omega$ is
+of type (1,1), so $\omega^k \in \mathcal{A}^{k,k}$. Since $d\omega = 0$, $d(\omega^k) = 0$, so $\omega^k
+\in H^{k,k}(X)$, and since $\omega^k$ cannot be exact\footnote{See solution to Exercise 3.1.8.} is a nonzero element.
+
+A consequnece is that $H^k(\PP^n,\mathcal{O}_X) \cong H^{0,k} = 0$ for all $k>0$. The long exact sequence associated to
+the exponential sequence gives the exactness of:
+\[	0 \to H^1(\PP^n,\mathcal{O}_{\PP^n}^{\times}) \to H^2(\PP^n,\Z) \to 0.	\]
+That is, $\Pic(\PP^n) \cong \Z$.
+
+
+
+\subsection*{Exercise 3.2.13 in \cite{Huy}}
+\emph{Prove the $dd^c$-lemma: If $\alpha \in\mathcal{A}^k(X)$ is a $d^c$-exact and $d$-closed form
+on a compact K\"{a}hler manifold $X$ then there exists a form $\beta \in\mathcal{A}^{k-2}(X)$ such that
+$\alpha = dd^c \beta$. (A proof will be given in Lemma 3.A.22.)}
+\vspace{3mm}
+
+Let $\alpha = d^c \gamma$, and we use the Hodge decomposition for the $d$ operator. $\gamma = d\beta + \delta + d^*\eta$,
+with $\delta$ harmonic. On a K\"{a}hler manifold, $\Delta (\delta) = 0$ implies $\Delta_{\p}(\delta) = \Delta_{\bar \p}
+(\delta) = 0$.\footnote{Note that, in the case $X$ hermitian but not K\"{a}hler, Exercise 3.2.10 gives the same
+statement, but only for pure forms. Here we don't make any assumption about purity.} It follows that $\bar \p(\delta)
+= \p(\delta) = 0$, so $d^c(\delta) = 0$. We arrive at:
+\[	\alpha = d^c d(\beta) + d^cd^*\eta.	\]
+To show that the second term is 0, use the fact that $dd^c = -d^cd$. Then:
+\[	0 = d\alpha = 0 + dd^c d^*\eta = - dd^*d^c \eta.	\]
+It follows that:
+\[	0 = (dd^*d^c \eta, d^c \eta) = ||d^*d^c \eta||^2,	\]
+so $d^*d^c \eta = 0$. Finally, $\alpha = d^cd(\beta) = dd^c(-\beta)$.
+
+
+\subsection*{Exercise 3.2.15 in \cite{Huy}}
+\emph{Let $(X,g)$ be a compact hermitian manifold and let $[\alpha] \in H^{pq}(X)$. Show
+that the harmonic representative of $[\alpha]$ is the unique $\bar \p$-closed form with minimal
+norm $||\alpha||$. (This is the analogue of Lemma A.0.18.)}
+\vspace{3mm}
+
+If we impose that $\bar \p \alpha = 0$, from the Hodge decomposition for $\bar \p$ we obtain $\alpha = \bar \p \beta
++ \gamma$, with $\gamma$ harmonic. Since $(\bar \p \beta, \gamma) = 0$:
+\[	||\alpha||^2 = ||\bar \p \beta||^2 + ||\gamma||^2.	\]
+Hence minimizing $||\alpha||$ is equivalent to $\bar \p \beta = 0$. We obtain $\alpha = \gamma$, and Corollary 3.2.9
+guarantees that the harmonic representative $\gamma$ is unique for its cohomology class.
+
+
+\subsection*{Exercise 3.2.16 in \cite{Huy}}
+\emph{Let $X$ be a compact K\"{a}hler manifold. Show that for two cohomologous
+K\"{a}hler forms $\omega$ and $\omega'$, i.e. $[\omega] = [\omega'] \in H^2(X, \R)$, there exists a real function $f$ such
+that $\omega' = \omega + i\p \bar\p f$.}
+\vspace{3mm}
+
+$\omega' - \omega \in \mathcal{A}^{1,1}(X,\R)$ is $d$-exact, so the $\p \bar \p$ lemma implies $\omega' - \omega
+= \p \bar \p g$ for some $g \in \mathcal{A}^{0,0}(X,\C)$. Note that, locally:
+\[	\p \bar \p g = \sum_{i,j = 1}^n \frac{\p^2 g}{\p z_i \p \bar z_j} dz_i \wedge d\bar z_j.	\]
+The requirement that $\p \bar \p g$ be real translates into $\frac{\p^2 g}{\p z_i \p \bar z_j}$ real for all $i,j$, so
+$g=if$, with $f$ real.\todo{figure out how this actually works}
+
+
+\subsection*{Exercise 3.3.1 in \cite{Huy}}
+\emph{Go back to the proof of Lemma 3.3.1 and convince yourself that we have
+not actually used that $X$ is K\"{a}hler. This comes in when considering the bidegree
+decomposition of $H^k$.}
+\vspace{3mm}
+
+Indeed, the proof of Lemma 3.3.1 does not use the fact that $\mathcal{H}_{\p}^{p,q}$ and $\mathcal{H}_{\bar \p}^{p,q}$
+coincide, nor the bidegree decomposition on cohomology. The lemma should be read as proving the existence of a projection map
+$H^k(X,\C) \to H^{0,k}(X)$, irrespective of whether the bidegree decomposition $H^k(X,\C) = \bigoplus_{p+q = k} H^{p,q}(X)$
+exists.
+
+Tracing the steps of the proof, we need the existence and uniqueness of a $d$-harmonic representative $\alpha$ for $[\alpha]
+\in H^k(X,\C)$; this comes from the Hodge decomposition for the $d$ operator. (See Theorem A.0.16.) The (0,k) 
+part of $\alpha$ is also $d$-harmonic, since $\Delta_d$ preserves the bidegree decomposition of forms. Due to
+Exercise 3.2.10, pure $d$-harmonic forms are also $\bar \p$-harmonic. Hence $\Pi^{0,k}(\alpha)$ is $\bar \p$-harmonic.
+Therefore $\Pi^{0,k}$ induces a map $H^k(X,\C) \to H^{0,k}(X)$, which is surjective, due to the Hodge decomposition for the
+$\bar \p$ operator and Corollary 3.2.9.
+
+
+\subsection*{Exercise 3.3.2 in \cite{Huy}}
+\emph{Let $X$ be a Hopf surface. Show that the Jacobian, i.e. $H^1(X, \mathcal{O}_X)/H^1(X, \Z)$,
+is not a compact torus in a natural way. In fact, $H^1(X, \Z) = \Z$ and $H^1(X, \mathcal{O}_X) = \C$.}
+\vspace{3mm}
+
+Since $X$ is diffeomorphic to $S^1 \times S^3$, singular cohomology gives $H^1(X,\Z) \cong \Z$. Then the
+Universal coefficient theorem for cohomology gives $H^1(X,\C) \cong \C$, and Exercise 3.3.1 asserts the existence
+of a surjective map $H^1(X,\C) \to H^1(X,\mathcal{O}_X)$. Therefore $H^1(X,\mathcal{O}_X)$ is either $0$ or $\C$.
+Consider, then, the long exact sequence on cohomology associated to the exponential sequence. For compact
+complex manifolds it splits into a short
+exact sequence:
+\[	0 \to \Z \to \C \to \C^{\times} \to 0,	\]
+followed by a long exact sequence:
+\[	0 \to H^1(X,\Z) \to H^1(X,\mathcal{O}_X) \to \dots.	\]
+In particular, $H^1(X,\Z) \to H^1(X,\mathcal{O}_X)$ is injective, so the only option is $H^1(X,\mathcal{O}_X) \cong \C$.
+\footnote{As a side-note, this also proves that Hopf surfaces have no global holomorphic forms.}
+$\Pic^0(X)$ is then isomorphic to the quotient $\C/\Z \cong \C^{\times}$.
+
+
+\subsection*{Exercise 3.3.4 in \cite{Huy}}
+\emph{Let $X$ be a K\"{a}hler surface with $\kod(X) = -\infty$. Show that its signature is $\big(1,h^{1,1}(X)-1\big)$.}
+\vspace{3mm}
+
+Recall that $\kod(X)= \trdeg_{\C} Q(R(X)) - 1$, or $\kod(X) = -\infty$ if $R(X) \cong \C$. By hypothesis we are in the
+latter case, so $H^0(X,K_X^{\otimes m}) = 0$ for all $m>0$. In particular, taking $m=1$ gives
+$0 = H^0(X,\Omega_X^{\wedge 2}) = H^{2,0}(X)$. The Hodge index theorem then implies that $\sgn(X) = \big(1,h^{1,1}(X)-1\big)$.
+
+
+\subsection*{Exercise 3.3.5 in \cite{Huy}}
+\emph{Let $X$ be a compact K\"{a}hler manifold of dimension $n$ and let $Y \subset X$ be
+a smooth hypersurface such that $[Y] \in H^2(X, \R)$ is a Kahler class. Show that the
+canonical restriction map $H^k(X, \R) \to H^k(Y, \R)$ is injective for $k \leq n — 1$. (This is
+one half of the so-called weak Lefschetz theorem (cf. Proposition 5.2.6). It can be
+proven by using Poincare duality on $X$ and the Hard Lefschetz theorem 3.3.13).}
+\vspace{3mm}
+
+Let $\alpha \in H^k(X,\R)$ with $0\leq k \leq n-1$. Due to the Hard Lefschetz Theorem, if $\alpha \neq 0$, then
+$0 \neq [Y] \smile \alpha  \in H^{k+2}(X,\R)$. Using Poincar\'{e} duality with coefficients in the field $\R$, 
+the cup product pairing is nondegenerate, so there exists $\gamma \in H^{2n-k-2}$ such that
+$\int_X [Y] \smile \alpha \smile \gamma = 1$. By the definition of the fundamental class $[Y]$, this implies
+$\int_Y \alpha|_Y \smile \gamma|_Y = 1$. In particular, $\alpha|_Y \neq 0$.\footnote{The fact that this result,
+as well as the Hard Lefschetz Theorem, are stated over $\R$ and not $\C$ makes them stronger. The complexified
+version is obtained by, well, complexifying both sides.}
+
+
+
+
+\subsection*{Exercise 3.3.6 in \cite{Huy}}
+\emph{Construct a complex torus $X = \C^2/\Gamma$ such that $NS(X) = 0$. Conclude that
+such a torus cannot be projective and, moreover, that $K(X) = \C$. Observe that in
+any case $\Pic(X) \neq 0$.}
+\vspace{3mm}
+
+Let $X = V/\Gamma$ be the complex torus, with $V \cong \C^2$. Then $H^{1,0}(X) = H^0(X,\Omega_X) \cong V^*$, since
+the cotangent bundle of $X$ is trivial.
+Then $H^{0,1}(X) \cong \bar V^*$, and $H^1(X,\Z) \cong \Gamma^*$. $\Gamma^*$ sits in both $V^*$ and $\bar V^*$,
+and in particular sits in their direct sum $V^* \oplus \bar V^* \cong H^1(X,\C)$. Choosing a basis $e_1, \dots,
+e_4$ for $\Gamma^*$ and a basis $dz_1, dz_2$ for $V^*$ gives the following embedding:
+\begin{align}
+\label{eq:latticeh1}
+\begin{split}
+\Gamma^* &\hookrightarrow V^* \oplus \bar V^* \\
+e_1 &\mapsto a_1 dz_1 + a_2 dz_2 + \bar a_1 d\bar z_1 + \bar a_2 d\bar z_2 \\
+e_2 &\mapsto b_1 dz_1 + b_2 dz_2 + \bar b_1 d\bar z_1 + \bar b_2 d\bar z_2 \\
+e_3 &\mapsto c_1 dz_1 + c_2 dz_2 + \bar c_1 d\bar z_1 + \bar c_2 d\bar z_2 \\
+e_4 &\mapsto f_1 dz_1 + f_2 dz_2 + \bar f_1 d\bar z_1 + \bar f_2 d\bar z_2 .
+\end{split}
+\end{align}
+Here $(a_1,a_2), \dots, (f_1,f_2)$ are the elements of $\C^2$ which give the embedding $\Gamma \hookrightarrow V$
+which defines the complex torus. We interpret \ref{eq:latticeh1} as giving the embedding $H^1(X,\Z) \to H^1(X,\C)$.
+But recall that, since the $T*X$ is trivial, we have canonical isomorphisms:
+\begin{align*}
+H^2(X,\Z) &\cong \bigwedge^2 H^1(X,\Z) \cong \Gamma^* \wedge \Gamma^*, \\
+H^2(X,\C) &\cong \bigwedge^2 H^1(X,\C) \cong V^* \wedge \bar V^*, \\
+H^{p,q}(X) &\cong \bigwedge^p H^{1,0}(X) \wedge \bigwedge H^{0,1}(X) \cong \bigwedge^p V^* \wedge \bigwedge^q \bar V^*.
+\end{align*}
+Due to \ref{eq:latticeh1}, the inclusion $H^2(X,\Z) \to H^2(X,\C)$ then takes the form:
+\begin{align}
+\label{eq:latticeh2}
+\begin{split}
+e_1 \wedge e_2 \mapsto& (a_1 b_2 - a_2 b_1) dz_1 \wedge dz_2 + (a_1 \bar b_1 - \bar a_1 b_1) dz_1 \wedge d\bar z_1
++ (a_1 \bar b_2 - \bar a_2 b_1) dz_1 \wedge d\bar z_2 \\
++& (a_2 \bar b_1 - \bar a_1 b_2) dz_2 \wedge d\bar z_1
++ (a_2 \bar b_2 - \bar a_2 b_2) dz_2 \wedge d\bar z_2 + (\bar a_1 \bar b_2 - \bar a_2 \bar b_1) d\bar z_1 \wedge d\bar z_2,
+\end{split}
+\end{align}
+and analogously for the other 5 standard basis elements of $\Gamma^* \wedge \Gamma^*$. Note that the first term in
+\ref{eq:latticeh2} belongs to $H^{2,0}(X)$, the next four to $H^{1,1}(X)$, and the last one to $H^{0,2}(X)$.
+
+The condition $NS(X) = 0$ translates into the fact that the images of integral linear combinations:
+\[	n_{12} e_1 \wedge e_2 + n_{13} e_1 \wedge e_3 + n_{14} e_1 \wedge e_4 + n_{23} e_2 \wedge e_3 +
+n_{24} e_2 \wedge e_4 + n_{34} e_3 \wedge e_4	\]
+under the map \ref{eq:latticeh2} intersect the subspace $V^* \wedge \bar V^* \subset (V^* \oplus \bar V^*) \wedge
+(V^* \oplus \bar V^*)$ trivially. This is equivalent to the requirement that the $V^* \wedge V^*$ component does not
+vanish, i.e.:
+\begin{equation}
+\label{eq:ns0cond}
+	n_{12} (a_1 \bar b_2 - \bar a_2 b_1) + n_{13} (a_1 \bar c_2 - \bar a_2 c_1) + n_{14} (a_1 \bar f_2 - \bar a_2 f_1)
+ + n_{23} (b_1 \bar c_2 - \bar b_2 c_1) +
+n_{24} (b_1 \bar f_2 - \bar b_2 f_1) + n_{34} (c_1 \bar f_2 - \bar c_2 f_1) \neq 0.
+\end{equation}
+(The condition for $H^{0,2}$ is just the conjugate of this one.) We use \ref{eq:ns0cond} to exhibit and example and a non-example.
+Take the complex torus with lattice spanned by:
+\[	(1,0) \hspace{5mm} (i b_1, b_2) \hspace{5mm} (0,1) \hspace{5mm} (f_1,i f_2),	\]
+and all unspecified coefficients are real. Then \ref{eq:ns0cond} becomes:
+\[	n_{12} b_2 - n_{13} + i n_{14} f_2 + i n_{23} b_1 - i n_{24} (b_1 f_2 + b_2 f_1) - n_{34} f_1 \neq 0.	\]
+To satisfy this, it suffices to choose the remaining coefficients such that $b_2, f_1, b_2/f_1$ are irrational, and
+similarly $b_1, f_2, b_1f_2 + b_2f_1$ and all their pairwise quotients are irrational. In particular, the complex torus
+given by the lattice:
+\[	(1,0) \hspace{5mm} (i \sqrt{2}, \sqrt{3}) \hspace{5mm} (0,1) \hspace{5mm} (\sqrt{5},i \sqrt{7})	\]
+has $NS(X) = 0$. For a non-example, take the torus given by the lattice:
+\[	(1,0) \hspace{5mm} (i, 0) \hspace{5mm} (0,1) \hspace{5mm} (0,i). \]
+In this case, the $H^{2,0}$ component vanishes as soon as $n_{13} - n_{24}= 0$ and $n_{14} + n_{23} = 0$, which gives
+$\rk NS(X) = 4$. By playing around with the coefficients, one can construct complex tori for all values $0 \leq \rk NS(X)
+\leq 4$.
+
+In the case $NS(X) = 0$, the image of $\Pic(X)$ in $H^2(X,\Z) = 0$, so $\Pic(X) = \Pic^0(X)$. However, if $X$ is projective,
+letting $\phi : X \to \PP^N$ denote a projective embedding, $c_1(\phi^*\mathcal{O}_{\PP^N}(1)) = \phi^* c_1(
+\mathcal{O}_{\PP^N}(1)) \neq 0$. \todo{why is this?} This contradicts $\Pic(X) = \Pic^0(X)$.
+
+
+\subsection*{Exercise 3.3.7 in \cite{Huy}}
+\emph{Show that any complex line bundle on $\PP^n$ can be endowed with a unique
+holomorphic structure. Find an example of a compact (K\"{a}hler, projective) manifold
+and a complex line bundle that does not admit a holomorphic complex structure.}
+\vspace{3mm}
+
+First, every complex line bundle $E$ on $\PP^n$ admits a holomorphic structure. This is because $H^2(\PP^n,\Z) = 
+H^{11}(\PP^n,\Z)$, so $c_1(E) \in H^{11}(\PP^n,\Z)$, which is $c_1(\Pic(\PP^n))$,
+due to the Lefschetz theorem on (1,1) classes. Then choose any $L\in \Pic(\PP^n)$ such that $c_1(L) = c_1(E)$, and
+we claim that $L$ is a holomorphic line bundle which is isomorphic to $E$ as a complex line bundle. To see this, it
+suffices to prove that complex line bundles are uniquely determined by their first Chern class. Consider the (smooth)
+exponential sequence:
+\[	0 \to \Z \to \mathcal{A}^0_X \to {\mathcal{A}^0_X}^{\times} \to 0,	\]
+for sheaves of $C^{\infty}$ complex valued functions, rather than holomorphic functions. Then $H^i(X,\mathcal{A}^0_X) = 0$
+for $i>0$, because $\mathcal{A}^0_X$ is soft, due to the existence of partitions of unity. Hence the associated long
+exact sequence on cohomology splits into isomorphisms, and in particular:
+\begin{equation}
+\label{eq:complexlb}
+0 \to 	H^1(X,{\mathcal{A}^0_X}^{\times}) \overset{c_1}{\to} H^2(X,\Z) \to 0.
+\end{equation}
+The LHS parametrizes isomorphism classes of complex vector bundles, so the claim is proved.
+
+It remains to see that, for $X = \PP^n$, the holomorphic structure $L$ on the complex vector bundle $E$ is unique. From
+the exactness of the (holomorphic) exponential sequence, we obtain:
+\[	0 \to \Pic^0(X) \to \Pic(X) \overset{c_1}{\to} H^2(X,\Z), 	\]
+where $\Pic^0(X) = H^{01}(X,\C) / H^1(X,\Z)$. Hence $\Pic^0$ parametrizes holomorphic structures on a given complex
+vector bundle $E$. For $X = \PP^n$, $H^{01}(\PP^n) = 0$, so $\Pic^0(\PP^n) = 0$. 
+
+Compact K\"{a}hler manifolds $X$ support complex vector bundles $E$ with no holomorphic structure if and only if
+$\im(H^2(X,\Z) \to H^2(X,\C)) \not \subset H^{11}(X)$. A necessary condition for this is that $h^{20}(X) \neq 0$.
+This is satisfied, for example, by a complex torus $X =\C^2/\Gamma$, which has $h^{20} = 1$, $h^{11} = 4$, $h^{02} = 1$.
+We can choose the lattice $\Gamma$ such that $X$ is an abelian variety, which is projective (see Exercise 3.3.6).
+In this case:
+\[	H^{2,0}(X,\Z) \cong \Z, \hspace{5mm} H^{1,1}(X,\Z) \cong \Z^4, \hspace{5mm} H^{0,2}(X,\Z) \cong \Z.	\]
+An element $c \in H^{2,0}(X,\Z)$ is not in the image of $\Pic(X)$, so it cannot be the Chern class of a holomorphic
+line bundle. However, using \ref{eq:complexlb}, $c$ is the Chern class of a complex line bundle.\footnote{Note that,
+if we choose a generic lattice $\Gamma$, $H^{2,0}(X,\Z)$, $H^{1,1}(X,\Z)$, $H^{0,2}(X,\Z)$ are all 0. The argument
+still applies.}
+
+
+\subsection*{Exercise 3.3.8 in \cite{Huy}}
+\emph{Show that on a complex torus $\C^n/\Gamma$ the trivial complex line bundle admits
+many (how many?) holomorphic non-trivial structures.}
+\vspace{3mm}
+
+The trivial complex line bundle $E$ satisfies $c_1(E) = 0$, so in particular $c_1(E) \in H^{1,1}(X,\Z)$. Therefore
+it admits holomorphic structures. These are parametrized by $\Pic^0(X)$. (See solution to exercise 3.3.7.) Using Theorem
+3.3.6, $\Pic^0(\C^n/\Gamma)$ is a complex torus of complex dimension $b_1(\C^n/\Gamma)/2$. Since the (smooth) cotangent bundle of a torus
+is trivial, we obtain representatives in deRham cohomology for $H^i(\C^n/\Gamma,\C)$ as follows:
+\begin{equation}
+\label{eq:combderham}
+	H^i(X , \C) \cong \bigwedge^i H^0(X, T*X) \cong \bigwedge^i \C^{2n}.
+\end{equation}
+In particular, $b_1(X) = \binom{2n}{1} = 2n$, so $\Pic^0(X)$ is a n-complex dimensional torus.\footnote{See Exercise
+3.3.10 below for an argument that this torus is dual to the original one.}
+
+We can say more. We can obtain representatives in Dolbeault cohomology for $H^{pq}(X)$ as follows.
+\[	H^{pq}(X, \C) \cong \bigwedge^p H^0(X, T^{*(1,0)}X) \wedge \bigwedge^q H^0(X, T^{*(0,1)}X) \cong 
+\bigwedge^p \C^n \wedge \bigwedge^q \C^{n}. 	\]
+In particular, $h^{pq}(X) = \binom{n}{p} + \binom{n}{q}$. Then:
+\[	b_{i}(X) = \sum_{p+q=i} \binom{n}{p} \binom{n}{q} = \binom{2n}{i},	\]
+which agrees with \ref{eq:combderham}.
+
+
+\subsection*{Exercise 3.3.9 in \cite{Huy}}
+\emph{Let $X$ be a compact K\"{a}hler manifold. Show that the fundamental class
+$[Y] \in H^{p,p}(X)$ of any compact complex submanifold $Y \subset X$ of codimension $p$ is
+non-trivial. Is this true for Hopf manifolds?}
+\vspace{3mm}
+
+Let $\omega$ be a K\"{a}hler form on $X$. Then $\omega|_Y$ is a K\"{a}hler form on $Y$. In particular, 
+$\omega|_Y^{n-p}$ is a volume form on $Y$, and we have\footnote{See Exercise 3.1.8}:
+\[	(n-p)! =  \int_Y \omega|_Y^{n-p} = \int_X [Y] \smile \omega|_Y^{n-p}.	\]
+Therefore $0 \neq [Y] \in H^{p,p}(X)$.\footnote{For $X$ non-K\"{a}hler, compact complex submanifolds also have
+volume forms, but they are not necessarily restrictions of forms on $X$.}
+
+If, instead, $X$ is a Hopf manifold of dimension $n\geq 2$, then it is diffeomorphic to $S^1 \times S^{2n-1}$.
+The latter can be given a CW structure with only one cell in the dimensions 0, 1, 2n-1, 2n. Therefore
+$H^2(X,\C) = 0$. So every hypersurface $Y$ has fundamental class 0. Note that, a priori, this statement could
+be vacuous: non-algebraic complex manifolds tend to have few submanifolds. However, Hopf surfaces do contain elliptic
+curves (see Exercise 2.1.7).
+
+
+\subsection*{Exercise 3.3.10 in \cite{Huy}}
+\emph{Let $X$ be a complex torus $\C^n/\Gamma$. Show that $\Pic^0(\Pic^0(X))$ is naturally isomorphic to $X$.}
+\vspace{3mm}
+
+Recall the setup at the beginning of Exercise 3.3.6. If $X = V/\Gamma$, where $\dim_{\C} V = n$, then there are natural
+isomorphisms $H^{0,1}(X) \cong \bar V^*$ and $H^1(X,\Z) \cong \Gamma^*$. Then, by definition:
+\[	\Pic^0(X) \cong \bar V^* / \Gamma^* .	\]
+Applying the same procedure again:
+\[	\Pic^0(\Pic^0(X)) \cong \overline{(\bar V^*)^*} / (\Gamma^*)^* \cong V/\Gamma = X.	\]
+
+
+\subsection*{Exercise 3.3.11 in \cite{Huy}}
+\emph{Show that $\Alb(X)$ and $\Pic^0(X)$ of a compact K\"{a}hler manifold $X$ are dual
+to each other, i.e. $\Pic^0(\Alb(X)) \cong \Pic^0(X)$.}
+\vspace{3mm}
+
+By definition, $\Alb(X) = H^0(X,\Omega_X)^* / H_1(X,\Z)$, which is a torus of dimension $n = \dim_C H^0(X,\Omega_X)$.
+Using again the setup at the beginning of Exercise 3.3.6, $H_1(\Alb(X),\Z)$ is naturally isomorphic to the lattice
+of $\Alb(X)$, which in this case is $H_1(X,\Z)$. Hence $H_1(\Alb(X),\Z) \cong H_1(X,\Z)$. Moreover,
+$H^0(\Alb(X), \Omega_{\Alb(X)}) \cong H^0(X,\Omega_X)$ naturally due to Proposition 3.3.8, which is a simple consequence
+of the definition of the Albanese map. Both $X$ and $\Alb(X)$ are K\"{a}hler manifolds, so we have the following
+commutative diagrams, where all maps are natural isomorphisms.
+\[
+\begin{tikzcd}
+H_1(\Alb(X),\Z)*\arrow{r}\arrow{d} & H^1(\Alb(X),\Z)\arrow{d} & 
+\overline{H^0(\Alb(X), \Omega_{\Alb(X)})}\arrow{r}\arrow{d} & H^1(\Alb(X), \mathcal{O}_{\Alb(X)})\arrow{d} \\
+H_1(X,\Z)*\arrow{r} & H^1(X,\Z) &
+\overline{H^0(X, \Omega_{X})}\arrow{r} & H^1(X, \mathcal{O}_{X})
+\end{tikzcd}
+\]
+In particular, the naturality of the right column in both diagrams gives the following commutative diagram,
+where $i_X:\Z \to \mathcal{O}_X$, $i_{\Alb(X)} : \Z \to \mathcal{O}_{\Alb(X)}$ are inclusions.
+\[
+\begin{tikzcd}
+H^1(\Alb(X),\Z) \arrow{r}{i_*}\arrow[swap]{d}{\cong} & H^1(\Alb(X), \mathcal{O}_{\Alb(X)})\arrow{d}{\cong} \\
+H^1(X,\Z) \arrow{r}{i_*} & H^1(X, \mathcal{O}_{X})
+\end{tikzcd}
+\]
+This implies:
+\[	\Pic^0(X) = H^1(X, \mathcal{O}_{X}) /H^1(X,\Z) \cong H^1(\Alb(X), \mathcal{O}_{\Alb(X)}) / H^1(\Alb(X),\Z) 
+= \Pic^0(\Alb(X)). 	\]
+
+
+
+\section{Huybrechts, Chapter 4}
+
+\subsection*{Exercise 4.1.2 in \cite{Huy}}
+\emph{Let $L$ be a holomorphic line bundle of degree $d>2g(C)-2$ on a compact curve $C$. Show that $H^1(C,L) = 0$.
+Here, for our purpose, we define the genus $g(C)$ by the formula $\deg(K_X) = 2g(C) - 2$.}
+
+\emph{In other words, $H^1(C,K_X\otimes L) = 0$ for any holomorphic line bundle $L$ with $\deg(L)>0$. In this form,
+the statement will be later generalized to the Kodaira vanishing theorem for arbitrary compact K\"{a}hler manifolds.}
+\vspace{3mm}
+
+Using Serre duality, we have $H^1(C,L) \cong H^0(C,L^{-1}\otimes \omega_C)^*$. The latter is 0, because $\deg L^{-1}
+\otimes \omega_C = 2g(C) - 2 - \deg L < 0$, and the degree of a vector bundle $V$ satisfies:
+\[	\deg V = \max \{x| H^0\big(V \otimes_{\mathcal{O}_C} \mathcal{O}_C(-x)\big) \neq 0\}.	\]
+
+
+\subsection*{Exercise 4.1.3 in \cite{Huy}}
+\emph{Show, e.g. by writing down an explicit basis, that}
+\[	h^n(\PP^n, \mathcal{O}(k)) = \left\{ \begin{array} {ll} 0 & k>-n-1, \\ \binom{-k-1}{-n-1-k} & k\leq -n-1. \end{array} \right.	\]
+\vspace{3mm}
+
+Using Serre duality, together with the fact that $\omega_{\PP^n} \cong \mathcal{O}_{\PP^n}(-n-1)$:
+\[	h^n\big(\PP^n,\mathcal{O}(k)\big) = h^0\big(\PP^n,\mathcal{O}(-k)\otimes \mathcal{O}(-n-1)\big) = h^0\big(\PP^n,
+\mathcal{O}(-k-n-1)\big).	\]
+It follows that this number is 0 if $k>-n-1$, and otherwise equal to the dimension of the $-k-n-1$ graded piece of
+$\C[x_0, \dots, x_n]$. By a stars and bars argument, this is $\binom{-k-1}{-n-1-k}$.
+
+
+\subsection*{Exercise 4.2.6 in \cite{Huy}}
+\emph{Let $\nabla$ be a connection on $E$. Describe the induced connections on $\bigwedge^2 E$ and $\det(E)$.}
+\vspace{3mm}
+
+Since $s_1 \wedge s_2 = s_1 \otimes s_2 - s_2 \otimes s_1$\footnote{A different convention uses a factor of
+$1/k!$ in the definition of $s_1\wedge \dots \wedge s_k$.}, we use the linearity of $\nabla$ to obtain:
+\begin{align*}
+	\nabla(s_1 \wedge s_2) &= \nabla(s_1 \otimes s_2) - \nabla (s_2\otimes s_1) \\
+&= \nabla(s_1)\otimes s_2 + s_1 \otimes \nabla(s_2) - \nabla(s_2) \otimes s_1 - s_2\otimes \nabla(s_1) \\
+&= \nabla(s_1)\wedge s_2 + s_1 \wedge \nabla(s_2).
+\end{align*}
+
+Similarly, using $s_1\wedge \dots \wedge s_k = \sum_{\sigma \in S^k} (-1)^{\sigma} s_{\sigma(1)}\otimes \dots \otimes 
+s_{\sigma(k)}$:
+\begin{align*}
+\nabla(s_1\wedge \dots \wedge s_k) &= \sum_{\sigma \in S^k}(-1)^{\sigma} \nabla(s_{\sigma(1)}\otimes \dots \otimes 
+s_{\sigma(k)}) \\
+&= \sum_{\sigma \in S^k}(-1)^{\sigma} \sum_{j=1}^k s_{\sigma(1)}\otimes \dots \otimes \nabla(s_{\sigma(j)}) \otimes
+\dots \otimes s_{\sigma(k)} \\
+&= \sum_{j=1}^k s_1 \wedge\dots \wedge \nabla(s_j) \wedge \dots \wedge s_k.
+\end{align*}
+I don't see anything particular about the case $k = \rk(E)$, i.e. $\det(E)$.
+
+
+
+\subsection*{Exercise 4.2.7 in \cite{Huy}}
+\emph{Show that the pull-back of an hermitian connection is hermitian with respect to the pull-back hermitian structure.
+Analogously, the pull-back under a holomorphic map of a connection compatible with the holomorphic structure 
+on a holomorphic vector bundle is again compatible with the holomorphic structure on the pull-back bundle.}
+\vspace{3mm}
+
+Let $(E,h)$ be a hermitian vector bundle, $\nabla$ a hermitian connection on it, and $s_1, s_2 \in \Gamma(E)$. The
+compatibility condition for $\nabla$ is:
+\[	d(h(s_1,s_2)) = h(\nabla(s_1),s_2) + h(s_1, \nabla(s_2)).	\]
+For any map $\phi : Y \to X$ to the base manifold of $E$, we pull-back both
+sides of the equation to get:
+\[ d(\phi^*h(\phi^*s_1, \phi^*s_2)) = \phi^*h( \phi^*\nabla(\phi^*s_1), \phi^*s_2) + \phi^*h(\phi^*s_1, \phi^*\nabla(\phi^*s_2)).\]
+This proves that $\phi^*\nabla$ satisfies the compatibility condition, as long as we use sections of $\phi^*E$ which are
+pull-backs of sections of $E$.
+
+General sections $t_1, t_2 \in \Gamma(\phi^*E)$ are generated as a $C^{\infty}(M)$-module by sections pulled back from $E$.
+Hence, using $\C$-linearity of $\nabla$ and $\C$-multilinearity of $h$, we can assume that $t_i = f_i \phi^*(s_i)$. Then
+we use the Leibniz rule:
+\begin{align*}
+\phi^*h( \phi^*\nabla(t_1), t_2) + \phi^*h(t_1, \phi^*\nabla(t_2)) &=
+\phi^*h( f_1 \phi^*\nabla(\phi^*s_1) + \phi^*s_1 df_1 , f_2 \phi^*s_2) + 
+\phi^*h(f_1 \phi^*s_1, f_2\phi^*\nabla(\phi^*s_2) + \phi^*s_2 df_2) \\
+&= f_1 f_2 d(\phi^*h(\phi^*s_1, \phi^*s_2)) + d(f_1f_2) \phi^*h(\phi^*s_1, \phi^*s_2) \\
+&= d\big[f_1 f_2 \phi^*h(\phi^*s_1, \phi^*s_2) \big] \\
+&= d\big[\phi^*h(t_1,t_2) \big].
+\end{align*}
+
+For the second question, let $E$ be a holomorphic vector bundle. Since pullbacks by a holomorphic map respect the 
+decomposition $TM = T^{1,0} \oplus T^{0,1}$, we have that
+\[	(\phi^* \nabla)^{0,1} = \phi^*(\nabla^{0,1}) = \phi^*(\bar \p_E) = \bar \p_{\phi^* E}.	\]
+
+
+\subsection*{Exercise 4.2.8 in \cite{Huy}}
+\emph{Show that a connection $\nabla$ on a hermitian vector bundle $E$ is hermitian if and only if $\nabla(h) = 0$, where
+by $\nabla$ we also denote the naturally induced connection on the bundle $(E\otimes \bar E)^*$.}
+\vspace{3mm}
+
+We use Example 4.2.6.iv in \cite{Huy} for the induced connection of a dual bundle. Specifically, if $\nabla$ is
+a connection on $E$, $s\in \Gamma(E)$ and $f\in \Gamma(E^*)$, then the induced connection on $E^*$ is:
+\[	\nabla(f)(s) = d(f(s)) - f(\nabla(s)).	\]
+We apply this to find the induced connection on $(E\otimes \bar E)^*$. Let $s_1 \in \Gamma(E)$, $s_2 \in \Gamma(\bar E)$
+and $h\in \Gamma(E\otimes \bar E)^*$. Then:
+\begin{align*}
+	\nabla(h)(s_1, s_2) &= d(h(s_1,s_2)) - h(\nabla(s_1)\otimes s_2 + s_1 \otimes \nabla(s_1)) \\
+&= d(h(s_1,s_2)) - h(\nabla(s_1),s_2) - h(s_1, \nabla(s_2)).
+\end{align*}
+
+
+
+\subsection*{Exercise 4.4.1 in \cite{Huy}}
+\emph{Let $C$ be a connected compact curve. Then there is a natural isomorphism
+$H^2(C,\Z) \cong \Z$. Show that with respect to this isomorphism (or, rather, its $\R$-linear
+extension) one has $c_i(L) = \deg(L)$ for any line bundle $L$ on $C$.}
+\vspace{3mm}
+
+\todo{do this}
+
+
+\subsection*{Exercise 4.4.2 in \cite{Huy}}
+\emph{Show that for a base-point free line bundle $L$ on a compact complex manifold
+$X$ the integral $\int_X c_1(L)^n$ is non-negative.}
+\vspace{3mm}
+
+Since $L$ is base-point free, it determines a morphism $\phi : X \to \PP^m$ for some $m$, such that $L = \phi^*
+\mathcal{O}_{\PP^m}(1)$. Then:
+\[	\int_X c_1(L)^n = \int_X f^*\big(c_1(\mathcal{O}_{\PP^m}(1))^n \big).	\]
+We distinguish 3 cases:
+\begin{enumerate}
+\item $m<n$, then $c_1(\mathcal{O}_{\PP^m}(1))^n \in H^{2n}(\PP^m, \C) = 0$, so the integral is 0.
+\item $m=n$, in which case $\phi$ is a covering map outside of a set of measure 0. Let $k$ be the degree of the covering.
+\[	\int_X c_1(L)^n = k \int_{\PP^n} c_1(\mathcal{O}_{\PP^n}(1))^n = k \int_{\PP^n} \omega_{FS} = k.	\]
+We have used Exercise 4.4.7 to identify $c_1(\mathcal{O}_{\PP^n}(1))^n$ with $\omega_{FS}$, and Exercise 3.1.4 to
+evaluate the last integral to 1.
+\item $m>n$, in which case $\phi = i \circ \pi$ is the composition of a branched covering map $\pi$ and an embedding $i$. The
+effect of $\pi$, similarly to the case 2. above, is to multiply the integral by a factor $k>0$, the degree of the covering.
+Thus it remains to treat the case of an embedding $\phi : X \to \PP^m$.
+
+Let $x \in \PP^m - \phi(X)$, and let $p_x : \PP^m - \{x\} \to \PP^{m-1}$ be the projection from a point.\footnote{One should
+say something about how to choose $x$ such that $\dim(p_x \circ \phi(X)) = \dim(X)$.}
+\[	X \overset{\phi}{\to} \phi(X) \overset{p_x}{\to} \PP^{m-1}	\]
+Then $p_x$ is linear, so $p_x^*(\mathcal{O}_{\PP^{m-1}}(1)) = \mathcal{O}_{\PP^m}(1)|_{\phi(X)}$.  \todo{finish this}
+\end{enumerate}
+
+
+
+
+\subsection*{Exercise 4.4.3 in \cite{Huy}}
+\emph{Show that $\td(E_1 \oplus E_2) = \td(E_1) \cdot \td(E_2)$.}
+\vspace{3mm}
+
+With $\nabla$ the induced connection on $E_1 \oplus E_2$, we have $F_{\nabla} = F_{\nabla_1} \oplus F_{\nabla_2}$.
+Then:
+\[	\det\left( t \frac{i}{2\pi} F_{\nabla} \right) = \det\left( t \frac{i}{2\pi} F_{\nabla_1} \right)
+\det\left( t \frac{i}{2\pi} F_{\nabla_2} \right),	\]
+and
+\[	\det\left(I - e^{-t \frac{i}{2\pi}F_{\nabla}}\right) = \det\left(I - e^{-t \frac{i}{2\pi}F_{\nabla_1}}\oplus
+e^{-t \frac{i}{2\pi}F_{\nabla_2}}\right) = \det\left(I - e^{-t \frac{i}{2\pi}F_{\nabla_1}}\right)
+\det\left(I - e^{-t \frac{i}{2\pi}F_{\nabla_2}}\right).	\]
+This gives $\td(E_1 \oplus E_2) = \td(E_1) \cdot \td(E_2)$.
+
+
+
+\subsection*{Exercise 4.4.4}
+\emph{Compute the Chern classes of (the tangent bundle of) $\PP^n$ and $\PP^n \times \PP^m$.
+Try to interpret $\int_{\PP^n}c_n(\PP^n)$ and $\int_{\PP^n\times \PP^m}c_{n+m}(\PP^n\times \PP^m)$.}
+\vspace{3mm}
+
+We use the Euler sequence for $\PP^n$:
+\[	0 \to \mathcal{O}_{\PP^n} \to \mathcal{O}_{\PP^n}(1)^{\oplus(n+1)} \to \mathcal{T}_{\PP^n} \to 0.	\]
+Every short exact sequence of complex vector bundles splits, and that is all we need to apply the Whitney sum property:
+\[	c\left(\mathcal{O}_{\PP^n}(1)^{\oplus(n+1)}\right) = c(\mathcal{O}_{\PP^n}) c(\mathcal{T}_{\PP^n}).	\]
+Since $c(\mathcal{O}_{\PP^n}) = 1$, this gives:
+\begin{equation}
+\label{eq:chernproj}
+c(\mathcal{T}_{\PP^n}) = (1+ [\omega_{FS}])^{n+1}.
+\end{equation}
+We used the result of Exercise 4.4.7, $c_1(\mathcal{O}_{\PP^n}(1)) = [\omega_{FS}]$, the class of the Fubini-Study
+K\"{a}hler form on $\PP^n$. Recall that $H^*(\PP^n,\C) = \C[\omega_{FS}]/(\omega_{FS}^{n+1})$, with $\deg [\omega_{FS}]
+= 2$. Hence $[\omega_{FS}]^{n+1} = 0$ in \ref{eq:chernproj}.
+
+In particular, \ref{eq:chernproj} gives $c_n(\PP^n) = (n+1) [\omega_{FS}^n]$. By the result of Exercise 3.1.4,
+$\PP^n$ is normalized to have volume 1 with respect to $\omega_{FS}^n$, so:
+\[	\int_{\PP^n} c_n(\PP^n) = n+1.	\]
+
+Now let $p_1, p_2$ be the projections from $\PP^n \times \PP^m$ to the two factors. Since $\mathcal{T}_{\PP^n \times
+\PP^m} = p_1^*(\mathcal{T}_{\PP^n}) \oplus p_2^*(\mathcal{T}_{\PP^m})$, the Whitney sum formula, together with invariance
+under pullbacks, give:
+\begin{equation}
+\label{eq:chernprojj}
+c(\mathcal{T}_{\PP^n \times\PP^m}) = p_1^*(c(\mathcal{T}_{\PP^n})) \cdot p_2^*(c(\mathcal{T}_{\PP^m}))
+= (1 + p_1^* \omega_{FS,\PP^n})^{n+1} (1 + p_2^* \omega_{FS,\PP^m})^{m+1}.
+\end{equation}
+Again, $(p_1^* \omega_{FS,\PP^n})^{n+1} = (p_2^* \omega_{FS,\PP^m})^{m+1} = 0$ in \ref{eq:chernprojj}. In particular,
+$c_{n+m}(\PP^n\times\PP^m) = (n+1)(m+1) p_1^* \omega_{FS,\PP^n}^n \cdot p_2^* \omega_{FS,\PP^m}^m$. Separation of variables
+then implies:
+\[	\int_{\PP^n\times\PP^m} c_{n+m}(\PP^n\times\PP^m) =(n+1)(m+1) \int_{\PP^n} \omega_{FS,\PP^n}^n
+\int_{\PP^m} \omega_{FS,\PP^m}^m = (n+1)(m+1). 	\]
+The integral $\int_X c_n(X)$ is equal to the topological Euler characteristic of $X$. This is a consequence of the 
+Hirzebruch-Riemann-Roch theorem, or more specifically the special case thereof known as the Gauss-Bonnet formula. 
+(See Corollary 5.1.4, (iii).)
+
+
+
+\subsection*{Exercise 4.4.5}
+\emph{Prove the following explicit formulae for the first three terms of $\ch(E)$ and $\td(E)$ in terms of $c_i(E)$:}
+\begin{align*}
+\ch &= \rk + c_1 + \frac{c_1^2 - 2c_2}{2} + \frac{c_1^3 - 3c_1 c_2 + 3c_3}{6} + \dots \\
+\td &= 1 + \frac{c_1}{2} + \frac{c_1^2 + c_2}{12} + \frac{c_1c_2}{24} + \dots
+\end{align*}
+\vspace{3mm}
+
+
+For the first part, recall the definitions $c_i = e_i(\gamma_k)$ and $\ch_i = \frac{1}{i!} p_i(\gamma_k)$, where
+$\gamma_k$ are the Chern roots of $E$, and $e_i, p_i$ are elementary symmetric and sum-power symmetric polynomials,
+respectively. We use Newton's formula for symmetric polynomials:
+\[	ke_k = \sum_{i=1}^k (-1)^{i-1} e_{k-i} p_i .	\]
+This implies:
+\[	k c_k = \sum_{i=1}^k (-1)^{i-1} i! c_{k-i} \ch_i.	\]
+For the first few terms, we obtain explicitly:
+\begin{align*}
+c_1 = c_0 \ch_1 = c_1 &\Longrightarrow \ch_1 = c_1, \\
+2c_2 = c_1 \ch_1 - 2c_0 \ch_2 = c_1^2 - 2\ch_2 &\Longrightarrow \ch_2 = \frac{c_1^2 - 2c_2}{2}, \\
+3c_3 = c_2\ch_1 - 2c_1 \ch_2 + 6c_0\ch_3 = c_2c_1 - c_1(c_1^2 - 2c_2) &\Longrightarrow \ch_3 = 
+\frac{c_1^3 - 3c_2c_1 + 3c_3}{6}, \\
+4c_4 = c_3c_1 - c_2(c_1^2 - 2c_2) + c_1(c_1^3 - 3c_2c_1 + 3c_3) &\Longrightarrow \ch_4 = 
+\frac{c_1^4 - 4c_1^2 c_2 + 2c_2^2 + 4c_3c_1 - 4c_4}{24}.
+\end{align*}
+
+For the second part, let $r = \rk(E)$ we start from the definition of $\td_i$ as the coefficient of $t^i$ in:
+\begin{align*}
+\frac{\det(tF_E)}{\det(I - e^{-tF_E})} &= \frac{t^r \prod_{i=1}^r \gamma_i}{\prod_{i=1}^r (1 - e^{-t\gamma_i})} 
+= \frac{t^r \prod_{i=1}^r \gamma_i}{\prod_{i=1}^r \sum_{j=1}^{\infty} \frac{(-1)^{j-1}}{j!} t^j \gamma_i^j} \\
+&= \frac{1}{\prod_{i=1}^r \sum_{j=0}^{\infty} \frac{(-1)^{j}}{(j+1)!} t^j \gamma_i^j}
+= \frac{1}{1 + a_1 t + a_2 t^2 + a_3 t^3 + \dots} .
+\end{align*}
+We read off the first few coefficients in the denominator:
+\begin{align*}
+a_1 &= -\frac{1}{2} \sum_{i} \gamma_i, \\
+a_2 &= \frac{1}{4} \sum_{i<j} \gamma_i \gamma_j + \frac{1}{6} \sum_{i} \gamma_i^2, \\
+a_3 &= - \frac{1}{12} \sum_{i<j} \gamma_i \gamma_j^2 - \frac{1}{12} \sum_{i<j} \gamma_i \gamma_j^2 - 
+\frac{1}{24} \sum_i \gamma_i^3.
+\end{align*}
+Now $\td$ is the inverse of the power series in the denominator, so:
+\begin{align*}
+\td_1 &= - a_1 = \frac{1}{2} \sum_i \gamma_i = \frac{c_1}{2}, \\
+\td_2 &= a_1^2 - a_2 = \frac{3 \left(\sum_i \gamma_i\right)^2 - 3 \sum_{i<j} \gamma_i \gamma_j + 2 \sum_i \gamma_i^2}{12}
+= \frac{3c_1^2 - 3c_2 - 2(c_1^2 - 2c_2)}{12} = \frac{c_1^2 + c_2}{12}, \\
+\td_3 &= - a_1^3 + 2a_1a_2 - a_3 = \frac{1}{8} c_1^3 - \frac{1}{4} c_1c_2 - \frac{1}{3} c_1 \ch_2 + \frac{1}{4} \ch_3
++ \frac{1}{36}(c_1^3 - 6 \ch_3 - 6c_3) = \frac{c_1c_2}{24}.
+\end{align*}
+
+
+
+\subsection*{Exercise 4.4.6}
+\emph{Let $E$ be a vector bundle and $L$ a line bundle. Show:}
+\[	c_i(E \otimes L) = \sum_{j=0}^i \binom{\rk(E) - j}{i-j} c_j(E) c_1(L)^{i-j} .	\]
+\vspace{3mm}
+
+Recall that $F_{E\otimes L} = F_E \otimes I_1 + I_{\rk(E)} \otimes F_L = F_E + F_L I_{\rk(E)}$. $c_i(E \otimes L)$
+is the degree $2i$ part of:
+\[	\det(I + F_{E\otimes L}) = \prod_{i=1}^{\rk(E)} (1 + \gamma_i + c_1(L)),	\]
+where $\gamma_i$ are the Chern roots of $E$. It follows that $c_i(E\otimes L) = e_i(\gamma_i + c_1(L))$, where $e_i$
+denotes the $i^{\text{th}}$ elementary symmetric polynomial. Each term in $e_i(\gamma_i + c_1(L))$ is of the form:
+\begin{equation}
+\label{eq:prodexp}
+	\prod_{k=1}^i (\gamma_k + c_1(L)) = \sum_{j=1}^i \gamma_{k_1} \dots \gamma_{k_j} c_1(L)^{j-i} .
+\end{equation}
+Summing over all terms of $e_i(\gamma_i + c_1(L))$, we obtain:
+\[	c_i(E\otimes L) = \sum_{j=1}^i a_j c_j(E) c_1(L)^{j-i},	\]
+where the numerical coefficient $a_j$ counts the number of times each monomial $\gamma_{k_1} \dots \gamma_{k_j}$
+appears. This is equivalent to counting the ways in which one can choose $j-i$ factors of $c_1(L)$ in the expansion of
+the product in \ref{eq:prodexp}, out of a total of $\rk(E) - j$ factors which are not chosen to be $\gamma_k$.
+Hence $a_j = \binom{\rk(E) - j}{i-j}$.
+
+
+
+
+
+\subsection*{Exercise 4.4.7 in \cite{Huy}}
+\emph{Show that on $\PP^n$ one has $c_1(\mathcal{O}(1)) = [\omega_{FS}] \in H^2(\PP^n,\R)$. Consider first the
+case of $\PP^1$ and then the restriction of $\mathcal{O}(1)$ and the Fubini-Study metric to $\PP^1$ under
+a linear embedding $\PP^1 \subset \PP^n$.}
+\vspace{3mm}
+
+The result follows immediately from Example 4.3.12, according to which the curvature of the Chern connection on
+$\mathcal{O}_{\PP^n}(1)$ satisfies $F = \frac{2\pi}{i} \omega_{FS}$. (This result, which is local, is proved using
+a simple computation in coordinates.)
+
+Alternatively, we can take $c_1(\mathcal{O}_{\PP^1}(1)) = [\omega_{FS,\PP^1}]$ as hypothesis, and prove that the
+result holds for all $n$. Embed $\PP^1$ in $\PP^n$ 
+via the map $f$:
+\[	[x:y] \mapsto [x:y:0:\dots:0].	\]
+We have $f^*(\mathcal{O}_{\PP^n}(1)) = \mathcal{O}_{\PP^1}(1)$, so $f^* c(\mathcal{O}_{\PP^n}(1)) = c
+(\mathcal{O}_{\PP^1}(1))$. Moreover, $f^*(\omega_{FS,\PP^n}) = \omega_{FS,\PP^1}$, which
+is obtained by setting $w_2 = \dots = w_n = 0$ in the coordinate expression of $\omega_{FS,\PP^n}$:
+\[	\omega_{FS,\PP^n} = \bar \p \p \log(1 + \sum_{i=1}^n |w_i|^2).	\]
+
+In the resulting 2 equations:
+\begin{align*}
+f^* &c_1(\mathcal{O}_{\PP^n}(1)) = c_1(\mathcal{O}_{\PP^1}(1)) \\
+f^* &[\omega_{FS,\PP^n}] = [\omega_{FS,\PP^1}]
+\end{align*}
+the morphism $f^* : H^2(\PP^n,\C) \to H^2(\PP^1,\C)$ maps elements of $H^2(\PP^n,\C) \cong \Z$ to a generator of
+$H^2(\PP^1,\C) \cong \Z$. Therefore $c_1(\mathcal{O}_{\PP^n}(1))$ and $[\omega_{FS,\PP^n}]$ are themselves
+generators of $H^2(\PP^n,\C) \cong \Z$, which implies $c_1(\mathcal{O}_{\PP^n}(1)) = \pm [\omega_{FS,\PP^n}]$.
+We also know that $f^* c_1(\mathcal{O}_{\PP^n}(1)) = f^* [\omega_{FS,\PP^n}]$, which fixes the sign.
+
+
+\subsection*{Exercise 4.4.8}
+\emph{Prove that a polynomial $P$ of degree $k$ on the space of $r\times r$ matrices is invariant if and only if}
+\[ \sum P(A_1, \dots, A_{i-1}, [A,A_i] , A_{i+1}, \dots, A_k) = 0 \]
+{for all matrices $A_1, \dots, A_k, A$ (cf. Lemma 4.4.2).}
+\vspace{3mm}
+
+We use the fact that any $C \in \GL(r,\C)$ can be written as $C = e^A$ for some $A \in M_r(\C)$. This is proved by
+considering the Jordan form of $C$, writing each block as $\lambda I + N$, with $N$ nilpotent, and then defining the
+logarithm of the block as: 
+\[	\log (\lambda) I + \sum_{i=1}^{\infty} \frac{\lambda^{-i}}{i} N^i.  \]
+Note that the sum is actually finite, due to the nilpotency of $N$. Moreover, since $C$ has finitely many Jordan blocks,
+and all $\lambda \neq 0$, we can choose a branch of the complex logarithm such that $\log (\lambda)$ is defined for all
+$\lambda$.
+
+With this in mind, note that:
+\[	\frac{d}{dt}\left. P(e^{tA}A_1e^{-tA}, \dots, e^{tA}A_k e^{-tA})\right|_{t=0} = 
+\sum_{j=1}^k P(A_1, \dots, A_{j-1}, [A,A_j] , A_{j+1}, \dots, A_k).	\]
+If $P$ is invariant, then the LHS is the derivative of a constant, so the RHS is 0. Conversely, if the RHS is 0,
+then the quantity under the derivative in the LHS must be constant. The value of the constant is determined by evaluating
+at $t=0$, which gives $P(A_1, \dots, A_k)$.
+
+
+
+\subsection*{Exercise 4.4.9 in \cite{Huy}}
+\emph{Show that $c_1(\End(E)) = 0$ on the form level and compute $c_2(\End(E))$ in
+terms of $c_i(E)$, $i = 1,2$. Compute $(4c_2 — c_1^2)(L \oplus L)$ for a line bundle $L$. Show that
+$c_{2k+1}(E) = 0$, if $E\cong E^*$.}
+\vspace{3mm}
+
+Recall that a connection $\nabla$ on $E$ induces the following connection on $\End(E)$, which we also denote by $\nabla$.
+\[	\nabla(f) (s_1) = \nabla(f(s_1)) - f(\nabla(s_1)).	\]
+Applying $\nabla$ again we obtain:
+\begin{align*}
+(\nabla^2 f) (s_1) &= \nabla(\nabla(f)) (s_1) = \nabla \big( \nabla(f) (s_1) \big) + \nabla(f) \big(\nabla(s_1)\big) \\
+&= \nabla^2\big(f(s_1)\big) - \nabla\big(f(\nabla(s_1))\big) + \nabla(f) \big(\nabla(s_1)\big) \\
+&= \nabla^2\big(f(s_1)\big) - \nabla^2\big(f(s_1)\big) - f\big(\nabla^2(s_1)\big) +  \nabla(f) \big(\nabla(s_1)\big) \\
+&= \nabla^2\big(f(s_1)\big) - f\big(\nabla^2(s_1)\big).
+\end{align*}
+The sign is flipped whenever $\nabla$ passes a 1-form, with which it anticommutes. Therefore $F_{\End(E)} = F_E \otimes 1 - 
+1 \otimes F_E^T$. When computing the Chern character, traces are applied to powers $F$, and traces do not distinguish
+between $F_E$ and $F_E^T$. Hence we can replace $F_E^T$ by $F_E$ in what follows. Let $r=\rk(E)$, then:
+\[	\ch(\End(E)) = \tr(e^{\frac{i}{2\pi}F_E}) \tr(e^{-\frac{i}{2\pi}F_E}) = \big(r+ \ch_1(E) +	\ch_2(E) + \dots \big)
+\big(r - \ch_1(E) +	\ch_2(E) + \dots \big). \]
+In particular:
+\begin{align*}
+c_1(\End(E)) = \ch_1(\End(E)) &= -r\ch_1(E) + r \ch_1(E) = 0 ,\\
+- c_2(\End(E)) = \ch_2(\End(E)) &= 2r \ch_2(E) - \ch_1^2(E) = (r-1) c_1^2(E) - 2r c_2(E) , \\
+\end{align*}
+therefore:
+\begin{equation}
+\label{eq:c2end}
+c_1(\End(E)) = 0, \hspace{10mm} c_2(\End(E)) = 2r c_2(E) - (r-1)c_1^2(E).
+\end{equation}
+
+If $L$ is a line bundle, then:
+\[	c(L\oplus L) = (1 + c_1(L))^2 = 1 + 2c_1(L) + c_1^2(L).	\]
+Therefore:
+\[	(4c_2 - c_1^2)(L\oplus L) = 4c_1^2(L) - 4c_1^2(L) = 0.	\]
+Together with equation \ref{eq:c2end}, this means that $c_2(\End(L\oplus L)) = 0$.
+
+Finally, if $E \cong E^*$, then $F = -F^T$, due to Proposition 4.3.7, (iii). However, $F$ is also skew-adjoint,
+i.e. $\bar F = - F^T$, so in this case it is real, skew-symmetric. 
+It follows that its eigenvalues (in some extension ring $R$ of
+$\Lambda^* E$) are purely imaginary. Then $c_{2k+1}(E)$ are also purely imaginary. However, Chern classes are
+real: see Remark 4.4.9 (i). Thus $c_{2k+1}(E) = 0$. Note that this agrees with equation \ref{eq:c2end}, as it should,
+because $\End(E) \cong E \otimes E^* \cong \End(E)^*$.
+
+
+
+
+\subsection*{Exercise 4.4.10 in \cite{Huy}}
+\emph{Let $L$ be a holomorphic line bundle on a compact Kahler manifold
+$X$. Show that for any closed real (1,1)-form a with $[a] = c_1(L)$ there exists an
+hermitian structure on $L$ such that the curvature of the Chern connection $\nabla$ on $L$
+satisfies $(i/2\pi)F_{\nabla} = a$. (Hint: Fix an hermitian structure $h_0$ on $L$. Then any
+other is of the form $e^f h_0$. Compute the change of the curvature. We will give the
+complete argument in Remark 4.B.5.)}
+\vspace{3mm}
+
+Let $\alpha_0 = \frac{i}{2\pi} F_{h_0}$ and $\alpha = \frac{i}{2\pi} F_{h}$, where $h = e^f h$. Then:
+\[	\alpha - \alpha_0 = \frac{i}{2\pi} \left( \bar \p \p (f + \log h) - \bar \p \p (\log h )\right) = \frac{i}{2\pi} 
+\bar \p \p f.	\]
+Hence the question reduces to finding $f \in C^{\infty}(X)$ for any prescribed value of $\bar \p \p f \in \mathcal{A}^{1,1}
+(X)$. This is always possible, because of the $\p \bar \p$ lemma. (See Corollary 3.2.10 in \cite{Huy}.)
+
+
+\subsection*{Exercise 4.4.11 in \cite{Huy}}
+\emph{Let $X$ be a compact K\"{a}hler manifold. Show that via the natural inclusion
+$H^k(X, \Omega^k_X) \subset H^{2k}(X,\C)$ one has:}
+\[	\ch_k(E) = \frac{1}{k!} \left(\frac{i}{2\pi}\right)^k \tr \left(A(E)^{\otimes k} \right) .	\]
+\emph{Here, $A(E)^{\otimes k}$ is obtained as the image of $A(E) \otimes \dots \otimes A(E)$ under the natural map
+$H^1(X, \Omega_X \otimes \End(E)) \times \dots \times H^1(X, \Omega_X \otimes \End(E)) \to H^k(X, \Omega^k \End(E))$ which
+is induced by composition in $\End(E)$ and exterior product in $\Omega_X$.}
+\vspace{3mm}
+
+In Proposition 4.3.10 it is proved that $[F] = A(E) \in H^1(X,\Omega_X \otimes \End(E))$, where $F$ is the curvature of the
+Chern connection on $E$. The proof uses the equivalence of Dolbeault and $\check{C}$ech cohomology, which preserves
+the ring structure of the two cohomologies. In particular, $[F^k] = A(E)^{\otimes k}$ as elements of
+$H^k(X, \Omega^k \End(E))$. Then the classes of $\tr F^k$ and $\tr A(E)^{\otimes k}$ are equal as elements of
+$H^k(X,\Omega^k)$, and also as elements of $H^{2k}(X,\C)$, using the inclusion $H^k(X, \Omega^k_X) \subset H^{2k}(X,\C)$.
+This gives the result.
+
+
+\subsection*{Exercise 4.4.12 in \cite{Huy}}
+\emph{Let $X$ be a compact Kahler manifold and let $E$ be a holomorphic vector
+bundle admitting a holomorphic connection $D : E \to \Omega_X \otimes E$. Show that $c_k(E) = 0$
+for all $k > 0$.}
+\vspace{3mm}
+
+Due to Proposition 4.2.19, the existence of $D$ implies that $A(E) = 0$. Using Exercise 4.4.11, $\ch_k(E) = 0$ for all
+$k>1$. Using inductively the expressions for $\ch_k(E)$ in terms of $c_1(E), \dots, c_k(E)$, we deduce that $c_k(E) = 0$
+for all $k>1$.
+
+
+
+
+\section{Huybrechts, Chapter 5}
+
+\subsection*{Exercise 5.1.1 in \cite{Huy}}
+\emph{Let $X$ be a K3 surface (cf. Exercise 2.5.5). Show that $b_2(X) = 22$. Prove that the Picard number $\rho(X)$
+is bounded by 20.}
+\vspace{3mm}
+
+Since $\omega_X = \Omega_X^{\wedge 2} = \mathcal{O}_X$, $h^{2,0} = 1$. Then $h^{0,2} = 1$ also, and by hypothesis we have:
+\[	\chi(X,\mathcal{O}_X) = h^{0,0} - h^{0,1} + h^{0,2} = 2.	\]
+But this is the same as the Hirzebruch $\chi_0$ genus, so:
+\begin{equation}
+\label{eq:k3char}
+	2 = \int_X \td(X) = \int_X \frac{c_1^2(X) + c_2(X)}{12} .
+\end{equation}
+We compare now $\chi(X,\Omega_X)$ and $\chi(X,T_X)$. Due to Serre duality and the fact that $\omega_X \cong \mathcal{O}_X$,
+$\chi(X,\Omega_X) = \chi(X,T_X)$. However, $c_k(\Omega_X) = (-1)^k c_k(T_X)$, so these can be computed from Hirzebruch-Riemann-Roch:
+\begin{align*}
+\chi(\Omega_X) &= \int_X \ch(\Omega_X) \td(X) = \int_X 2 \frac{c_1^2(X) + c_2(X)}{12} + \int_X -c_1(X) \frac{c_1(X)}{2}
++ \int_X \frac{c_1^2(X) - 2c_2(X)}{2}, \\
+\chi(T_X) &= \int_X \ch(T_X) \td(X) = \int_X 2 \frac{c_1^2(X) + c_2(X)}{12} + \int_X c_1(X) \frac{c_1(X)}{2}
++ \int_X \frac{c_1^2(X) - 2c_2(X)}{2}.
+\end{align*}
+The equality of these quantities gives $\int_X c_1^2(X) = 0$. Using this information in \ref{eq:k3char}, we obtain
+$\int_X c_2(X) = 24$. But this is just the Hirzebruch -1 genus, i.e. the topological Euler characteristic of $X$.
+Hence:
+\[	24 = b_0(X) + b_2(X) + b_4(X) = 1 + b_2(X) + 1 \Longrightarrow b_2(X) = 22.	\]
+Together with the fact that $h^{2,0}(X) = h^{0,2}(X) = 1$, this implies $h^{1,1}(X) = 20$. In fact, 
+we have obtained the full Hodge diamond of a K3 surface.
+\[
+\begin{tikzcd}
+\; & & 1 & & \\
+ &0 &  &0 & \\
+1& & 20 & &1 \\
+ &0 &  &0 & \\
+ & & 1 & &
+\end{tikzcd}
+\]
+Recall that $\rho(X) = \rk(H^{1,1}(X,\Z))$, due to the Lefschetz theorem on (1,1) classes. Therefore
+$\rho(X) \leq h^{1,1}(X) = 20$.
+
+
+\subsection*{Exercise 5.1.2 in \cite{Huy}}
+\todo{do this}
+
+
+\subsection*{Exercise 5.1.3 in \cite{Huy}}
+\emph{The Hilbert polynomial of a polarized manifold $(X,L)$, i.e. $L$ is an ample line bundle on $X$, is defined as the
+function:}
+\[	\Z \to \Z, \hspace{3mm} m \mapsto P_(X,L)(m):= \chi(X,L^{\otimes m}).	\]
+\emph{Show that $P_(X,L)$ is indeed a polynomial. Determine its degree and leading coefficient.}
+\vspace{3mm}
+
+Recall that, for a line bundle $L$,	$\ch(L) = e^{c_1(L)}$. Since the Chern character is a homomorphism of semirings,
+$\ch(L^{\otimes m}) = (e^{c_1(L)})^m = e^{mc_1(L)}$. We plug this into Hirzebruch-Riemann-Roch and expand the exponential:
+\begin{equation*}
+\chi(X,L^{\otimes m}) = \int_X \ch(L^{\otimes m}) \td(X) = \int_X \left(1 + m c_1(L) + \frac{m^2c_1^2(L)}{2}
++ \dots + \frac{m^nc_1^n(L)}{n!} \right) \td(X)  .
+\end{equation*}
+This is a polynomial in $m$ of degree $n = \dim X$. We can read off the coefficients $a_k$ as:
+\[		a_k = \int_X \frac{c_1(L)^k}{k!} \td_{n-k}(X) .	\]
+In particular, the leading coefficient is:
+\[	a_n = \int_X \frac{c_1(L)^n}{n!} .	\]
+
+
+
+
+\subsection*{Exercise 5.1.4 in \cite{Huy}}
+\emph{Compute the Hilbert polynomial of a hypersurface $Y\subset \PP^n$ of degree $k$.}
+\vspace{3mm}
+
+From Hirzebruch-Riemann-Roch, we have:
+\[	\chi(Y,L^m) = \int_Y \ch(L^m) \td(Y).	\]
+The natural polarization of $Y$ is given by $L = \iota^* \mathcal{O}_{\PP^n}(1)$. Let $\alpha = \iota^*[\omega_{FS}] \in
+H^{1,1}(Y,\Z)$. It follows that:
+\[	\ch(L^m) = e^{m c_1(L)} = e^{m\alpha}.	\]
+To compute $\td(Y)$, we use the multiplicative property of $\td$ over short exact sequences, applied to the normal bundle
+sequence:
+\[	0 \to TY \to T\PP^n|_Y \to \mathcal{O}(k)|_Y \to 0.	\]
+Then $\td(Y) \iota^*\td(\mathcal{O}(k)) = \iota^* \td(\PP^n)$. From the Euler sequence, we have:
+\[	\td(\PP^n) = \td(\mathcal{O}(1))^{n+1} = \left( \frac{[\omega_{FS}]}{1 - e^{-[\omega_{FS}]}} \right)^{n+1}.	\]
+Moreover, using the $k$-uple Veronese embedding $f :\PP^n \to \PP^N$:
+\[	\td(\mathcal{O}(k)) = f^* \td(\mathcal{O}(1)) = \frac{k [\omega_{FS}]}{1 - e^{-k[\omega_{FS}]}} . \]
+Putting everything together, we obtain:
+\[	\chi(Y,L^m) = \int_Y e^{m \alpha} \frac{1 - e^{-k\alpha}}{k \alpha} 
+\left( \frac{\alpha}{1 - e^{-\alpha}} \right)^{n+1} .	\]
+I'm not sure how to isolate the degree $n-1$ part of the integrand. \todo{figure this out}
+
+
+\subsection*{Exercise 5.1.5 in \cite{Huy}}
+\emph{Let $L$ be a line bundle on a compact connected curve $C$ with $\deg(L)>g-1$. Show that $L$ admits non-trivial global
+holomorphic sections.}
+\vspace{3mm}
+
+We use Riemann-Roch for line bundles on curves:
+\[	h^0(X,L) - h^1(X,L) = \deg(L) - g + 1 > 0.	\]
+The two quantities on the LHS are positive integers, so in particular $h^0(X,L) > 0$.
+
+
+
+\subsection*{Exercise 5.1.6 in \cite{Huy}}
+\emph{Let $L$ be a line bundle on a compact connected curve $C$ with $\deg(L)>2g-1$. Show that $L$ is globally generated.}
+\vspace{3mm}
+
+Let $d = \deg L$. We apply Riemann-Roch for $L$:
+\[	h^0(X,L) = h^1(X,L) + d - g + 1 \geq d - g + 1. 	\]
+In particular, since $d>2g-1$, $h^0(X,L) > g \geq 0$, so $L$ admits a global section. Now $\Gamma(X,L)$ fails to generate
+the stalk $L_x$ at $x \in C$ if and only if $H^0(X,L) = H^0(X,L\otimes \mathcal{O}(-x))$. Applying Riemann-Roch
+again:
+\[	h^0(X,L\otimes \mathcal{O}(-x)) = h^0(X,K_X \otimes L^{-1} \otimes \mathcal{O}(x)) + (d-1) - g + 1.	\]
+But $\deg (K_X \otimes L^{-1} \otimes \mathcal{O}(x)) < 0$, so $h^0(X,K_X \otimes L^{-1} \otimes \mathcal{O}(x)) = 0$.
+Hence:
+\[	h^0(X,L\otimes \mathcal{O}(-x)) = d - g.	\]
+Comparing with the bound on $h^0(X,L)$, we see that the two cannot be equal. Therefore $L$ is generated by global sections.
+
+
+
+\subsection*{Exercise 5.1.7 in \cite{Huy}}
+\emph{Let $L$ be a line bundle on a compact surface $X$ with $\int_X c_1^2(L) > 0$. Show that for $m>>0$ either
+$L^{\otimes m}$ or $L^{\otimes (-m)}$ admits non-trivial global holomorphic sections.}
+\vspace{3mm}
+
+We use Hirzebruch-Riemann-Roch:
+\begin{align*}
+\chi(X,L^{\otimes m}) &= \chi(X,\mathcal{O}_X) + \int_X \frac{c_1(L^{\otimes m}) [ c_1(L^{\otimes m}) + c_1(X) ]}{2} \\
+&= \chi(X,\mathcal{O}_X) + \int_X \frac{mc_1(L)[mc_1(L) + c_1(X)]}{2} \\
+&= m^2 \int_X \frac{c_1^2(L)}{2} + m \int_X \frac{c_1(L)c_1(X)}{2} + \chi(X,\mathcal{O}_X) .
+\end{align*}
+By hypothesis the leading coefficient is positive. Therefore, when $|m|>>0$, $\chi(X,L^{\otimes m}) > 0$. In other words:
+\[	h^0(X,L^{\otimes m}) - h^1(X,L^{\otimes m}) + h^2(X,L^{\otimes m}) > 0.	\]
+It suffices to show that, for either $m>>0$ or $m<<0$, $h^2(X,L^{\otimes m}) = 0$. Using Serre duality, this is equivalent
+to $h^0(X,\omega_X \otimes L^{-\otimes m}) = 0$. \todo{finish this}\footnote{If $L$ is ample, then for $m$ large enough
+$L^{\otimes m}$ is very ample. Then $L^{-\otimes m} = \mathcal{O}_X(-D)$ for some divisor $D$, and any section of this
+line bundle would have zeros. However, $H^0(\mathcal{O}_X(-D)) \subset H^0(\mathcal{O}_X)$, which is a field.}
+
+
+
+\subsection*{Exercise 5.1.8 in \cite{Huy}}
+\emph{Let $X$ be a compact surface such that $c_1(X) \in 2H^2(X,\Z)$. Use Hirzebruch-Riemann-Roch to show that
+$\int_X c_1^2(L)$ is even for any line bundle $L$ on $X$.}
+\vspace{3mm}
+
+Using Hirzebruch-Riemann-Roch for surfaces, we have that:
+\[	\chi(X,L) - \chi(X,\mathcal{O}_X) = \int_X \frac{c_1^2(L)}{2} + \int_X \frac{c_1(L)c_1(X)}{2} .	\]
+Now recall that $c_1(L) \in H^2(X,\Z)$ for every line bundle $L$: according to Proposition 4.4.12, it agrees up to a sign with
+the image of $L \in \Pic(X) \cong H^1(X,\mathcal{O}^{\times})$ under the boundary map of the exponential sequence.
+Then the quantity:
+\[	\int_X \frac{c_1(L)c_1(X)}{2},	\]
+which is equal to the evaluation of $c_1(L) \smile c_1(X) / 2 \in H^4(X,\Z)$ on the fundamental class $[X]\in H_4(X,\Z)$,
+is an integer. But $\chi(X,L) - \chi(X,\mathcal{O}_X) \in \Z$ also. Therefore $\int_X c_1^2(L) \in 2\Z$.
+
+
+
+\subsection*{Exercise 5.1.9 in \cite{Huy}}
+\emph{Let $X$ and $Y$ be compact complex manifolds and let $f:X \to Y$ be a smooth finite morphism of degree $d$.
+In other words, $f:X \to Y$ is smooth surjective with $\dim(X) = \dim(Y)$ and every fiber $f^{-1}(y)$ contains
+$d$ points.\footnote{Counted with multiplicity, I assume.}}
+
+\emph{Show that $\td(X) = f^*(\td(Y))$ and deduce $\chi(X,\mathcal{O}_X) = d \chi(Y,\mathcal{O}_Y)$. In particular, if
+$X$ and $Y$ are K3 surfaces, then $d=1$.}
+\vspace{3mm}
+
+Since $f$ is smooth and finite, it induces an isomorphism on tangent spaces at each point. Therefore $TX = f^*(TY)$,
+so $c(X) = f^*(c(Y))$, and then the relation follows formally for $\td$ as well.  Then:
+\[	\chi(X,\mathcal{O}_X) = \int_X \td_n(X) = \int_X f^*(\td_n(Y)) = d \int_Y \td_n(Y) = d \chi(Y,\mathcal{O}_Y).	\]
+In particular, if both $X$ and $Y$ are K3 surfaces, then $\chi(X,\mathcal{O}_X) = \chi(Y,\mathcal{O}_Y) = 2$, due to
+the condition $h^1(X,\mathcal{O}_X) = 1$. The only possibility is $d=1$.
+
+
+
+\subsection*{Exercise 5.2.1 in \cite{Huy}}
+\emph{Let $(E, h)$ be an hermitian holomorphic vector bundle on a compact K\"{a}hler
+manifold $X$. Suppose that the curvature $F_{\nabla}$ of the Chern connection is trivial, i.e.
+the Chern connection is flat. Prove that the Lefschetz operator $\Lambda$ preserves the
+harmonicity of forms and thus defines a map $\Lambda : \mathcal{H}^{p,q}(X,E) \to \mathcal{H}^{p-1,q-1}(X,E)$.
+Deduce from this the existence of a Lefschetz decomposition on $H^{*'*}(X,E)$.}
+\vspace{3mm}
+
+
+\subsection*{Exercise 5.2.2 in \cite{Huy}}
+\emph{Let $C$ be an elliptic curve. Show that $H^1(C,\mathcal{O}_C) = \C$ and use this to
+construct a non-splitting extension $0\to \mathcal{O} \to E \to \mathcal{O} \to 0$. Prove that $E$ cannot be
+written as a direct sum of two holomorphic line bundles.}
+
+\emph{(There is an algebraic argument using $H^1(C,\mathcal{O}_C) = \Ext^1(\mathcal{O}_C, \mathcal{O}_C)$, but one
+might as well try to construct a new $\bar \p$-operator on the trivial bundle of rank two
+by means of a representative of a non-trivial class in $H^1(C, \mathcal{O}_C) = H^{0,1}(C)$.)}
+\vspace{3mm}
+
+The algebraic argument is easy. $C \cong V/\Gamma$, where $\dim_{\C} V = 1$ and $\Gamma$ is a lattice. Then 
+$H^1(C,\mathcal{O}_C) \cong \overline{V^*} \simeq \C$. Now extensions:
+\[ 0\to \mathcal{O}_C \to E \to \mathcal{O}_C \to 0	\]
+are parametrized by
+\[	\Ext^1(\mathcal{O}_C,\mathcal{O}_C) \cong H^1(\mathcal{O}_C^{-1} \otimes \mathcal{O}_C) \cong H^1(\mathcal{O}_C) \simeq \C.	\]
+$0 \in \C$ corresponds to the trivial extension, but taking $1 \in \C$ gives a non-split extension.
+
+
+\subsection*{Exercise 5.2.3 in \cite{Huy}}
+\emph{Show that on $\PP^2$ there exists a rank two vector bundle which is not isomorphic
+to the direct sum of holomorphic line bundles.}
+\vspace{3mm}
+
+We show that the tangent bundle of $\PP^2$ is indecomposable. In fact, we use a characteristic class argument, which
+proves that $T\PP^2$ does not even split as a complex vector bundle. Recall the Euler sequence:
+\[	0 \to \mathcal{O}_{\PP^2} \to \mathcal{O}_{\PP^2}(1)^{\oplus 3} \to T\PP^2 \to 0.	\]
+Writing $c$ for the total Chern class, this implies $c(T\PP^2) = c(\mathcal{O}_{\PP^2}(1))^3$. Let
+$\alpha = c_1(\mathcal{O}_{\PP^2}(1))$, and recall that the integral cohomology ring of $\PP^2$ is $\Z[\alpha]/(\alpha^3)$.
+Then:
+\[	c(T\PP^2) = 1 + 3\alpha + 3\alpha^2.	\]
+If $T\PP^2$ were decomposable as $L_1 \oplus L_2$ topologically, the Whitney sum formula would imply $c(T\PP^2) = c(L_1) c(L_2)$.
+But $L_i$ are line bundles, so $c(L_i) = 1 + n_i \alpha$, with $n_i \in \Z$. Then:
+\[	1 + 3 \alpha + 3 \alpha^2 = 1 + (n_1 + n_2) \alpha + n_1n_2 \alpha^2.	\]
+This equation has no solutions in $\Z$.
+
+
+
+\subsection*{Exercise 5.2.4 in \cite{Huy}}[The degree-genus formula.]
+\emph{Let $C \subset \PP^2$ be a smooth curve defined by
+a homogeneous polynomial of degree $d$. Show that the genus $g(C) = \dim H^0(C, K_C)$
+is given by the formula}
+\[	g_C = \frac{1}{2}(d-1)(d-2).	\]
+\emph{Use this to show that there are curves which are not plane, i.e. not isomorphic
+to a smooth curve in $\PP^2$. Prove that for a smooth curve $C \subset X$ in a K3 surface $X$
+one has $g(C) = ([C]^2 + 2)/2$.}
+\vspace{3mm}
+
+From the adjunction formula, plus the description of the normal bundle of a hypersurface given in Exercise 2.3.3,
+we obtain:
+\[	\omega_C \cong \omega_{\PP^2}|_{C} \otimes \mathcal{O}_{\PP^2}(d)|_{C} \cong \mathcal{O}_{\PP^2}(d-3)|_C.	\]
+The degree of $\omega_C$ is $2g-2$, due to Riemann-Roch for curves. By using Bezout and the formula above:
+\[	2g-2 = \deg \omega_C = d(d-3),	\]
+which gives the degree-genus formula. This shows that not all genera can be realized by plane curves. In particular, no
+value of $d$ gives $g=2$.\footnote{Technically, one needs to prove the existence of genus 2 curves, but we'll take it
+as known that these can be realized as degree 3 curves in $\PP^3$.}
+
+Applying the adjunction formula for a curve $C$ in a K3 surface $X$, we have:
+\[	\omega_C \cong \mathcal{O}_X|_C \otimes \mathcal{O}_X(C)|_C = \mathcal{O}_X(C)|_C.	\]
+It follows that the genus is related to the self-intersection of $C$ as:
+\[	2g-2 = C.C	\]
+
+
+
+\subsection*{Exercise 5.2.5 in \cite{Huy}}
+\emph{Show that hypersurfaces in $\PP^n$ with $n \geq 3$ do not admit non-trivial holomorphic
+one-forms. In particular, the Albanese of any such hypersurface is trivial.}
+\vspace{3mm}
+
+We apply Weak Lefschetz to obtain an isomorphism $H^1(Y,\C) \cong H^1(\PP^n,\C) = 0$. In particular,
+$H^0(Y,\Omega_Y) = H^{1,1}(Y)$ is a direct summand of $H^1(Y,\C)$, so it is 0. The Albanese is defined as a
+quotient of $H^0(Y,\Omega_Y)^*$, so it too must be trivial.
+
+
+
+
+\subsection*{Exercise 5.2.6 in \cite{Huy}}
+\emph{Which complex tori could possibly be realized as complete intersections in $\PP^n$?}
+\vspace{3mm}
+
+If $\dim X = 1$, the complex torus $X$ is an elliptic curve, and these are projective. (Given by a cubic in
+$\PP^2$, or the intersection of two quadrics in $\PP^3$; see Exercise 2.3.3.)
+
+If $\dim X = m >1$, realizing $X$ as a complete intersection in $\PP^n$ would give a sequence
+$X = X_m \subset X_{m+1} \subset \dots \subset X_n = \PP^n$, where each $X_i$ is a hypersurface in $X_{i+1}$. All
+$X_i$ defined this way are projective, so in particular K\"{a}hler, and we can apply Weak Lefschetz to obtain
+isomorphisms $H^1(X_{i},\C) \to H^1(X_{i-1},\C)$ for $m+1\leq i \leq n$. (Note that $m+1\geq 3$, so we are in the range
+where Weak Lefschetz gives isomorphisms on $H^1$.) Hence $H^1(X,\C) \cong H^1(\PP^n,\C) = 0$, by composing the isomorphisms
+in this chain.
+
+However, a complex torus $\C^m/\Gamma$ cannot have vanishing first cohomology, because $H^1(X,\C) = \Gamma^* \otimes \C$.
+
+
+
+\subsection*{Exercise 5.2.7 in \cite{Huy}}
+\emph{Let $L$ be an ample line bundle on a K3 surface $X$. Show that $h^0(X, L) = 2 + (1/2) \int_X c_1(L)^2$. 
+Study ample line bundles on complex tori.}
+\vspace{3mm}
+
+If $L$ is ample, then there exists a natural number $m$ such that the quantity:
+\[	m c_1(L) = c_1(L^{\otimes m}) = f^*(c_1(\mathcal{O}_{\PP^n}(1))) = f^*([\omega_{FS}])	\]
+can be represented by a K\"{a}hler form $\omega$. In particular, this means $mc_1(L)$ is a positive form, so
+$c_1(L)$ must also be. Hence $L$ is positive, and we can apply Kodaira vanishing:
+\[	H^q(X,L\otimes \omega_X) = 0, \text{ for } q>0.	\]
+If $X$ is a K3, then $\omega_X \cong \mathcal{O}_X$, so we actually obtain $H^q(X,L) = 0$ for $q>0$. Then
+$\chi(X,L) = h^0(X,L)$. As part of the solution to Exercise 5.1.1, we proved that $c_1(X) = 0$ for a K3,
+so Hirzebruch-Riemann-Roch reduces to:
+\[	\chi(X,L) = \int_X \frac{c_1(L)^2}{2} + \chi(X,\mathcal{O}_X). 	\]
+Recall that K3's are required to satisfy $h^1(X,\mathcal{O}_X) = 0$, and that $h^2(X,\mathcal{O}_X) = h^{0,2}(X)
+= h^{2,0}(X) = h^0(X,\omega_X) = 1$. Then $\chi(X,\mathcal{O}_X) = 2$. Putting everything together gives:
+\[	h^0(X,L) = \int_X \frac{c_1(L)^2}{2} + 2.	\]
+
+Similarly, if $X$ is a complex torus, then $T_X$ is trivial, so $\omega_X \cong \mathcal{O}_X$. Kodaira vanishing
+then gives $H^q(X,L) = 0$ for $q>0$. Because $T_X$ is trivial, $\td(X) = 1$, so Hirzebruch-Riemann-Roch gives:
+\[	h^0(X,L) = \chi(X,L) = \int_X \frac{c_1(L)^n}{n!} .	\]
+See Exercise 5.1.2 for how to compute the RHS, in terms of a matrix representation for $c_1(L)$.
+
+
+
+
+\subsection*{Exercise 5.2.8 in \cite{Huy}}
+\emph{Use Serre duality to give a direct algebraic proof of the Kodaira vanishing theorem for curves.}
+\vspace{3mm}
+
+If $\dim X = 1$, then $\Omega_X = \omega_X$, and $H^q = 0$ for all vector bundles and $q>1$.
+\footnote{It's isomorphic to $H^{1-q}$ of another vector bundle, using Serre duality.} Therefore $p+q>1$ can only
+be achieved with $p=q=1$, so Kodaira vanishing for curves is the statement that $H^1(X,\omega_X \otimes \mathscr{L}) =0$
+for any positive line bundle $\mathscr{L}$. By Serre duality, this is dual to $H^0(X,\mathscr{L}^{-1}) = 0$. For curves,
+$c_1(\mathscr{L}) \in H^{1,1}(X,\Z) \cong \Z$, so positivity is equivalent to $\deg \mathscr{L} >0$. Then
+$\deg \mathscr{L}^{-1} < 0$, and $\mathscr{L}^{-1}$ has no global sections.
+
+
+\subsection*{Exercise 5.2.9 in \cite{Huy}}
+\emph{Prove that $H^q(\PP^n, \Omega^p(m)) = 0$ for $p + q > n$, $m > 0$ and for $p + q < n$,
+$m < 0$.}
+\vspace{3mm}
+
+The first part is immediate from Kodaira vanishing: the line bundles $\mathcal{O}_{\PP^n}(m)$ for $m>0$ are positive,
+because $c_1(\mathcal{O}_{\PP^n}(m)) = m \omega_FS$. For the second part, replace $m$ by $-m$ and apply Serre duality:
+\[	H^q(\PP^n, \Omega^p(-m)) \cong H^{n-q}(\PP^n, \Omega^n \otimes \Omega^{p*} \otimes \mathcal{O}(m)).	\]
+\todo{finish this}
+
+
+\subsection*{Exercise 5.2.10 in \cite{Huy}}
+\emph{Let $Y$ be a hypersurface of a compact complex manifold $X$ with $\mathcal{O}(Y)$
+positive. Suppose that $H^2(X,\Z)$ and $H^2(Y, \Z)$ are torsion free. Prove that the restriction
+induces an isomorphism $\Pic(X) \cong \Pic(Y)$ if $\dim(X) > 4$. (Use the exponential
+sequence and the weak Lefschetz theorem. The assumption on $H^2( , \Z)$ is
+superfluous, because Weak Lefschetz actually holds for integral cohomology.)}
+\vspace{3mm}
+
+There is a commutative diagram of sheaves on $X$, where the rows are exact, and the columns are induced by
+the inclusion $\iota :Y \to X$.
+\[
+\begin{tikzcd}
+0\arrow{r} & \Z \arrow{r}\arrow{d} & \mathcal{O}_X \arrow{r}\arrow{d} & \mathcal{O}_X^{\times} \arrow{r}\arrow{d} & 0 \\
+0\arrow{r} & \iota_*\Z \arrow{r} & \iota_*\mathcal{O}_Y \arrow{r} & \iota_*\mathcal{O}_Y^{\times} \arrow{r} & 0
+\end{tikzcd}
+\]
+This induces a commutative diagram between the long exact sequences on cohomology, given by the first 2 rows below.
+\[
+\begin{tikzcd}
+H^1(X,\Z)\arrow{r}\arrow{d} & H^1(X,\mathcal{O}_X)\arrow{r}\arrow{d} & \Pic(X) \arrow{r}\arrow{d} & 
+H^2(X,\Z)\arrow{r}\arrow{d} & H^2(X,\mathcal{O}_X)\arrow{d} \\
+H^1(X,\iota_*\Z)\arrow{r}\arrow{d} & H^1(X,\iota_*\mathcal{O}_Y)\arrow{r}\arrow{d} & 
+H^1(X,\iota_*\mathcal{O}_Y^{\times}) \arrow{r}\arrow{d} &
+H^2(\iota_*X,\Z)\arrow{r}\arrow{d} & H^2(X,\iota_*\mathcal{O}_Y)\arrow{d} \\
+H^1(Y,\Z)\arrow{r} & H^1(Y,\mathcal{O}_Y)\arrow{r} & \Pic(Y) \arrow{r} & H^2(Y,\Z)\arrow{r} & H^2(Y,\mathcal{O}_Y) \\
+\end{tikzcd}
+\]
+The second and third row are related by natural isomorphisms. Indeed, the inclusion $\iota$ is an affine map,
+so $\iota_*$ preserves injective resolutions. In particular, $\iota_*$ induces natural isomorphisms on cohomology.
+
+At this point, we forget about the second row, and consider the commutative diagram formed by the first and third rows.
+\[
+\begin{tikzcd}
+H^1(X,\Z)\arrow{r}\arrow{d}{f_1} & H^1(X,\mathcal{O}_X)\arrow{r}\arrow{d}{f_2} & \Pic(X) \arrow{r}\arrow{d}{f_3} & 
+H^2(X,\Z)\arrow{r}\arrow{d}{f_4} & H^2(X,\mathcal{O}_X)\arrow{d}{f_5} \\
+H^1(Y,\Z)\arrow{r} & H^1(Y,\mathcal{O}_Y)\arrow{r} & \Pic(Y) \arrow{r} & H^2(Y,\Z)\arrow{r} & H^2(Y,\mathcal{O}_Y) \\
+\end{tikzcd}
+\]
+$f_1, f_2, f_4, f_5$ are isomorphisms due to Weak Lefschetz.\footnote{Weak Lefschetz holds with $\Z$ coefficients, but
+the version proved in \cite{Huy} uses $\C$ coefficients. Still, using this version, we obtain isomorphisms
+$H^q(X,\Z)/T \to H^q(Y,\Z)/T$. Using universal coefficients, $H^1( , \Z)$ never has torsion, and $H^2( , \Z)$ has no
+torsion by hypothesis. Hence $f_1$ and $f_4$ are isomorphisms.} By the 5-lemma, $f_3$ is also an isomorphism.
+
+
+\subsection*{Exercise 5.2.11 in \cite{Huy}}
+\emph{Let $X$ be a projective manifold of dimension $n$ and let $L \in \Pic(X)$ be an
+ample line bundle.}
+\begin{enumerate}
+\item \emph{Show that $m \mapsto h^0(X,L^m)$ for $m >>0$ is a polynomial of degree $n$ with
+positive leading coefficient.}
+\item \emph{Deduce from this that $a(X) = \dim(X) = n$, i.e. $X$ is Moishezon. Use the
+arguments of Section 2.2.}
+\end{enumerate}
+\vspace{3mm}
+
+\begin{enumerate}
+\item If $L$ is ample, then $L$ is positive: for some $m>0$, $L^m = \phi^*\mathcal{O}_{\PP^N}(1)$, so
+$c_1(L) = \frac{1}{m} [\omega_{FS}]_X > 0$. Then, by Serre vanishing, $H^q(X,L^m) = 0$ for all $m>m_0$ and
+$q>0$. Then, for $m>m_0$, $h^0(X,L^m) = \chi(X,L^m)$, and the function $m \mapsto h^0(X,L^m)$ is the Hilbert
+polynomial of the polarized variety $(X,L)$. By exercise 5.1.3, this is a polynomial of degree $n$ and leading
+coefficient:
+\[ \frac{1}{n!} \int_X c_1(L)^n. \]
+
+\item Define the graded ring:
+\[	R(X,L) = \bigoplus_{n\geq 0} H^0(X,L^m) .	\]
+$R(X,L)$ is a finite type\todo{any subtlety here? could it be infinitely generated?} algebra over the field $\C$. 
+Using Noether normalization, there exists a finite, injective map $\C[x_0, \dots, x_k] \to R(X,L)$. In particular,
+the graded pieces $\C[x_0, \dots, x_k]_m$ and $R(X,L)_m$ agree for $m$ large enough. We claim that
+$\dim_{\C} \C[x_0, \dots, x_k]_m$ is a polynomial of degree $k$ in $m$, so by part 1 it must be the case that $k=n$. The claim
+follows easily in the case that all $x_i$ have degree 1:
+\[	\dim_{\C} \C[x_0, \dots, x_k]_m = \binom{m+k}{k} = \frac{(m+k) \dots (m+1)}{k!} .	\]
+In general... there should still be an argument? \todo{finish this}
+
+We conclude that:
+\[	\trdeg_{\C}	Q(R(X,L)) - 1 = \trdeg_{\C} Q(\C[x_0, \dots, x_n]) - 1 = n. \]
+From Proposition 2.2.20 and Proposition 2.1.9, we have the following inequalities:
+\[	n = \trdeg_{\C}	Q(R(X,L)) - 1 \leq a(X) \leq n.	\]
+Therefore $a(X) = n$, and $X$ is Moishezon.
+\end{enumerate}
+
+
+
+\subsection*{Exercise 5.3.1 in \cite{Huy}}
+\emph{Show that a complex torus $X =\C^2/\Gamma$ is abelian, i.e. projective, if and only if
+there exists a line bundle $L$ with $\int c_1^2(L) > 0$. (In fact, this criterion is valid for any
+compact complex surface, but more difficult to prove in general.)}
+\vspace{3mm}
+
+
+\subsection*{Exercise 5.3.2 in \cite{Huy}}
+\emph{Show that any vector bundle $E$ on a projective manifold $X$ can be written
+as a quotient $(L^k)^{\oplus l} \twoheadleftarrow E$ with $L$ an ample line bundle, $k << 0$ and $l>> 0$. (Imitate
+the first step of the proof of Proposition 5.3.1, which shows the assertion for $E = \mathcal{O}_X$.
+You will also need to revisit Proposition 5.2.7.)}
+\vspace{3mm}
+
+
+\subsection*{Exercise 5.3.3 in \cite{Huy}}
+\emph{Let $\sigma : \hat X \to X$ be the blow-up of $X$ in $x \in X$ with the exceptional divisor
+$E$ and let $L$ be an ample line bundle on $X$. Show that $\sigma^*L^k \otimes \mathcal{O}(—E)$ is ample for
+$k>>0$.
+(This is obtained by a revision of the proof of the Kodaira embedding theorem.
+In particular, the blow-up $X$ of a projective manifold $X$ is again projective.)}
+\vspace{3mm}
+
+
+\subsection*{Exercise 5.3.4 in \cite{Huy}}
+\emph{Continue Exercise 5.1.6 and show, by using the techniques of this section,
+that any line bundle $L$ of degree $\deg(L) > 2g$ on a compact curve $C$ of genus $g$ is
+very ample, i.e. the linear system associated with $L$ embeds $C$.
+Conclude that any elliptic curve is isomorphic to a plane curve, i.e. to a hypersurface
+in $\PP^2$.}
+\vspace{3mm}
+
+We proceed in 3 steps.
+\begin{enumerate}
+\item We first show that $L$ is basepoint free. This was already proved in 5.1.6, using the weaker assumption that
+$\deg(L) > 2g-1$. Another short proof can be given by using the short exact sequence:
+\begin{equation}
+\label{eq:morph}
+	0 \to L(-p) \to L \to L_p \to 0.
+\end{equation}
+Then $\deg \omega_C^{-1} \otimes L(-p) > 2g-1 - (2g-2) = 1$, so $L(-p) \otimes \omega_C^{-1}$ is positive. Then Kodaira vanishing
+implies that $H^1(L(-p)) = 0$, and the sequence \ref{eq:morph} shows that $H^0(L) \to H^0(L_p)$ is surjective.
+
+\item Since $L$ is basepoint free, it determines a morphism $\phi_L$ to $\PP^n$. We show that $\phi_L$ separates points,
+using another short exact sequence.
+\begin{equation}
+\label{eq:inj}
+	0 \to L(-p-q) \to L \to L_{p} \oplus L_{q} \to 0.
+\end{equation}
+Then $\deg \omega_C^{-1} \otimes L(-p-q) > 2g-2 - (2g-2) = 0$, so $L(-p-q) \otimes \omega_C^{-1}$ is positive. Then Kodaira vanishing
+implies that $H^1(L(-p-q)) = 0$, and the sequence \ref{eq:inj} shows that $H^0(L) \to H^0(L_p\oplus L_q)$ is surjective.
+In particular, there exist sections of $L$ which vanish at $p$ but not at $q$, and vice-versa. Hence $\phi_L$ is injective.
+
+\item It remains to show that $\phi_L$ separates tangent directions. It is shown in Section 5.3 that injectivity of
+the differential $d\phi_L : T_pC \to T_{\phi_L(p)}\PP^n$ is equivalent to surjectivity of $H^0(C,L(-p)) \to H^0(C,
+L_p\otimes \omega_{C,p}$. We use the short exact sequence:
+\begin{equation}
+\label{eq:immer}
+	0 \to L(-2p) \to L(-p) \to L_{p} \otimes \omega_{C,p} \to 0.
+\end{equation}
+Again, $L(-2p) \otimes \omega_C^{-1}$ is positive, so $H^1(C,L(-2p)) = 0$, and the result follows.
+\end{enumerate}
+
+In particular, any line bundle $L$ of degree 3 on an eliptic curve gives an embedding into projective space. Using
+Riemann-Roch, $h^0(C,L) = 3$, so the morphism $\phi_L$ goes to a projective space of dimension $3-1 = 2$.
+
+
+\subsection*{Exercise 5.3.5 in \cite{Huy}}
+ Show that there exists a complex torus $X$ of dimension $n$ such that $X$ is
+projective and, therefore, $a(X) = n$.
+\vspace{3mm}
+
+Let $X = \C^n / \Gamma$, where $\Gamma = \langle (1, 0, \dots, 0), (i,0,\dots, 0), \dots, (0, \dots, 1), (0,\dots, i)
+\rangle_{\Z}$. We define a Riemann form on $(\C^n, \Gamma)$, which proves that $X$ is an Abelian variety.
+\begin{align*}
+\omega : \C^n \times \C^n &\to \R, \\
+(z,w) &\mapsto \Im(w\bar z).
+\end{align*}
+It's immediate that $\omega(iz, iw) = \omega(z,w)$ and that $\omega(z, iz) =\Im(i z \bar z) = |z|^2 \geq 0$. Moreover,
+$\Gamma$ is chosen so that $\omega(u,v) \in \{-1, 0, 1\}$ for any $u,v$ generators of $\Gamma$. Therefore $\omega$
+is a Riemann form, and Corollary 5.3.5 ensures that $\omega$ defines a nonzero class in $H^{1,1}(X,\Z)$. Hence
+$X$ is projective.
+
+The last statement follows from Exercise 3.2.11, where it is proved that projective manifolds are Moishezon.
+
+
+
+\section{Voisin, Volume I}
+\subsection*{Exercise 6.2 in \cite{Voi1}}
+\emph{The Hodge decomposition for curves. Let $X$ be a compact connected complex curve. We have the differential:}
+\[	d : \mathcal{O}_X \to \Omega_X	\]
+\emph{between the sheaf of holomorphic functions and the sheaf of holomorphic differentials.}
+\begin{enumerate}[(a)]
+\item \emph{Show that $d$ is surjective with kernel equal to the constant sheaf $\C$. Hence we have an exact
+sequence:}
+\begin{equation}
+\label{eq:dcurve}
+ 0 \to \C \to \mathcal{O}_X \overset{d}{\to} \Omega_X \to 0 .
+\end{equation}
+\item \emph{Deduce from Serre duality that $H^1(X, \Omega_X) \cong \C$. Deduce from Poincar\'e duality that
+$H^2(X, \C) = \C$.}
+\item \emph{Show that \ref{eq:dcurve} induces a short exact sequence:}
+\begin{equation}
+\label{eq:hodgecurve}
+0 \to H^0(X, \Omega_X) \to H^1(X, \C) \to H^1(X, \mathcal{O}_X) \to 0.
+\end{equation}
+\item \emph{Show that the map which to a holomorphic form $\alpha$ associates the class of $\bar \alpha$ in
+$H^1(X, \mathcal{O}_X)$ is injective.}
+\item \emph{Deduce from Serre duality that it is also surjective and that we have the decomposition:}
+\begin{equation}
+\label{eq:decompcurve}
+H^1(X, \C) = H^0(X,\Omega_X) \oplus \overline{H^0(X,\Omega_X)},
+\end{equation}
+\emph{with}
+\[	\overline{H^0(X,\Omega_X)} \cong H^1(X, \mathcal{O}_X).	\]
+\end{enumerate}
+
+\begin{proof}
+\text{   }
+\begin{enumerate}[(a)]
+\item We check exactness at the level of stalks. On small enough contractible open sets $U$, we use 
+the Poincar\'e Lemma to express any 1-form
+$\omega \in \mathcal{A}^1(U)$ as $df$ for some $f \in C^{\infty}(U)$. Then we have
+$\omega = \p_z f dz + \p_{\bar z} f d\bar z$ in local coordinates on $U$. In the case $\omega$ holomorphic,
+its coordinate representation in any chart must be holomorphic, which gives $\p_{\bar z} f = 0$, i.e. $f \in
+\mathcal{O}_X(U)$. This construction works for any contractible $U$ and is compatible with restriction,
+so we obtain surjectivity on the inverse limits $\mathcal{O}_{X,x} \to \Omega_{X,x}$, for all $x$. Moreover,
+for all $U$, $df = 0$ iff $f$ is constant, which gives:
+\[	 0 \to \C_x \to \mathcal{O}_{X,x} \overset{d}{\to} \Omega_{X,x} \to 0.	\]
+This is equivalent to \ref{eq:dcurve}.
+
+\item Serre duality, together with the fact that $\Omega_X = K_X$ for curves, gives:
+\[	H^1(X,\Omega_X) = H^1(X, \mathcal{O}_X \otimes \Omega_X) = H^1(X, \mathcal{O}_X) \cong \C.	\]
+From Poincar\'e duality, $H^2(X,\C) \cong H^0(X,\C) = \C$. This also follows from the fact that $X$ is orientable.
+
+\item We have a long exact sequence associated to \ref{eq:dcurve}. The map:
+\[	H^0(X, \mathcal{O}_X) \overset{d}{\to} H^0(X,\Omega_X)	\]
+is 0, because the compactness of $X$ implies that all elements of $H^0(X, \mathcal{O}_X)$ are constants.
+Hence the following is exact:
+\begin{equation}
+\label{eq:longasscurve}
+0 \to H^0(X,\Omega_X) \to H^1(X, \C) \to H^1(X,\mathcal{O}_X) \to H^1(X,\Omega_X) \to H^2(X, \C) \to
+H^2(X,\mathcal{O}_X).
+\end{equation}
+Using the Dolbeault resolution of $\mathcal{O}_X$,
+\[	H^2(X,\mathcal{O}_X) \cong \frac{\Ker(\bar \p : \mathcal{A}^{0,2} \to \mathcal{A}^{0,3})}{\Imag
+(\bar \p : \mathcal{A}^{0,1} \to \mathcal{A}^{0,2})} = 0, \]
+because $\mathcal{A}^{0,2} = 0$ on a curve. Thus, the last term of \ref{eq:longasscurve} is 0, so the map
+$H^1(X,\Omega_X) \to H^2(X, \C)$ must be surjective. From part (b), both these terms are $\C$, so the map
+is actually an isomorphism. This means we can split \ref{eq:longasscurve} even further to get \ref{eq:hodgecurve}.
+
+\item Using the Dolbeault resolution of $\mathcal{O}_X$ again, it makes sense to think of $\bar \alpha$ as an
+element of $H^1(X, \mathcal{O}_X)$. If $\alpha$ is $d$-closed, $\bar \alpha$ is $\bar \p$-closed, and if
+$\alpha$ is $d$-exact, $\bar \alpha$ is $\bar \p$-exact.\footnote{Because $d = \p + \bar \p$, in general,
+so $d=\p$ on holomorphic forms.} Therefore we have a map:
+\[	\psi: H^0(X,\Omega_X) \to H^1(X, \mathcal{O}_X).	\]
+Injectivity is just the statement that, if $\bar \alpha = \bar \p \phi$ for some $\phi \in C^{\infty}(X)$, then
+$\alpha = d f$ for some $f \in \Gamma(\mathcal{O}_X)$. This follows from the fact that $\alpha = \p \overline{\phi}$,
+but $\alpha$ is assumed holomorphic, so $\overline{\phi}$ is also holomorphic. In this case, $\p \overline{\phi}
+= d \overline{\phi}$.
+
+\item Using Serre duality again, there is a canonical isomorphism $H^1(X, \mathcal{O}_X) \cong 
+\big(H^0(X, \Omega_X)  \big)^*$. In particular, $\dim_{\C} H^1(X, \mathcal{O}_X) = \dim_{\C} H^0(X, \Omega_X)$,
+so the map $\psi$ in part (d) is an isomorphism for dimension reasons. This means we have the following
+isomorphisms:
+\[	H^0(X,\Omega_X) \overset{\psi}{\to} H^1(X, \mathcal{O}_X) \overset{\cong}{\to} \big(H^0(X, \Omega_X)  \big)^*.	\]
+Since $\psi$ is simply complex conjugation, we obtain a canonical isomorphism:
+\[	\overline{H^0(X,\Omega_X)} \overset{\cong}{\to} H^1(X, \mathcal{O}_X).	\]
+We replace $H^1(X, \mathcal{O}_X)$ in the short exact sequence \ref{eq:hodgecurve}:
+\[	0 \to H^0(X, \Omega_X) \to H^1(X, \C) \to \overline{H^0(X,\Omega_X)} \to 0.	\]
+It remains to show that this sequence splits.
+
+
+\todo{finish}
+\end{enumerate}
+\end{proof}
+
+
+
+\subsection*{Exercise 8.1 in \cite{Voi1}}
+\emph{Let $S$ be a compact complex surface.}
+\begin{enumerate}[(a)]
+\item \emph{Show that the Fr\"olicher spectral sequence of $S$ degenerates at $E_3$ for degree reasons. What are
+the possibly non-zero differentials $d_2$?}
+\item \emph{By studying the integrals:}
+\[	\int_S \alpha \wedge \bar \alpha	\]
+\emph{for $\alpha$ a holomorphic form of degree 2, show that the holomorphic 1-forms on $S$ are closed.}
+\item \emph{More generally, show that the map}
+\[	H^0(S,\Omega^2_S) \to H^2(S,\C)	\]
+\emph{which to a holomorphic 2-form associates its de Rham class, is injective. Deduce from this that the 
+differential}
+\[	d_2^{0,1} : E_2^{0,1} \to E_{2}^{2,0}	\]
+\emph{vanishes. (Notice that the last space is equal to $H^0(S, \Omega^2_S)$ by part (b).}
+\item \emph{Show that the differentials}
+\[	d_1 : H^q(S,\Omega_S^p) \to H^q(S,\Omega_S^{p+1})	\]
+\emph{and}
+\[	d_1 : H^{2-q}(S,\Omega_S^{2-p-1}) \to H^{2-q}(S,\Omega_S^{2-p})	\]
+\emph{are dual up to sign with respect to Serre duality. Deduce from this and (b) that}
+\[	d_1 = \p : H^2(S,\mathcal{O}_S) \to H^2(S,\Omega_S)	\]
+\emph{is equal to zero.}
+\item \emph{Show that the map}
+\[	H^0(S,\Omega_S) \to H^1(S,\C)	\]
+\emph{which to a holomorphic 1-form (note that this is closed by part (b)) associates its de Rham class, is injective.}
+\item \emph{Let $\delta := \p : H^1(S,\mathcal{O}_S) \to H^1(S,\Omega_S)$. Show that we have the relations:}
+\begin{align*}
+b_1(S) &= h^{1,0}(S) + h^{0,1}(S) - \rk(\delta), \\
+b_3(S) &\leq h^{2,1}(S) + h^{1,2}(S) - \rk(\delta),
+\end{align*}
+\emph{with equality if and only if $d_2^{0,2} = 0$. Deduce from this that the Fr\"olicher spectral sequence
+of $S$ degenerates at $E_2$ and that it degenerates at $E_1$ if and only if $\delta = 0$.}
+\item \emph{Show that we have the relations:}
+\begin{align*}
+b_3(S) &= b_1(S) = h^{1,0}(S) + h^{0,1}(S) - \rk(\delta), \\
+b_2(S) &\leq h^{2,0}(S) + h^{0,2}(S) + h^{1,1}(S) - 2\rk(\delta).
+\end{align*}
+\emph{NB: One can show that $\delta$ is in fact always 0, that is the Fr\"olicher spectral sequence of a compact
+complex surface degenerates at $E_1$.}
+\end{enumerate}
+
+
+\begin{proof}
+Note that $S$ is not assumed K\"ahler in this problem.
+\begin{enumerate}[(a)]
+\item By definition, $E_r^{p,q}$ are subquotients of $F^p\mathcal{A}^{p+q} = \mathcal{A}^{p,q} \oplus \dots
+\oplus \mathcal{A}^{p+q,0}$. On a complex surface $S$, the only such sheaves which can be nonzero are:
+\[
+\begin{tikzcd}
+F^0\mathcal{A}^4 &  &  \\
+F^0\mathcal{A}^3 & F^1\mathcal{A}^3 & \\
+F^0\mathcal{A}^2 & F^1\mathcal{A}^2 & F^2\mathcal{A}^2 \\
+F^0\mathcal{A}^1 & F^1\mathcal{A}^1 & F^2\mathcal{A}^1 \\
+F^0\mathcal{A}^0 & F^1\mathcal{A}^0 & F^2\mathcal{A}^0 \\
+\end{tikzcd}
+\]
+The differential $d_3$ has degree (3,-2), so either its domain or its target is 0. Therefore the sequence
+degenerates at $E_3$. The morphisms $d_2$, with degree (2,-1), allowed to be nonzero are the ones 
+with target in the rightmost
+column of the diagram above, i.e. $d_2^{0,1}$, $d_2^{0,2}$ and $d_2^{0,3}$.
+
+\item If $\beta$ is holomorphic of degree 1, $d\beta = \p \beta$, so $\overline{d\alpha} = \bar \p \bar \beta$,
+and $\bar \beta$ is antiholomorphic. In particular, we have:
+\[  d(\beta \wedge \bar \p \bar \beta) = \p \beta \wedge \bar \p \bar \beta - \beta \wedge \bar \p^2 \bar \beta
+= d\beta \wedge \overline{d\beta}. \]
+Now, since $d\beta \wedge \overline{d\beta}$ is exact, Stokes' theorem implies that
+\[	\int_S d\beta \wedge \overline{d\beta} = 0.	\]
+However, writing $d\beta = f(z) dz_1 \wedge dz_2$ locally, the above gives:
+\[	\int_S |f(z)|^2 dz_1 \wedge dz_2 \wedge d\bar z_1 \wedge d\bar z_2 = 0.	\]
+This is only possible if $f = 0$, which implies $d \beta = 0$. We conclude that all holomorphic 1-forms on $S$
+are closed.
+
+\item If $\omega \in H^0(S,\Omega^2_S)$, then $d\omega = 0$, since $S$ cannot support holomorphic 3-forms. This
+gives a map $H^0(S,\Omega^2_S) \to H^2(S,\C)$. If $\omega = d \beta$ with $\beta \in \mathcal{A}^1(S)$, then
+$\beta$ can be chosen holomorphic. Indeed, in local coordinates, is $\beta = f(z_i) dz_i + g(z_j) d\bar z_j$,
+then $d \beta$ holomorphic implies that $f$ is holomorphic and $g$ is constant, and we may replace $\beta$ by
+$f(z_i) dz_i$. However, by part (b), $\beta \in \Omega_S^1$ satisfies $d\beta = 0$, so $\omega = 0$. This
+proves that $H^0(S,\Omega^2_S) \to H^2(S,\C)$ is injective.
+
+The nonzero part of the $E_1$ page of the spectral sequence is:
+\[
+\begin{tikzcd}
+H^2(S,\mathcal{O}_S)\arrow[dashed]{r} & H^2(S,\Omega^1_S)\arrow[dotted]{r} & H^2(S,\Omega^2_S) \\
+H^1(S,\mathcal{O}_S)\arrow{r} & H^1(S,\Omega^1_S)\arrow{r} & H^1(S,\Omega^2_S) \\
+H^0(S,\mathcal{O}_S)\arrow[dotted]{r} & H^0(S,\Omega^1_S)\arrow[dashed]{r} & H^0(S,\Omega^2_S).
+\end{tikzcd}
+\]
+Compare this to the diagram in part (a): the groups $H^4(S,\mathcal{O}_S)$, $H^3(S,\mathcal{O}_S)$ and
+$H^3(S,\Omega^1_S)$ are zero, because they can be expressed in terms of $\mathcal{A}^{0,4}$, $\mathcal{A}^{0,3}$
+and $\mathcal{A}^{1,3}$ forms respectively, using the Dolbeault resolutions of $\mathcal{O}_S$ and $\Omega^1_S$.
+
+The injectivity of $H^0(S,\Omega^2_S) \to H^2(S,\C)$ means that $H^0(S,\Omega^2_S)$ survives to the $E_{\infty}$
+page, so all differentials with target $H^0(S,\Omega^2_S)$ are zero. Thus, $d_1^{1,0} = 0$ and $d_2^{0,1} = 0$.
+
+\item Since $K_S = \Omega_S^2$, the pairs of groups situated opposite to each other with respect to the center of
+the diagram in part (c) are dual to each other, by Serre duality. Using the functoriality of Serre duality,
+the pairs drawn as solid, dashed and dotted represent dual maps. In particular, in part (c) we showed that
+the lower right dashed arrow $d_1^{1,0} = 0$. This means that $d_1^{0,2} : H^2(S,\mathcal{O}_S) \to
+H^2(S,\Omega^1_S)$ is also zero.
+
+\item In exercise 6.2 in \cite{Voi1}, solved above, we saw that the short exact sequence of sheaves:
+\[	0 \to \C \to \mathcal{O}_S \to \Omega^1_S \to 0	\]
+induces a long exact sequence in cohomology, part of which is:
+\[	0 \to H^0(S,\Omega^1_S) \to H^1(S,\C) \to \dots	\]
+So the map $H^0(S,\Omega^1_S) \to H^1(S,\C)$ is injective. This is just expressing the fact that $H^0(S,\mathcal{O}_S)
+\cong \C)$.
+
+\item From part (e), we deduce that the group $H^0(S,\Omega^1_S)$ survives to the $E_{\infty}$ page, so
+$d_1^{0,0} = 0$. Using part (d), both dotted arrows in the diagram are 0, and we are left with:
+\[
+\begin{tikzcd}
+H^2(S,\mathcal{O}_S)\arrow[dashed]{r}{0} & H^2(S,\Omega^1_S)\arrow[dotted]{r}{0} & H^2(S,\Omega^2_S) \\
+H^1(S,\mathcal{O}_S)\arrow{r}{\delta} & H^1(S,\Omega^1_S)\arrow{r}{\delta^*} & H^1(S,\Omega^2_S) \\
+H^0(S,\mathcal{O}_S)\arrow[dotted]{r}{0} & H^0(S,\Omega^1_S)\arrow[dashed]{r}{0} & H^0(S,\Omega^2_S).
+\end{tikzcd}
+\]
+Moreover, recall from part (c) that $d_2^{0,1} = 0$, so the only arrow on $E_2$ which is possibly nonzero
+is $d_2^{0,2}$, which does not affect the groups $H^1(S,\mathcal{O}_S)$ and $H^0(S,\Omega^1_S)$ which contribute
+to $\Gr H^1(S,\C)$. Therefore:
+\[	b_1(S) = h^{1,0}(S) + \dim \Ker \delta = h^{1,0}(S) + h^{0,1}(S) - \rk \delta.	\]
+The differential $d_2^{0,2}$ could affect the groups contributing to $\Gr H^3(S,\C)$, so we have:
+\[	b_3(S) = h^{1,2}(S) + h^{2,1}(S) - \rk \delta^* - \rk d_2^{0,2} \leq h^{1,2}(S) + h^{2,1}(S) - \rk \delta ,	\]
+with equality if and only if $d_2^{0,2} = 0$.
+
+By Poincar\'e duality, $b_1(S) = b_3(S)$, which shows that $d_2^{0,2} = 0$ and the spectral sequence degenerates
+at $E_2$.
+
+\item From part (f) we obtain immediately that:
+\begin{align*}
+b_1(S) = b_3(S) &= h^{1,0}(S) + h^{0,1}(S) - \rk \delta, \\
+b_2(S) &= h^{2,0}(S) + h^{0,2}(S) + \dim \Ker \delta^* - \dim \Imag \delta = h^{2,0}(S) + h^{0,2}(S) +
+h^{1,1} - 2 \rk \delta.
+\end{align*}
+\end{enumerate}
+\end{proof}
+
+
+
+\subsection*{Exercise 8.2 in \cite{Voi1}}
+\emph{Spherical spectral sequences. Let $(M^{\bullet},F)$ be a filtered complex in an abelian category. We assume
+that the decreasing filtration $F$ satisfies the finiteness condition $F^pM^k = 0$ for $p$ large enough. We
+assume that there exist two integers $p<p'$ such that the complexes $\Gr^k M^{\bullet}$ are exact for $k\neq p,p'$.}
+\begin{enumerate}[(a)]
+\item \emph{Show that the differentials $d_i$, $i\geq 1$ of the spectral sequence of $(M^{\bullet},F)$ are 0
+for $i\neq p'-p =:r$.}
+
+\item \emph{Show that $E_{r+1}^{p,q} = E_{\infty}^{p,q}$ is equal to 0 for $k\neq q,q'$ and that one has an
+exact sequence:}
+\[	0 \to E^{p',q}_{\infty} \to H^{p'+q}(M^{\bullet}) \to E^{p,q+p'-p}_{\infty} \to 0.	\]
+
+\item \emph{Show that}
+\begin{align*}
+E_{\infty}^{p',q} &= E_r^{p',q}/\Imag d_r = E_1^{p',q}/\Imag d_r, \\
+E_{\infty}^{p,q} &= \Ker d_r \subset E_r^{p,q} = E_1^{p,q}.
+\end{align*}
+
+\item \emph{Deduce that one has a long exact sequence:}
+\[	\cdots \to H^k(M^{\bullet}) \to E_1^{p,k-p} \overset{d_r}{\to} E_1^{p',k-p'+1} \to 
+H^{k+1}(M^{\bullet}) \to \cdots	\]
+\emph{where $E_1^{p,k-p} = H^k(\Gr^p M^{\bullet})$ and $E_1^{p',k-p'} = H^k(\Gr^{p'} M^{\bullet})$.}
+
+\emph{These spectral sequences appear as Leray spectral sequences of the sphere bundles.}
+\end{enumerate}
+
+
+\begin{proof}
+\text{  }
+\begin{enumerate}[(a)]
+\item The $E_0$ page of the spectral sequence is:
+\[
+\begin{tikzcd}
+\vdots & \vdots & \vdots \\
+\Gr^0 M^2\arrow{u} & \Gr^1 M^3\arrow{u} & \Gr^2 M^4\arrow{u} \\
+\Gr^0 M^1\arrow{u} & \Gr^1 M^2\arrow{u} & \Gr^2 M^3\arrow{u} \\
+\Gr^0 M^0\arrow{u} & \Gr^1 M^1\arrow{u} & \Gr^2 M^2\arrow{u} \\
+\Gr^0 M^{-1}\arrow{u} & \Gr^1 M^0\arrow{u} & \Gr^2 M^1\arrow{u} \\
+\vdots\arrow{u} & \vdots\arrow{u} & \vdots\arrow{u} 
+\end{tikzcd}
+\]
+The double complex is possibly unbounded above and below, but it is bounded to the left and eventually bounded 
+to the right. By assumption, all columns except for $p$ and $p'$ are exact. Therefore the $E_1$ page has nonzero
+groups only in the $p$ and $p'$ columns. Since $E_r^{p,q}$ is a subquotient of $E_1^{p,q}$ for $r>1$, this is true
+for all subsequent pages. Now $\deg d_r = (r,-r+1)$, so the only differentials which are possibly nonzero are
+$d_r$ for $r = p'-p$.
+
+\item From part (a) it follows that $E_1 = \dots = E_r$, and $E_{r+1} = \dots = E_{\infty}$. Moreover, since all
+nonzero groups are in the columns $p$ and $p'$, the following hold for all $q$:
+\[	H^{p+q}(M^{\bullet}) = F^0 H^{p+q}(M^{\bullet}) = \dots = F^p H^{p+q}(M^{\bullet}), 	\]
+\[	F^{p+1} H^{p+q}(M^{\bullet}) = \dots = F^{p'} H^{p+q}(M^{\bullet}), \]
+\[	F^{p'+1} H^{p+q}(M^{\bullet}) = 0.	\]
+Therefore:
+\[	E_{\infty}^{p',q} = \Gr^{p'} H^{p'+q}(M^{\bullet}),	\]
+\[	E_{\infty}^{p,q+r} = F^p H^{p+q+r}(M^{\bullet})	/ F^{p+1} H^{p+q+r}(M^{\bullet}) = 
+H^{p+q+r}(M^{\bullet}) / E_{\infty}^{p+r,q}. \]
+Putting these together gives the exact sequence:
+\[	0 \to E_{\infty}^{p',q} \to H^{p+q+r}(M^{\bullet}) \to E_{\infty}^{p,q+p'-p} \to 0. 	\]
+
+\item The equalities are immediate from $E_{r+1}^{p,q} = \Ker \big(d_r^{p,q} : E_r^{p,q} \to E_r^{p+r,q-r+1}\big)
+/ \Imag \big(d_r^{p-r,q+r-1} : E_r^{p-r,q+r-1} \to E_r^{p,q}\big)$.
+
+\item Part (c) gives the exact sequence:
+\[	0 \to E_{\infty}^{p,q} \to E_{1}^{p,q} \overset{d_r}{\to} \to E_{1}^{p+r,q-r+1} \to E_{1}^{p+r,q-r+1} \to 0. 	\]
+While from part (b) we have:
+\[	0 \to E_{\infty}^{p+r,q} \to H^{p+r+q}(M^{\bullet}) \to E_{\infty}^{p,q+r} \to 0.	\]
+We concatenate these, increasing $q$ by 1 each time. Concatenation makes the $E_{\infty}$ groups disappear,
+and letting $k= p+r+q$ gives:
+\[	\cdots \to H^k(M^{\bullet}) \to E_1^{p,k-p} \to E_1^{p',k-p'+1} \to H^{k+1}(M^{\bullet}) \to \cdots	\]
+
+\end{enumerate}
+\end{proof}
+
+
+
+
+\bibliography{./cls/bib}{}
+\bibliographystyle{alpha}
+
+\end{document}
+
+
+
+
+
+
+
+
+
